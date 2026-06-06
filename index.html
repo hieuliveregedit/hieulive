@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HIẾU LIVE VIP - DYNAMIC SENS</title>
+    <title>HIẾU LIVE VIP - FULL ALL SETTING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 15px; margin: 0; }
@@ -12,30 +12,32 @@
         button { padding: 12px; background: #f00; color: #fff; border: none; border-radius: 10px; font-weight: bold; width: 95%; cursor: pointer; text-transform: uppercase; margin-bottom: 5px; }
         .hidden { display: none; }
         #results { margin-top: 15px; text-align: left; }
-        .card { background: #1a1a1a; border-left: 5px solid #f00; margin-bottom: 15px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.5); animation: slideIn 0.3s; }
-        @keyframes slideIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+        .card { background: #1a1a1a; border: 1px solid #f00; margin-bottom: 15px; padding: 15px; border-radius: 10px; position: relative; animation: slideIn 0.3s; }
+        @keyframes slideIn { from {transform: translateY(20px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
         h3 { color: #f00; margin: 0 0 10px 0; font-size: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .val { color: #f00; font-weight: bold; float: right; font-family: monospace; font-size: 16px; }
-        .highlight { color: #0f0; } /* Màu xanh cho Nút bắn và DPI cho nổi bật */
-        p { margin: 8px 0; font-size: 13px; color: #ddd; border-bottom: 1px dashed #222; padding-bottom: 4px; }
+        .val { color: #f00; font-weight: bold; float: right; font-family: monospace; }
+        .vip { color: #0f0; font-weight: bold; float: right; } /* Màu xanh cho DPI và Độ trễ */
+        p { margin: 6px 0; font-size: 13px; color: #ddd; border-bottom: 1px dashed #222; padding-bottom: 4px; }
+        .status { font-size: 10px; color: #888; text-align: center; margin-top: 5px; }
     </style>
 </head>
 <body>
     <div class="box">
         <img src="https://imgur.com">
-        <h2>HIẾU LIVE VIP SENS</h2>
+        <h2>HIẾU LIVE GAMING</h2>
 
+        <!-- MÀN HÌNH KHÓA -->
         <div id="keyScreen">
             <input type="password" id="inputKey" placeholder="Nhập Key kích hoạt VIP...">
             <button onclick="checkKey()">Kích hoạt App</button>
         </div>
 
+        <!-- MÀN HÌNH CHÍNH -->
         <div id="mainApp" class="hidden">
             <input type="text" id="phoneName" placeholder="Nhập tên máy (vdu: iPhone 13)">
             <button onclick="addSetting()">LẤY ĐỘ NHẠY & NÚT BẮN</button>
-            <button onclick="document.getElementById('results').innerHTML=''" style="background:#444;">XÓA TẤT CẢ</button>
             <div id="results"></div>
-            <button onclick="localStorage.removeItem('hieulive_logged'); location.reload();" style="background:none; color:#555; font-size:10px; margin-top:20px;">ĐĂNG XUẤT</button>
+            <button onclick="localStorage.removeItem('hieulive_logged'); location.reload();" style="background:#333; font-size:10px; width:auto; padding:5px 15px; margin-top:20px;">ĐĂNG XUẤT</button>
         </div>
     </div>
 
@@ -47,7 +49,7 @@
             if(document.getElementById("inputKey").value.toLowerCase() === SECRET_KEY) {
                 localStorage.setItem("hieulive_logged", "true");
                 showApp();
-            } else { alert("Sai mã!"); }
+            } else { alert("Mã sai! Liên hệ Zalo: 0987124052"); }
         }
 
         function showApp() {
@@ -55,32 +57,28 @@
             document.getElementById("mainApp").style.display = "block";
         }
 
-        // Hàm lấy số ngẫu nhiên trong khoảng
         function rand(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
         function addSetting() {
             let name = document.getElementById("phoneName").value.trim();
-            if(!name) return alert("Hãy nhập tên máy!");
+            if(!name) return alert("Vui lòng nhập tên máy!");
             
             let isIphone = name.toLowerCase().includes("iphone");
             let resultsArea = document.getElementById("results");
 
-            // Cấu tạo bảng thông số ngẫu nhiên liên tục
             let html = `
             <div class="card">
                 <h3>THIẾT BỊ: ${name.toUpperCase()}</h3>
-                <p>Nhìn xung quanh <span class="val">${rand(98, 100)}</span></p>
-                <p>Red Dot Sight <span class="val">${rand(95, 99)}</span></p>
-                <p>Ống ngắm 2x <span class="val">${rand(88, 94)}</span></p>
-                <p>Ống ngắm 4x <span class="val">${rand(82, 88)}</span></p>
-                <p>Ống ngắm súng tỉa <span class="val">${rand(50, 65)}</span></p>
-                <p>Nhìn <span class="val">${rand(65, 80)}</span></p>
-                <p><b>NÚT BẮN (SIZE)</b> <span class="val highlight">${isIphone ? rand(42, 48) : rand(48, 55)}%</span></p>
-                <p><b>DPI / ĐỘ RỘNG</b> <span class="val highlight">${isIphone ? "Mặc định" : rand(500, 600)}</span></p>
-                <p><b>TỐC ĐỘ CON TRỎ</b> <span class="val">MAX</span></p>
-                <p><b>LOOT ĐỒ</b> <span class="val">Tự động / Nhanh</span></p>
+                <p>Nhìn xung quanh <span class="val">100</span></p>
+                <p>Red Dot Sight <span class="val">${rand(96, 99)}</span></p>
+                <p>Ống ngắm 2x/4x <span class="val">${rand(90, 93)} / ${rand(84, 88)}</span></p>
+                <p>Nút bắn <span class="val">${isIphone ? rand(42, 46) : rand(48, 52)}%</span></p>
+                <hr style="border:0.1px solid #333">
+                <p><b>DPI ẢO</b> <span class="vip">ĐÃ KÍCH HOẠT (+${rand(150, 300)})</span></p>
+                <p><b>ĐỘ TRỄ CẢM ỨNG</b> <span class="vip">0.1 MS (ACTIVE)</span></p>
+                <div class="status">Cài đặt hồ sơ cấu hình để áp dụng thông số trên</div>
             </div>`;
             
             resultsArea.innerHTML = html + resultsArea.innerHTML;
