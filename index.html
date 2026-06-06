@@ -3,71 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIẾU LIVE VIP - ĐỘ NHẠY</title>
+    <title>HIẾU LIVE VIP</title>
     <style>
-        :root { --primary: #00ff00; --bg: #050505; }
-        body { font-family: monospace; background: var(--bg); color: var(--primary); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { width: 90%; max-width: 380px; padding: 25px; border: 1px solid var(--primary); text-align: center; background: #111; border-radius: 10px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid var(--primary); color: var(--primary); text-align: center; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: var(--primary); color: #000; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        #main-ui, #result { display: none; }
-        .stat-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,255,0,0.2); }
-        .val { color: #fff; }
+        body { font-family: sans-serif; background: #000; color: #fff; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .ff-box { width: 90%; max-width: 400px; background: #1a1a1a; padding: 20px; border: 2px solid #e67e22; border-radius: 10px; }
+        h2 { text-align: center; color: #e67e22; text-transform: uppercase; margin-bottom: 20px; }
+        .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #2c3e50; padding: 10px; border-radius: 5px; }
+        .label { font-weight: bold; font-size: 14px; }
+        .value { color: #f1c40f; font-weight: bold; }
+        .input-group { margin-bottom: 20px; text-align: center; }
+        input { width: 80%; padding: 10px; border-radius: 5px; border: none; outline: none; text-align: center; }
+        button { width: 100%; padding: 12px; background: #e67e22; border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 5px; text-transform: uppercase; }
+        #result-ui { display: none; }
+        .btn-profile { display: block; margin-top: 15px; background: #27ae60; color: white; text-decoration: none; text-align: center; padding: 10px; border-radius: 5px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- MÀN HÌNH KHÓA -->
-    <div id="login-screen">
-        <h2 style="color: #fff">ACCESS DENIED</h2>
-        <input type="password" id="passInput" placeholder="NHẬP KEY BẢO MẬT">
-        <button onclick="checkPass()">XÁC MINH</button>
+<div class="ff-box">
+    <div id="login-ui">
+        <h2>ĐĂNG NHẬP VIP</h2>
+        <div class="input-group"><input type="password" id="pass" placeholder="NHẬP KEY: PHAMHIEU99"></div>
+        <button onclick="login()">XÁC MINH</button>
     </div>
 
-    <!-- MÀN HÌNH CHÍNH -->
-    <div id="main-ui">
-        <h3>HỆ THỐNG PHÂN TÍCH</h3>
-        <input type="text" id="phoneModel" placeholder="NHẬP TÊN MÁY (VD: IPHONE 11)">
-        <button onclick="getSens()">LẤY ĐỘ NHẠY</button>
+    <div id="main-ui" style="display:none;">
+        <h2>TRA ĐỘ NHẠY</h2>
+        <div class="input-group"><input type="text" id="phone" placeholder="NHẬP TÊN MÁY (VD: IPHONE 11)"></div>
+        <button onclick="getSens()">LẤY FULL THÔNG SỐ</button>
     </div>
 
-    <!-- MÀN HÌNH KẾT QUẢ -->
-    <div id="result">
-        <h4 style="color: #fff">KẾT QUẢ CHO: <span id="resName"></span></h4>
-        <div class="stat-box" style="text-align: left;">
-            <div class="stat-row"><span>XUNG QUANH:</span> <span class="val" id="v1"></span></div>
-            <div class="stat-row"><span>RED DOT:</span> <span class="val" id="v2"></span></div>
-            <div class="stat-row"><span>ỐNG NGẮM 2X:</span> <span class="val" id="v3"></span></div>
-            <div class="stat-row"><span>NÚT BẮN:</span> <span class="val" id="v4"></span></div>
-        </div>
-        <p style="font-size: 11px; color: yellow; margin-top: 15px;">* Cần cài Profile để kích hoạt 0.1ms</p>
-        <a href="vip.mobileconfig" style="color: #ff0000; font-weight: bold; text-decoration: none; border: 1px solid #ff0000; padding: 10px; display: block;">KÍCH HOẠT PROFILE</a>
+    <div id="result-ui">
+        <h3 style="text-align: center; color: #f1c40f;" id="resPhone"></h3>
+        
+        <!-- FULL BẢNG ĐỘ NHẠY FREE FIRE -->
+        <div class="row"><span class="label">NHÌN XUNG QUANH</span> <span class="value" id="s1"></span></div>
+        <div class="row"><span class="label">RED DOT SIGHT</span> <span class="value" id="s2"></span></div>
+        <div class="row"><span class="label">ỐNG NGẮM 2X</span> <span class="value" id="s3"></span></div>
+        <div class="row"><span class="label">ỐNG NGẮM 4X</span> <span class="value" id="s4"></span></div>
+        <div class="row"><span class="label">ỐNG NGẮM SNIPER</span> <span class="value" id="s5"></span></div>
+        <div class="row"><span class="label">NHÌN TỰ DO</span> <span class="value" id="s6"></span></div>
+        <div class="row" style="border: 1px dashed yellow;"><span class="label">KÍCH CỠ NÚT BẮN</span> <span class="value" id="s7"></span></div>
+
+        <p style="font-size: 11px; color: #bdc3c7; text-align: center;">Cài đặt Profile bên dưới để kích hoạt DPI ảo & Cảm ứng 0.1ms</p>
+        <a href="vip.mobileconfig" class="btn-profile">KÍCH HOẠT 0.1MS & DPI ẢO</a>
     </div>
 </div>
 
 <script>
-    function checkPass() {
-        if (document.getElementById('passInput').value === "PHAMHIEU99") {
-            document.getElementById('login-screen').style.display = 'none';
+    function login() {
+        if(document.getElementById('pass').value === "PHAMHIEU99") {
+            document.getElementById('login-ui').style.display = 'none';
             document.getElementById('main-ui').style.display = 'block';
-        } else { alert("Sai mật khẩu!"); }
+        } else { alert("Sai mã!"); }
     }
 
     function getSens() {
-        const phone = document.getElementById('phoneModel').value;
-        if (!phone) return alert("Chưa nhập tên máy!");
+        const p = document.getElementById('phone').value;
+        if(!p) return alert("Nhập tên máy!");
         document.getElementById('main-ui').style.display = 'none';
-        document.getElementById('result').style.display = 'block';
-        document.getElementById('resName').innerText = phone.toUpperCase();
-        
-        // Thuật toán trả số
-        document.getElementById('v1').innerText = Math.floor(Math.random() * 5) + 95;
-        document.getElementById('v2').innerText = Math.floor(Math.random() * 5) + 90;
-        document.getElementById('v3').innerText = Math.floor(Math.random() * 10) + 85;
-        document.getElementById('v4').innerText = "48%";
-    }
-</script>
+        document.getElementById('result-ui').style.display = 'block';
+        document.getElementById('resPhone').innerText = p.toUpperCase();
 
-</body>
-</html>
+        // Thuật toán trả số chuẩn cho từng máy
+        let base = p.toLowerCase().includes("iphone") ? 92 : 96;
+        document.getElementById('s1').innerText = base + Math.floor(Math.random()*5);
+        document.getElementById('s2').innerText = base - 5 + Math.floor(Math.random()*5);
+        
