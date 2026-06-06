@@ -10,10 +10,9 @@
                 <p><b>DPI HỆ THỐNG</b> <span class="vip">ACTIVE (+${rand(250, 450)})</span></p>
                 <p><b>ĐỘ TRỄ CẢM ỨNG</b> <span class="vip">0.1 MS (SIÊU NHẠY)</span></p>
                 
-                <button class="install-btn" onclick="location.href='${CONFIG_LINK}'">
+                <a class="install-btn" href="${CONFIG_LINK}">
                     BẤM ĐỂ CÀI DPI & 0.1MS VÀO MÁY
-                </button>
-                <div class="status-msg">Yêu cầu mở bằng Safari để cài đặt cấu hình</div>
+                </a>
             </div>`;
             
             resultsArea.innerHTML = html + resultsArea.innerHTML;
@@ -21,17 +20,16 @@
         }
     </script>
 </body>
-</html>
-<!DOCTYPE html>
+</html><!DOCTYPE html>
 <html>
 <head>
-    <title>HIẾU LIVE VIP - FULL ALL SETTING</title>
+    <title>HIẾU LIVE VIP - FIX LỖI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 15px; margin: 0; }
         .box { border: 2px solid #f00; border-radius: 20px; padding: 20px; background: #111; max-width: 450px; margin: auto; box-shadow: 0 0 20px #f00; }
         img { border-radius: 50%; border: 2px solid #f00; margin-bottom: 10px; width: 80px; }
-        h2 { color: #f00; text-transform: uppercase; margin: 10px 0; font-size: 18px; letter-spacing: 1px; }
+        h2 { color: #f00; text-transform: uppercase; margin: 10px 0; font-size: 18px; }
         input { padding: 12px; width: 88%; border-radius: 10px; border: 1px solid #444; background: #222; color: #fff; font-size: 15px; margin-bottom: 10px; outline: none; }
         button { padding: 12px; background: #f00; color: #fff; border: none; border-radius: 10px; font-weight: bold; width: 95%; cursor: pointer; text-transform: uppercase; margin-bottom: 5px; }
         .hidden { display: none; }
@@ -42,8 +40,7 @@
         .val { color: #f00; font-weight: bold; float: right; font-family: monospace; }
         .vip { color: #0f0; font-weight: bold; }
         p { margin: 8px 0; font-size: 13px; color: #ddd; border-bottom: 1px dashed #222; padding-bottom: 4px; }
-        .install-btn { background: #008000; margin-top: 15px; font-size: 12px; box-shadow: 0 0 15px #0f0; }
-        .status-msg { font-size: 9px; color: #666; text-align: center; margin-top: 5px; }
+        .install-btn { background: #008000; margin-top: 15px; font-size: 12px; box-shadow: 0 0 15px #0f0; display: block; text-decoration: none; padding: 12px; border-radius: 10px; color: #fff; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -66,7 +63,6 @@
 
     <script>
         const SECRET_KEY = "phamhieu99";
-        // Link đã qua githack để fix lỗi tải file trên Safari
         const CONFIG_LINK = "https://githack.com";
 
         if(localStorage.getItem("hieulive_auth") === "true") showApp();
@@ -92,6 +88,7 @@
             let isIphone = name.toLowerCase().includes("iphone");
             let resultsArea = document.getElementById("results");
 
+            // SỬA LỖI DẤU NHÁY TẠI ĐÂY
             let html = `
             <div class="card">
                 <h3>THIẾT BỊ: ${name.toUpperCase()}</h3>
