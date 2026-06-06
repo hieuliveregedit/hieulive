@@ -1,0 +1,76 @@
+<div class="stat-row"><span>DPI ẢO:</span> <span class="val" id="s6"></span></div>
+        </div>
+
+        <p style="color: yellow; font-size: 10px; margin-top: 15px; text-align: center;">⚠️ CẢNH BÁO: Tải Profile bên dưới để kích hoạt cảm ứng 0.1ms.</p>
+        <a href="config.mobileconfig" class="download-link">KÍCH HOẠT PROFILE VIP</a>
+    </div>
+</div>
+
+<script>
+    const KEY_CHINH_THUC = "PHAMHIEU99"; // Bạn có thể đổi mật khẩu ở đây
+
+    function checkPass() {
+        const input = document.getElementById('passInput').value;
+        if (input === KEY_CHINH_THUC) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-app').style.display = 'block';
+        } else {
+            alert("Mật khẩu không chính xác! Vui lòng liên hệ Admin.");
+        }
+    }
+
+    function startProcessing() {
+        const phone = document.getElementById('phoneModel').value;
+        if (!phone) return alert("Bạn chưa nhập tên điện thoại!");
+
+        document.getElementById('main-app').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+
+        let p = 0;
+        const itv = setInterval(() => {
+            p++;
+            document.getElementById('percent').innerText = p + "%";
+            if(p == 20) document.getElementById('loadText').innerText = "Đang nhận diện phần cứng...";
+            if(p == 50) document.getElementById('loadText').innerText = "Đang tối ưu DPI gốc...";
+            if(p == 80) document.getElementById('loadText').innerText = "Đang đồng bộ cảm ứng 0.1ms...";
+            
+            if (p >= 100) {
+                clearInterval(itv);
+                showFinal(phone);
+            }
+        }, 35);
+    }
+
+    function showFinal(name) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('resModel').innerText = "THIẾT BỊ: " + name.toUpperCase();
+
+        let n = name.toLowerCase();
+        // PHÂN LOẠI THÔNG SỐ THEO DÒNG MÁY
+        if (n.includes("iphone")) {
+            // Thông số tối ưu riêng cho iPhone (Mượt, nhạy vừa phải)
+            setStats(97 + rand(3), 92 + rand(4), 88 + rand(5), 85 + rand(5), 45 + rand(5), 550 + rand(50));
+        } else if (n.includes("samsung")  n.includes("oppo")  n.includes("xiaomi") || n.includes("redmi")) {
+            // Thông số tối ưu riêng cho Android (Độ nhạy cao để kéo tâm dễ hơn)
+            setStats(100, 96 + rand(3), 94 + rand(4), 90 + rand(5), 50 + rand(5), 650 + rand(100));
+        } else {
+            // Các dòng máy khác lấy ngẫu nhiên trong khoảng chuẩn
+            setStats(95 + rand(5), 90 + rand(8), 85 + rand(10), 80 + rand(10), 48 + rand(7), 500 + rand(200));
+        }
+    }
+
+    function setStats(v1, v2, v3, v4, v5, v6) {
+        document.getElementById('s1').innerText = v1;
+        document.getElementById('s2').innerText = v2;
+        document.getElementById('s3').innerText = v3;
+        document.getElementById('s4').innerText = v4;
+        document.getElementById('s5').innerText = v5 + "%";
+        document.getElementById('s6').innerText = v6;
+    }
+
+    function rand(max) { return Math.floor(Math.random() * max); }
+</script>
+
+</body>
+</html>
