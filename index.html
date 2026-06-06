@@ -106,6 +106,7 @@
         
         button:active { transform: scale(0.97); box-shadow: 0 2px 5px rgba(255, 74, 74, 0.2); }
         
+        /* Bộ lọc ẩn hiện các phân đoạn màn hình độc lập */
         .app-section { display: none !important; }
         .active-section { display: block !important; }
         
@@ -117,7 +118,6 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
         
-        /* Hiệu ứng viền LED RGB chạy quanh hộp độ nhạy */
         .neon-border {
             border: 1px solid rgba(0, 240, 255, 0.3);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
@@ -137,7 +137,6 @@
         
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         
-        /* Cấu trúc item độ nhạy kèm thanh tiến trình */
         .stat-item { 
             background: #141720; 
             padding: 12px; 
@@ -158,7 +157,6 @@
         
         .stat-value { font-weight: 900; font-size: 18px; color: #fff; }
         
-        /* Thanh Tiến Trình Cảm Ứng (Progress Bar) Đẹp Mắt */
         .progress-bar-bg {
             width: 100%;
             height: 5px;
@@ -169,7 +167,7 @@
         }
         .progress-bar-fill {
             height: 100%;
-            width: 0%; /* Chạy động bằng JS */
+            width: 0%; 
             background: linear-gradient(90deg, var(--primary), #ff8f8f);
             border-radius: 3px;
             transition: width 1.2s cubic-bezier(0.1, 0.8, 0.3, 1);
@@ -196,6 +194,7 @@
         .btn-install:active { transform: scale(0.97); }
         
         .suggestions { margin-top: 12px; font-size: 12px; color: var(--text-dim); }
+        /* 🛠️ ĐÃ SỬA LỖI ĐỊNH DẠNG CSS TẠI ĐÂY */
         .tag { display: inline-block; background: #1f2330; padding: 6px 10px; border-radius: 8px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; transition: 0.2s; }
         .tag:hover { border-color: var(--primary); color: #fff; background: rgba(255, 74, 74, 0.1); }
     </style>
@@ -230,7 +229,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY ĐÃ BIẾN ĐỔI HIỆU ỨNG ĐẸP MẮT -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">⚡ Thông Tin Thiết Bị VIP</div>
@@ -261,3 +260,4 @@
                 <div class="stat-item">
                     <span>Ống Ngắm 4x</span>
                     <div class="stat-value" id="val4x">0</div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar4x"></div></div>
