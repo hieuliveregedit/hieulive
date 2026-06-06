@@ -11,16 +11,14 @@
    <true/>
    <key>Label</key>
    <string>HIEU LIVE VIP</string>
-   <key>PayloadDescription</key>
-   <string>App Do Nhay Free Fire</string>
    <key>PayloadDisplayName</key>
    <string>HIEU LIVE VIP</string>
    <key>PayloadIdentifier</key>
-   <string>com.hieulive.app1</string>
+   <string>com.hieulive.app.final</string>
    <key>PayloadType</key>
    <string>com.apple.webClip.managed</string>
    <key>PayloadUUID</key>
-   <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S1</string>
+   <string>E1D2C3B4-A5F6-4789-BCDE-0987654321AB</string>
    <key>PayloadVersion</key>
    <integer>1</integer>
    <key>URL</key>
@@ -30,11 +28,11 @@
  <key>PayloadDisplayName</key>
  <string>HIEU LIVE SETUP</string>
  <key>PayloadIdentifier</key>
- <string>com.hieulive.config1</string>
+ <string>com.hieulive.config.final</string>
  <key>PayloadType</key>
  <string>Configuration</string>
  <key>PayloadUUID</key>
- <string>1E9C6B1B-5D34-4C5C-9A8E-F7C8D1A3F5B3</string>
+ <string>F2E3D4C5-B6A7-4890-CDEF-1234567890BC</string>
  <key>PayloadVersion</key>
  <integer>1</integer>
 </dict>
