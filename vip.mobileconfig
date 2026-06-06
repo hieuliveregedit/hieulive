@@ -10,28 +10,17 @@
    <key>IsRemovable</key>
    <true/>
    <key>Label</key>
-   <string>HIẾU LIVE VIP</string>
-   <key>PayloadDescription</key><?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
-<plist version="1.0">
-<dict>
- <key>PayloadContent</key>
- <array>
-  <dict>
-   <key>FullScreen</key>
-   <true/>
-   <key>IsRemovable</key>
-   <true/>
-   <key>Label</key>
-   <string>HIẾU LIVE VIP</string>
+   <string>HIEU LIVE VIP</string>
+   <key>PayloadDescription</key>
+   <string>App Do Nhay Free Fire</string>
    <key>PayloadDisplayName</key>
-   <string>HIẾU LIVE VIP</string>
+   <string>HIEU LIVE VIP</string>
    <key>PayloadIdentifier</key>
-   <string>com.hieulive.app</string>
+   <string>com.hieulive.app1</string>
    <key>PayloadType</key>
    <string>com.apple.webClip.managed</string>
    <key>PayloadUUID</key>
-   <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S0</string>
+   <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S1</string>
    <key>PayloadVersion</key>
    <integer>1</integer>
    <key>URL</key>
@@ -39,44 +28,13 @@
   </dict>
  </array>
  <key>PayloadDisplayName</key>
- <string>HIẾU LIVE - SETUP APP</string>
+ <string>HIEU LIVE SETUP</string>
  <key>PayloadIdentifier</key>
- <string>com.hieulive.config</string>
+ <string>com.hieulive.config1</string>
  <key>PayloadType</key>
  <string>Configuration</string>
  <key>PayloadUUID</key>
- <string>1E9C6B1B-5D34-4C5C-9A8E-F7C8D1A3F5B2</string>
- <key>PayloadVersion</key>
- <integer>1</integer>
-</dict>
-</plist>
-   <string>App lấy độ nhạy Free Fire</string>
-   <key>PayloadDisplayName</key>
-   <string>HIẾU LIVE VIP</string>
-   <key>PayloadIdentifier</key>
-   <string>com.hieulive.app</string>
-   <key>PayloadType</key>
-   <string>com.apple.webClip.managed</string>
-   <key>PayloadUUID</key>
-   <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S0</string>
-   <key>PayloadVersion</key>
-   <integer>1</integer>
-   <key>URL</key>
-   <string>https://hp03092007-boop.github.io/hieulive/</string>
-  </dict>
- </array>
- <key>PayloadDescription</key>
- <string>Cài đặt App độ nhạy</string>
- <key>PayloadDisplayName</key>
- <string>HIẾU LIVE - SETUP APP</string>
- <key>PayloadIdentifier</key>
- <string>com.hieulive.config</string>
- <key>PayloadOrganization</key>
- <string>Hiếu Live</string>
- <key>PayloadType</key>
- <string>Configuration</string>
- <key>PayloadUUID</key>
- <string>1E9C6B1B-5D34-4C5C-9A8E-F7C8D1A3F5B2</string>
+ <string>1E9C6B1B-5D34-4C5C-9A8E-F7C8D1A3F5B3</string>
  <key>PayloadVersion</key>
  <integer>1</integer>
 </dict>
