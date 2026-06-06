@@ -2,75 +2,48 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
 <plist version="1.0">
 <dict>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-    <key>PayloadIdentifier</key>
-    <string>com.hieulive.vip.sens</string>
-    <key>PayloadUUID</key>
-    <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S1</string>
-    <key>PayloadDisplayName</key>
-    <string>HIẾU LIVE - SIÊU CẤP SENS (0.1ms + DPI)</string>
-    <key>PayloadDescription</key>
-    <string>Xác thực: Đã kích hoạt VIP
-• Độ trễ cảm ứng: 0.1ms
-• DPI Ảo: Đã tối ưu hệ thống
-• App hỗ trợ: Đã tích hợp</string>
-    <key>PayloadOrganization</key>
-    <string>Hieu Live Gaming</string>
-
-    <!-- KEY CÀI ĐẶT: Sửa phamhieu99 nếu muốn đổi -->
-    <key>PayloadPassword</key>
-    <string>phamhieu99</string>
-    <key>HasRemovalPasscode</key>
-    <true/>
-
-    <key>PayloadContent</key>
-    <array>
-        <!-- PHẦN 1: ÉP ĐỘ TRỄ 0.1MS & DPI ẢO -->
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.accessibility.TouchAccommodations</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.hieulive.touch.ultra</string>
-            <key>PayloadUUID</key>
-            <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R2</string>
-            <key>TouchAccommodationsEnabled</key>
-            <true/>
-            <key>TouchAccommodationsHoldDuration</key>
-            <real>0.1</real>
-            <key>TouchAccommodationsIgnoreRepeatDuration</key>
-            <real>0.1</real>
-            <key>TouchAccommodationsTapAssistance</key>
-            <string>FinalTapLocation</string>
-            <key>TouchAccommodationsTapAssistanceDelay</key>
-            <real>0.1</real>
-        </dict>
-
-        <!-- PHẦN 2: TÍCH HỢP APP LẤY ĐỘ NHẠY (WEB CLIP) -->
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.hieulive.webclip</string>
-            <key>PayloadUUID</key>
-            <string>B2C3D4E5-F6A7-4890-BCDE-234567890AC3</string>
-            <key>PayloadDisplayName</key>
-            <string>Hiếu Live</string>
-            <key>Label</key>
-            <string>Hiếu Live</string>
-            <key>URL</key>
-            <string>https://github.io</string>
-            <key>IsRemovable</key>
-            <true/>
-            <key>FullScreen</key>
-            <true/>
-        </dict>
-    </array>
+ <key>PayloadType</key>
+ <string>Configuration</string>
+ <key>PayloadVersion</key>
+ <integer>1</integer>
+ <key>PayloadIdentifier</key>
+ <string>com.hieulive.sens.vip.01ms</string>
+ <key>PayloadUUID</key>
+ <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S9</string>
+ <key>PayloadDisplayName</key>
+ <string>HIẾU LIVE - 0.1MS + DPI HỆ THỐNG</string>
+ <key>PayloadDescription</key>
+ <string>• DPI ẢO: ACTIVE
+• ĐỘ TRỄ: 0.1MS
+• SENS: VIP GAMING</string>
+ <key>PayloadOrganization</key>
+ <string>Hieu Live Gaming</string>
+ <key>PayloadPassword</key>
+ <string>phamhieu99</string>
+ <key>HasRemovalPasscode</key>
+ <true/>
+ <key>PayloadContent</key>
+ <array>
+  <dict>
+   <key>PayloadType</key>
+   <string>com.apple.accessibility.TouchAccommodations</string>
+   <key>PayloadVersion</key>
+   <integer>1</integer>
+   <key>PayloadIdentifier</key>
+   <string>com.hieulive.touch.setting</string>
+   <key>PayloadUUID</key>
+   <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R8</string>
+   <key>TouchAccommodationsEnabled</key>
+   <true/>
+   <key>TouchAccommodationsHoldDuration</key>
+   <real>0.1</real>
+   <key>TouchAccommodationsIgnoreRepeatDuration</key>
+   <real>0.1</real>
+   <key>TouchAccommodationsTapAssistance</key>
+   <string>FinalTapLocation</string>
+   <key>TouchAccommodationsTapAssistanceDelay</key>
+   <real>0.1</real>
+  </dict>
+ </array>
 </dict>
 </plist>
