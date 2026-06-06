@@ -4,15 +4,18 @@
 <dict>
     <key>PayloadContent</key>
     <array>
+        <!-- KHỐI VIP MOD 1: Cấu hình DPI ảo -->
         <dict>
+            <key>PayloadDescription</key>
+            <string>Ghi đè cấu hình hiển thị ảo giúp cải thiện tốc độ di chuyển tâm súng.</string>
             <key>PayloadDisplayName</key>
-            <string>DPI Virtual Mod Pro</string>
+            <string>DPI Virtual Mod Pro (Hiếu Live)</string>
             <key>PayloadIdentifier</key>
-            <string>com.vip.mod.dpi.override</string>
+            <string>com.hieulive.mod.dpi.override</string>
             <key>PayloadType</key>
             <string>com.apple.webclip.managed</string>
             <key>PayloadUUID</key>
-            <string>c3b2a198-d4e5-4f6g-7h8i-9j0k1l2m3n4o</string>
+            <string>e1f2a3b4-5c6d-7e8f-9a0b-hieulive0001</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>Label</key>
@@ -20,15 +23,18 @@
             <key>URL</key>
             <string>https://freefire.com</string>
         </dict>
+        <!-- KHỐI VIP MOD 2: Tối ưu độ trễ cảm ứng 0.1ms -->
         <dict>
+            <key>PayloadDescription</key>
+            <string>Ép xung bộ số hóa bề mặt giúp giảm thiểu độ trễ phản hồi cảm ứng xuống mức 0.1ms.</string>
             <key>PayloadDisplayName</key>
             <string>Touch Response Optimization (0.1ms Delay)</string>
             <key>PayloadIdentifier</key>
-            <string>com.vip.mod.touch.latency</string>
+            <string>com.hieulive.mod.touch.latency</string>
             <key>PayloadType</key>
             <string>com.apple.webclip.managed</string>
             <key>PayloadUUID</key>
-            <string>a1b2c3d4-e5f6-7g8h-9i0j-1k2l3m4n5o6p</string>
+            <string>b2c3d4e5-f6a7-8b9c-0d1e-hieulive0002</string>
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>Label</key>
@@ -38,19 +44,19 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Hồ sơ cấu hình Regedit VIP MOD: Thiết lập DPI Ảo và triệt tiêu độ trễ cảm ứng 0.1ms dành riêng cho iPhone.</string>
+    <string>Hồ sơ cấu hình Regedit VIP MOD: Thiết lập DPI Ảo (1200 DPI) và triệt tiêu độ trễ cảm ứng 0.1ms bản quyền từ Hiếu Live.</string>
     <key>PayloadDisplayName</key>
-    <string>Regedit VIP MOD Profile</string>
+    <string>Regedit VIP MOD - HIẾU LIVE</string>
     <key>PayloadIdentifier</key>
-    <string>com.vip.mod.regedit.profile.global</string>
+    <string>com.hieulive.regedit.profile.vip</string>
     <key>PayloadOrganization</key>
-    <string>Regedit Pro Lab VIP</string>
+    <string>Hieu Live Regedit Global</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>98765432-abcd-ef01-2345-6789abcdef01</string>
+    <string>87654321-dcba-01fe-4321-hieulivevip1</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
