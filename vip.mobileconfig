@@ -10,15 +10,15 @@
    <key>IsRemovable</key>
    <true/>
    <key>Label</key>
-   <string>HIEU LIVE VIP</string>
+   <string>HIẾU LIVE VIP</string>
    <key>PayloadDisplayName</key>
-   <string>HIEU LIVE VIP</string>
+   <string>HIẾU LIVE VIP</string>
    <key>PayloadIdentifier</key>
-   <string>com.hieulive.app.final</string>
+   <string>com.hieulive.app.final.fixed</string>
    <key>PayloadType</key>
    <string>com.apple.webClip.managed</string>
    <key>PayloadUUID</key>
-   <string>E1D2C3B4-A5F6-4789-BCDE-0987654321AB</string>
+   <string>A1B2C3D4-E5F6-4789-BCDE-1234567890FF</string>
    <key>PayloadVersion</key>
    <integer>1</integer>
    <key>URL</key>
@@ -26,13 +26,13 @@
   </dict>
  </array>
  <key>PayloadDisplayName</key>
- <string>HIEU LIVE SETUP</string>
+ <string>HIẾU LIVE - SETUP APP</string>
  <key>PayloadIdentifier</key>
- <string>com.hieulive.config.final</string>
+ <string>com.hieulive.config.final.fixed</string>
  <key>PayloadType</key>
  <string>Configuration</string>
  <key>PayloadUUID</key>
- <string>F2E3D4C5-B6A7-4890-CDEF-1234567890BC</string>
+ <string>B2C3D4E5-F6A7-4890-CDEF-0987654321EE</string>
  <key>PayloadVersion</key>
  <integer>1</integer>
 </dict>
