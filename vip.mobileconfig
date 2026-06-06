@@ -7,17 +7,15 @@
  <key>PayloadVersion</key>
  <integer>1</integer>
  <key>PayloadIdentifier</key>
- <string>com.hieulive.sens.vip.01ms</string>
+ <string>com.hieulive.sens.vip.v3</string>
  <key>PayloadUUID</key>
- <string>D5E6F7G8-H9I0-J1K2-L3M4-N5O6P7Q8R9S9</string>
+ <string>A1B2C3D4-E5F6-4789-ABCD-1234567890AB</string>
  <key>PayloadDisplayName</key>
- <string>HIẾU LIVE - 0.1MS + DPI HỆ THỐNG</string>
+ <string>HIẾU LIVE - 0.1MS & DPI ẢO KÍCH HOẠT</string>
  <key>PayloadDescription</key>
- <string>• DPI ẢO: ACTIVE
-• ĐỘ TRỄ: 0.1MS
-• SENS: VIP GAMING</string>
+ <string>Hệ thống: Đã tối ưu cảm ứng cực hạn 0.1ms và tăng DPI ảo cho thiết bị.</string>
  <key>PayloadOrganization</key>
- <string>Hieu Live Gaming</string>
+ <string>Hiếu Live Gaming</string>
  <key>PayloadPassword</key>
  <string>phamhieu99</string>
  <key>HasRemovalPasscode</key>
@@ -30,7 +28,7 @@
    <key>PayloadVersion</key>
    <integer>1</integer>
    <key>PayloadIdentifier</key>
-   <string>com.hieulive.touch.setting</string>
+   <string>com.hieulive.touch.vip</string>
    <key>PayloadUUID</key>
    <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R8</string>
    <key>TouchAccommodationsEnabled</key>
