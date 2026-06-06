@@ -5,163 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Regedit VIP Free Fire</title>
     <style>
-        :root {
-            --primary: #ff4a4a;
-            --bg: #0d0f12;
-            --card-bg: #1a1d24;
-            --text: #ffffff;
-            --text-dim: #a0a5b5;
-            --accent: #28a745;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            box-sizing: border-box;
-        }
-
-        h2 {
-            text-align: center;
-            color: var(--primary);
-            margin-top: 0;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-dim);
-            font-size: 14px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #2e3440;
-            background: #252932;
-            color: white;
-            border-radius: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-top: 15px;
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        .app-section {
-            display: none;
-        }
-        .active-section {
-            display: block !important;
-        }
-
-        .info-box {
-            background: #252932;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .info-title {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 15px;
-            text-transform: uppercase;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .stat-item {
-            background: #1e222b;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .stat-item span {
-            display: block;
-            color: var(--text-dim);
-            font-size: 11px;
-            margin-bottom: 4px;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .btn-install {
-            background: var(--accent);
-        }
-
-        .suggestions {
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--text-dim);
-        }
-        .tag {
-            display: inline-block;
-            background: #252932;
-            padding: 5px 8px;
-            border-radius: 5px;
-            margin: 4px 4px 0 0;
-            cursor: pointer;
-            border: 1px solid #2e3440;
-        }
-        .tag:hover {
-            border-color: var(--primary);
-            color: #fff;
-        }
+        :root { --primary: #ff4a4a; --bg: #0d0f12; --card-bg: #1a1d24; --text: #ffffff; --text-dim: #a0a5b5; --accent: #28a745; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; box-sizing: border-box; }
+        .container { width: 100%; max-width: 450px; background: var(--card-bg); border-radius: 20px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); box-sizing: border-box; }
+        h2 { text-align: center; color: var(--primary); margin-top: 0; margin-bottom: 25px; text-transform: uppercase; font-size: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 10px; color: var(--text-dim); font-size: 14px; }
+        input[type="text"] { width: 100%; padding: 14px; border: 2px solid #2e3440; background: #252932; color: white; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        button { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .app-section { display: none; }
+        .active-section { display: block !important; }
+        .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .info-title { font-weight: bold; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat-item { background: #1e222b; padding: 10px; border-radius: 8px; font-size: 14px; }
+        .stat-item span { display: block; color: var(--text-dim); font-size: 11px; margin-bottom: 4px; }
+        .stat-value { font-weight: bold; font-size: 16px; }
+        .btn-install { background: var(--accent); display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -169,10 +29,10 @@
 <div class="container">
     <h2>DPI REGEDIT IPHONE VIP</h2>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY KÍCH HOẠT -->
+    <!-- MÀN HÌNH 1: NHẬP KEY -->
     <div class="app-section active-section" id="keySection">
         <div class="form-group">
-            <label for="activationKey">🔑 Nhập Mã Kích Hoạt (Key VIP):</label>
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP):</label>
             <input type="text" id="activationKey" placeholder="Ví dụ: VIP999">
             <button onclick="verifyKey()">XÁC THỰC KEY HỆ THỐNG VIP</button>
         </div>
@@ -181,21 +41,14 @@
     <!-- MÀN HÌNH 2: NHẬP TÊN MÁY -->
     <div class="app-section" id="searchSection">
         <div class="form-group">
-            <label for="deviceInput">📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
-            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
-            <div class="suggestions">
-                Gợi ý đời máy nhanh: 
-                <span class="tag" onclick="selectDevice('iPhone 11')">iPhone 11</span>
-                <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
-                <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
-            </div>
+            <label>📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 13...">
             <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ ĐỘ NHẠY & NÚT CÀI ĐẶT PROFILE -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ ĐỘ NHẠY & TẢI PROFILE -->
     <div class="app-section" id="resultSection">
-        <!-- Thông tin máy -->
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
@@ -204,80 +57,53 @@
             </div>
         </div>
 
-        <!-- Độ nhạy Free Fire Full thông số -->
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm VIP</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">100</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">95</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">92</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">88</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">50</div></div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value">100</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value">95</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value">92</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value">88</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value">50</div></div>
                 <div class="stat-item"><span>Nhìn</span><div class="stat-value">65</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
-                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
+                <div class="stat-value" style="color: #ffc107;">45%</div>
             </div>
         </div>
 
-        <!-- Cấu hình chạy ngầm ảo -->
-        <div class="info-box">
-            <div class="info-title">⚙️ Cấu Hình Chạy Ngầm Hệ Thống</div>
-            <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Bản Quyền</span><div class="stat-value" id="valDpi">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 mili giây (ms)</div></div>
-            </div>
-        </div>
-
-        <!-- Nút tải file cấu hình cài trực tiếp về máy dạng vip.mobileconfig -->
-        <button class="btn-install" onclick="downloadMobileConfig()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</button>
-        <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
+        <!-- Sử dụng thẻ liên kết trực tiếp để iOS không chặn tải về -->
+        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
     </div>
 </div>
 
 <script>
-    // 🔴 BẠN CÓ THỂ ĐỔI KEY KÍCH HOẠT TẠI ĐÂY (Mặc định là: VIP999)
     const VALID_KEY = "VIP999"; 
 
-    // Cơ sở dữ liệu độ nhạy iPhone chính thức
-    const databaseSensitivity = {
-        "iphone x": { general: 95, redDot: 92, x2: 90, x4: 85, awm: 50, button: "48%", dpi: 900 },
-        "iphone xr": { general: 98, redDot: 94, x2: 92, x4: 88, awm: 45, button: "45%", dpi: 1000 },
-        "iphone xs max": { general: 95, redDot: 92, x2: 89, x4: 85, awm: 48, button: "47%", dpi: 960 },
-        "iphone 11": { general: 100, redDot: 96, x2: 94, x4: 90, awm: 55, button: "43%", dpi: 1100 },
-        "iphone 12": { general: 100, redDot: 98, x2: 95, x4: 92, awm: 50, button: "42%", dpi: 1140 },
-        "iphone 13 pro max": { general: 99, redDot: 96, x2: 94, x4: 91, awm: 45, button: "43%", dpi: 1200 },
-        "iphone 14 pro max": { general: 99, redDot: 97, x2: 95, x4: 92, awm: 45, button: "42%", dpi: 1250 },
-        "iphone 15 pro max": { general: 100, redDot: 98, x2: 96, x4: 93, awm: 45, button: "41%", dpi: 1300 },
-        "iphone 16 pro max": { general: 100, redDot: 99, x2: 97, x4: 94, awm: 45, button: "40%", dpi: 1350 }
-    };
-
     function verifyKey() {
-        const enteredKey = document.getElementById('activationKey').value.trim();
-        if (enteredKey === VALID_KEY) {
+        if (document.getElementById('activationKey').value.trim() === VALID_KEY) {
             switchSection('keySection', 'searchSection');
         } else {
-            alert("❌ Mã Key VIP không chính xác hoặc đã hết hạn!");
+            alert("❌ Mã Key VIP không chính xác!");
         }
-    }
-
-    function selectDevice(name) {
-        document.getElementById('deviceInput').value = name;
     }
 
     function getSensitivity() {
         const inputVal = document.getElementById('deviceInput').value.trim();
-        if (inputVal === "") {
-            alert("Vui lòng nhập tên dòng máy iPhone của bạn!");
-            return;
-        }
+        if (inputVal === "") { alert("Vui lòng nhập tên dòng máy!"); return; }
+        document.getElementById('resModel').innerText = inputVal.toUpperCase();
+        switchSection('searchSection', 'resultSection');
+    }
 
-        const cleanKey = inputVal.toLowerCase();
-        let matchedData = null;
-        let finalModelName = inputVal;
+    function showGuide() {
+        alert("Đang tải tệp cấu hình...\n\nHướng dẫn kích hoạt:\n1. Vào 'Cài đặt' trên iPhone.\n2. Chọn mục 'Đã tải về hồ sơ' xuất hiện ngay dưới iCloud.\n3. Bấm 'Cài đặt' ở góc trên cùng bên phải.");
+    }
 
-        for (let key in databaseSensitivity) {
-            if (cleanKey.includes(key) || key.includes(cleanKey)) {
-                matchedData = databaseSensitivity[key];
-                finalModelName = key.toUpperCase();
+    function switchSection(hideId, showId) {
+        document.getElementById(hideId).classList.remove('active-section');
+        document.getElementById(showId).classList.add('active-section');
+    }
+</script>
+</body>
+</html>
