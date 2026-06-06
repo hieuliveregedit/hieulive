@@ -22,7 +22,7 @@
         .stat-item { background: #1e222b; padding: 10px; border-radius: 8px; font-size: 14px; }
         .stat-item span { display: block; color: var(--text-dim); font-size: 11px; margin-bottom: 4px; }
         .stat-value { font-weight: bold; font-size: 16px; }
-        .btn-install { background: var(--accent); display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; cursor: pointer; border: none; width: 100%; font-size: 16px; }
+        .btn-install { background: var(--accent); display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
         .suggestions { margin-top: 10px; font-size: 12px; color: var(--text-dim); }
         .tag { display: inline-block; background: #252932; padding: 5px 8px; border-radius: 5px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; }
         .tag:hover { border-color: var(--primary); color: #fff; }
@@ -38,7 +38,7 @@
     <div class="app-section active-section" id="keySection">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE):</label>
-            <input type="text" id="activationKey" placeholder="Nhập Key của bạn tại đây...">
+            <input type="text" id="activationKey" placeholder="Nhập mã 'hieu1' để vào hệ thống...">
             <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -71,57 +71,45 @@
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">100</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">95</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">92</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">88</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">50</div></div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value">100</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value">95</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value">92</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value">88</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value">50</div></div>
                 <div class="stat-item"><span>Nhìn</span><div class="stat-value">65</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
-                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
+                <div class="stat-value" style="color: #ffc107;">45%</div>
             </div>
         </div>
 
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" id="valDpi">1200 DPI</div></div>
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
                 <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 mili giây (ms)</div></div>
             </div>
         </div>
 
-        <!-- Nút tải file cấu hình tạo tự động -->
-        <button class="btn-install" onclick="downloadConfig()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</button>
-        
+        <!-- Liên kết tải file vip.mobileconfig vật lý -->
+        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
         <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
 
 <script>
-    // Danh sách 6 mã Key kích hoạt hợp lệ
-    const VALID_KEYS = ["hieulivekey1", "hieulivekey2", "hieulivekey3", "hieulivekey4", "hieulivekey5", "hieulivekey6"];
-
-    const databaseSensitivity = {
-        "iphone x": { general: 95, redDot: 92, x2: 90, x4: 85, awm: 50, button: "48%", dpi: 900 },
-        "iphone xr": { general: 98, redDot: 94, x2: 92, x4: 88, awm: 45, button: "45%", dpi: 1000 },
-        "iphone xs max": { general: 95, redDot: 92, x2: 89, x4: 85, awm: 48, button: "47%", dpi: 960 },
-        "iphone 11": { general: 100, redDot: 96, x2: 94, x4: 90, awm: 55, button: "43%", dpi: 1100 },
-        "iphone 12": { general: 100, redDot: 98, x2: 95, x4: 92, awm: 50, button: "42%", dpi: 1140 },
-        "iphone 13 pro max": { general: 99, redDot: 96, x2: 94, x4: 91, awm: 45, button: "43%", dpi: 1200 },
-        "iphone 14 pro max": { general: 99, redDot: 97, x2: 95, x4: 92, awm: 45, button: "42%", dpi: 1250 },
-        "iphone 15 pro max": { general: 100, redDot: 98, x2: 96, x4: 93, awm: 45, button: "41%", dpi: 1300 },
-        "iphone 16 pro max": { general: 100, redDot: 99, x2: 97, x4: 94, awm: 45, button: "40%", dpi: 1350 }
-    };
+    // 🔴 Khai báo mã Key kích hoạt duy nhất vĩnh viễn mới
+    var CORRECT_KEY = "hieu1";
 
     function verifyKey() {
-        const keyInput = document.getElementById('activationKey');
-        if (!keyInput) return;
+        var inputField = document.getElementById('activationKey');
+        if (!inputField) return;
         
-        const enteredKey = keyInput.value.trim().toLowerCase();
+        // Tự động xóa khoảng cách trống dư thừa và chuyển hết về chữ thường chống lỗi gõ nhầm chữ hoa
+        var userKey = inputField.value.trim().toLowerCase();
         
-        if (VALID_KEYS.includes(enteredKey)) {
+        if (userKey === CORRECT_KEY) {
             switchSection('keySection', 'searchSection');
         } else {
             alert("❌ Mã Key HIẾU LIVE không chính xác hoặc đã hết hạn!");
@@ -133,40 +121,25 @@
     }
 
     function getSensitivity() {
-        const inputVal = document.getElementById('deviceInput').value.trim();
+        var inputVal = document.getElementById('deviceInput').value.trim();
         if (inputVal === "") { alert("Vui lòng nhập tên dòng máy!"); return; }
-        
-        const cleanKey = inputVal.toLowerCase();
-        let matchedData = null;
-        let finalModelName = inputVal;
-
-        for (let key in databaseSensitivity) {
-            if (cleanKey.includes(key) || key.includes(cleanKey)) {
-                matchedData = databaseSensitivity[key];
-                finalModelName = key.toUpperCase();
-                break;
-            }
-        }
-
-        if (!matchedData) {
-            matchedData = { general: 100, redDot: 97, x2: 95, x4: 92, awm: 50, button: "43%", dpi: 1200 };
-        }
-
-        document.getElementById('resModel').innerText = finalModelName;
-        document.getElementById('valGeneral').innerText = matchedData.general;
-        document.getElementById('valRedDot').innerText = matchedData.redDot;
-        document.getElementById('val2x').innerText = matchedData.x2;
-        document.getElementById('val4x').innerText = matchedData.x4;
-        document.getElementById('valAwm').innerText = matchedData.awm;
-        document.getElementById('valButton').innerText = matchedData.button;
-        document.getElementById('valDpi').innerText = matchedData.dpi + " DPI";
-
+        document.getElementById('resModel').innerText = inputVal.toUpperCase();
         switchSection('searchSection', 'resultSection');
     }
 
-    function downloadConfig() {
-        const modelName = document.getElementById('resModel').innerText;
-        const dpiValue = parseInt(document.getElementById('valDpi').innerText) || 1200;
+    function showGuide() {
+        alert("Đang tải tệp cấu hình VIP HIẾU LIVE...\n\nHướng dẫn kích hoạt vào máy:\n1. Mở 'Cài đặt' trên iPhone.\n2. Chọn mục 'Đã tải về hồ sơ' nằm ngay dưới tên iCloud.\n3. Nhấn 'Cài đặt' ở góc trên cùng bên phải.");
+    }
 
-        const configContent = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
+    function switchSection(hideId, showId) {
+        document.getElementById(hideId).style.display = 'none';
+        document.getElementById(showId).style.display = 'block';
+    }
+
+    function backToSearch() {
+        document.getElementById('deviceInput').value = ""; 
+        switchSection('resultSection', 'searchSection'); 
+    }
+</script>
+</body>
+</html>
