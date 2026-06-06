@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Tối ưu cảm ứng 0.1ms</string>
+            <key>PayloadDisplayName</key>
+            <string>Touch 0.1ms</string>
+            <key>PayloadIdentifier</key>
+            <string>com.hieulive.touch</string>
+            <key>PayloadType</key>            <string>com.apple.accessibility.TouchAccommodations</string>
+            <key>PayloadUUID</key>
+            <string>6D6E77A1-574E-436E-8C45-A6560B08B8F3</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>TouchAccommodationsEnabled</key>
+            <true/>
+            <key>TouchAccommodationsHoldDuration</key>
+            <real>0.1</real>
+            <key>TouchAccommodationsIgnoreRepeatDuration</key>
+            <real>0.1</real>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Hiếu Live - Tối ưu độ nhạy VIP</string>
+    <key>PayloadDisplayName</key>
+    <string>HIẾU LIVE VIP</string>
+    <key>PayloadIdentifier</key>
+    <string>com.hieulive.config</string>
+    <key>PayloadOrganization</key>
+    <string>Hiếu Live</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>1E9C6B1B-5D34-4C5C-9A8E-F7C8D1A3F5B2</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
