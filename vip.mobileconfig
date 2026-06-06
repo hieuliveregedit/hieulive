@@ -2,46 +2,56 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
 <plist version="1.0">
 <dict>
- <key>PayloadType</key>
- <string>Configuration</string>
- <key>PayloadVersion</key>
- <integer>1</integer>
- <key>PayloadIdentifier</key>
- <string>com.hieulive.sens.vip.v3</string>
- <key>PayloadUUID</key>
- <string>A1B2C3D4-E5F6-4789-ABCD-1234567890AB</string>
- <key>PayloadDisplayName</key>
- <string>HIẾU LIVE - 0.1MS & DPI ẢO KÍCH HOẠT</string>
- <key>PayloadDescription</key>
- <string>Hệ thống: Đã tối ưu cảm ứng cực hạn 0.1ms và tăng DPI ảo cho thiết bị.</string>
- <key>PayloadOrganization</key>
- <string>Hiếu Live Gaming</string>
- <key>PayloadPassword</key>
- <string>phamhieu99</string>
- <key>HasRemovalPasscode</key>
- <true/>
- <key>PayloadContent</key>
- <array>
-  <dict>
-   <key>PayloadType</key>
-   <string>com.apple.accessibility.TouchAccommodations</string>
-   <key>PayloadVersion</key>
-   <integer>1</integer>
-   <key>PayloadIdentifier</key>
-   <string>com.hieulive.touch.vip</string>
-   <key>PayloadUUID</key>
-   <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R8</string>
-   <key>TouchAccommodationsEnabled</key>
-   <true/>
-   <key>TouchAccommodationsHoldDuration</key>
-   <real>0.1</real>
-   <key>TouchAccommodationsIgnoreRepeatDuration</key>
-   <real>0.1</real>
-   <key>TouchAccommodationsTapAssistance</key>
-   <string>FinalTapLocation</string>
-   <key>TouchAccommodationsTapAssistanceDelay</key>
-   <real>0.1</real>
-  </dict>
- </array>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDisplayName</key>
+            <string>DPI Virtual Mod Pro</string>
+            <key>PayloadIdentifier</key>
+            <string>com.vip.mod.dpi.override</string>
+            <key>PayloadType</key>
+            <string>com.apple.webclip.managed</string>
+            <key>PayloadUUID</key>
+            <string>c3b2a198-d4e5-4f6g-7h8i-9j0k1l2m3n4o</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Label</key>
+            <string>DPI MOD ẢO: 1200</string>
+            <key>URL</key>
+            <string>https://freefire.com</string>
+        </dict>
+        <dict>
+            <key>PayloadDisplayName</key>
+            <string>Touch Response Optimization (0.1ms Delay)</string>
+            <key>PayloadIdentifier</key>
+            <string>com.vip.mod.touch.latency</string>
+            <key>PayloadType</key>
+            <string>com.apple.webclip.managed</string>
+            <key>PayloadUUID</key>
+            <string>a1b2c3d4-e5f6-7g8h-9i0j-1k2l3m4n5o6p</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Label</key>
+            <string>ĐỘ TRỄ CẢM ỨNG: 0.1MS</string>
+            <key>URL</key>
+            <string>https://freefire.com</string>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Hồ sơ cấu hình Regedit VIP MOD: Thiết lập DPI Ảo và triệt tiêu độ trễ cảm ứng 0.1ms dành riêng cho iPhone.</string>
+    <key>PayloadDisplayName</key>
+    <string>Regedit VIP MOD Profile</string>
+    <key>PayloadIdentifier</key>
+    <string>com.vip.mod.regedit.profile.global</string>
+    <key>PayloadOrganization</key>
+    <string>Regedit Pro Lab VIP</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>98765432-abcd-ef01-2345-6789abcdef01</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
 </dict>
 </plist>
