@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>He Thong Regedit VIP - HIEU LIVE</title>
+    <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        :root { 
-            --primary: #ff4a4a; 
-            --bg: #0d0f12; 
-            --card-bg: #161920; 
-            --text: #ffffff; 
-            --text-dim: #a0a5b5; 
-            --accent: #00e676; 
-            --neon-blue: #00f0ff;
-        }
-        
+        /* Giao diện Dark Mode cơ bản, không có màu sắc sặc sỡ, không hiệu ứng nhấp nháy */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
+            background-color: #0d0f12; 
+            color: #ffffff; 
             margin: 0; 
             padding: 20px; 
             display: flex; 
@@ -31,234 +22,192 @@
         .container { 
             width: 100%; 
             max-width: 450px; 
-            background: var(--card-bg); 
-            border-radius: 24px; 
+            background: #1a1d24; 
+            border-radius: 15px; 
             padding: 25px; 
-            box-shadow: 0 0 30px rgba(255, 74, 74, 0.15); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
             box-sizing: border-box; 
-            border: 1px solid rgba(255, 74, 74, 0.2);
         }
         
-        h2 { 
-            text-align: center; 
-            color: var(--primary); 
-            margin: 0; 
-            text-transform: uppercase; 
-            font-size: 24px; 
-            letter-spacing: 2px; 
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(255, 74, 74, 0.6);
-            animation: pulseGlow 2s infinite alternate;
-        }
-        
-        @keyframes pulseGlow {
-            from { text-shadow: 0 0 8px rgba(255, 74, 74, 0.5); }
-            to { text-shadow: 0 0 18px rgba(255, 74, 74, 0.9), 0 0 25px rgba(255, 74, 74, 0.4); }
-        }
-        
-        .sub-title { 
-            text-align: center; 
-            color: #ffc107; 
-            font-size: 14px; 
-            font-weight: bold; 
-            margin-bottom: 25px; 
-            text-transform: uppercase; 
-            letter-spacing: 4px;
-            text-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
-        }
-        
+        h2 { text-align: center; color: #ff4a4a; margin: 0 0 5px 0; text-transform: uppercase; font-size: 20px; }
+        .sub-title { text-align: center; color: #ffc107; font-size: 13px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; }
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 10px; color: var(--text-dim); font-size: 14px; font-weight: 500; }
+        label { display: block; margin-bottom: 10px; color: #a0a5b5; font-size: 14px; }
         
         input[type="text"] { 
             width: 100%; 
-            padding: 15px; 
+            padding: 14px; 
             border: 2px solid #2e3440; 
-            background: #1f2330; 
+            background: #252932; 
             color: white; 
-            border-radius: 12px; 
+            border-radius: 10px; 
             font-size: 16px; 
             box-sizing: border-box; 
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        input[type="text"]:focus { 
-            border-color: var(--primary); 
-            outline: none; 
-            box-shadow: 0 0 10px rgba(255, 74, 74, 0.4);
         }
         
         button { 
             width: 100%; 
-            padding: 15px; 
-            background: linear-gradient(135deg, #ff4a4a, #c71515); 
+            padding: 14px; 
+            background: #ff4a4a; 
             color: white; 
             border: none; 
-            border-radius: 12px; 
+            border-radius: 10px; 
             font-size: 16px; 
             font-weight: bold; 
             cursor: pointer; 
             margin-top: 15px; 
-            box-shadow: 0 4px 15px rgba(255, 74, 74, 0.4);
-            transition: all 0.2s ease;
         }
         
-        button:active { transform: scale(0.97); box-shadow: 0 2px 5px rgba(255, 74, 74, 0.2); }
+        /* Chế độ ẩn hiện màn hình độc lập, không dùng cấu hình CSS nâng cao */
+        .app-section { display: none; }
         
-        /* He thong an hien cac phan doan man hinh */
-        .app-section { display: none !important; }
-        .active-section { display: block !important; }
+        .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         
-        .info-box { 
-            background: #1d212c; 
-            padding: 15px; 
-            border-radius: 16px; 
-            margin-bottom: 18px; 
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        .stat-item { background: #1e222b; padding: 10px; border-radius: 8px; font-size: 14px; }
+        .stat-item span { display: block; color: #a0a5b5; font-size: 11px; margin-bottom: 4px; }
+        .stat-value { font-weight: bold; font-size: 16px; }
         
-        .neon-border {
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
-        }
+        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
         
-        .info-title { 
-            font-weight: 800; 
-            color: var(--primary); 
-            margin-bottom: 15px; 
-            text-transform: uppercase; 
-            font-size: 14px; 
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        
-        .stat-item { 
-            background: #141720; 
-            padding: 12px; 
-            border-radius: 12px; 
-            position: relative;
-            border-left: 3px solid var(--primary);
-        }
-        .stat-item.cyan-tag { border-left-color: var(--neon-blue); }
-        
-        .stat-item span { 
-            display: block; 
-            color: var(--text-dim); 
-            font-size: 11px; 
-            margin-bottom: 6px; 
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        .stat-value { font-weight: 900; font-size: 18px; color: #fff; }
-        
-        .progress-bar-bg {
-            width: 100%;
-            height: 5px;
-            background: #252a37;
-            border-radius: 3px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%; 
-            background: linear-gradient(90deg, var(--primary), #ff8f8f);
-            border-radius: 3px;
-            transition: width 1.2s cubic-bezier(0.1, 0.8, 0.3, 1);
-        }
-        .cyan-tag .progress-bar-fill {
-            background: linear-gradient(90deg, var(--neon-blue), #9ffffb);
-        }
-        
-        .btn-install { 
-            background: linear-gradient(135deg, #00e676, #00a050); 
-            display: block; 
-            text-align: center; 
-            text-decoration: none; 
-            color: white; 
-            padding: 15px; 
-            border-radius: 12px; 
-            font-weight: bold; 
-            margin-top: 20px; 
-            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .btn-install:active { transform: scale(0.97); }
-        
-        .suggestions { margin-top: 12px; font-size: 12px; color: var(--text-dim); }
-        .tag { display: inline-block; background: #1f2330; padding: 6px 10px; border-radius: 8px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; transition: 0.2s; }
-        .tag:hover { border-color: var(--primary); color: #fff; background: rgba(255, 74, 74, 0.1); }
+        .suggestions { margin-top: 10px; font-size: 12px; color: #a0a5b5; }
+        .tag { display: inline-block; background: #252932; padding: 5px 8px; border-radius: 5px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>DPI REGEDIT IPHONE</h2>
-    <div class="sub-title">BY HIEU LIVE</div>
+    <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MAN HINH 1: NHAP KEY -->
-    <div class="app-section active-section" id="keySection">
+    <!-- MÀN HÌNH 1: NHẬP KEY (Chữ mờ gợi ý chuẩn: MUA KEY IB CHỦ BOX) -->
+    <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Nhap Ma Kich Hoat (Key VIP HIEU LIVE - Vinh Vien):</label>
-            <input type="text" id="activationKey" placeholder="MUA KEY IB CHU BOX">
-            <button onclick="verifyKey()">XAC THUC HE THONG VIP</button>
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
+            <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
 
-    <!-- MAN HINH 2: NHAP TEN THIET BI -->
+    <!-- MÀN HÌNH 2: NHẬP TÊN THIẾT BỊ -->
     <div class="app-section" id="searchSection">
         <div class="form-group">
-            <label>📱 Nhap Ten Dong May iPhone De Lay Do Nhay:</label>
-            <input type="text" id="deviceInput" placeholder="Vi du: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
+            <label>📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
             <div class="suggestions">
-                Goi y nhanh: 
+                Gợi ý nhanh: 
                 <span class="tag" onclick="selectDevice('iPhone 11')">iPhone 11</span>
                 <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
                 <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
             </div>
-            <button onclick="getSensitivity()">TRA CUU DO NHAY & CAU HINH</button>
+            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
     </div>
 
-    <!-- MAN HINH 3: HIEN THI KET QUA -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY MAX 200 -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
-            <div class="info-title">⚡ Thong Tin Thiet Bi VIP</div>
+            <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Dong May Kich Hoat</span><div class="stat-value" id="resModel" style="color: #ffc107;">-</div></div>
-                <div class="stat-item" style="border-left-color: var(--accent);"><span>Thoi Han Su Dung</span><div class="stat-value" style="color: var(--accent);">Vinh Vien</div></div>
+                <div class="stat-item"><span>Dòng Máy Kích Hoạt</span><div class="stat-value" id="resModel">-</div></div>
+                <div class="stat-item"><span>Thời Hạn Sử Dụng</span><div class="stat-value" style="color: #28a745;">Vĩnh Viễn</div></div>
             </div>
         </div>
 
-        <div class="info-box neon-border">
-            <div class="info-title" style="color: var(--neon-blue);">🎯 Do Nhay Keo Tam HIEU LIVE (MAX 200)</div>
+        <div class="info-box">
+            <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <div class="stat-item cyan-tag">
-                    <span>Nhien Xung Quanh</span>
-                    <div class="stat-value" id="valGeneral">0</div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="barGeneral"></div></div>
-                </div>
-                <div class="stat-item cyan-tag">
-                    <span>Red Dot Sight</span>
-                    <div class="stat-value" id="valRedDot">0</div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="barRedDot"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Ong Ngam 2x</span>
-                    <div class="stat-value" id="val2x">0</div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar2x"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Ong Ngam 4x</span>
-                    <div class="stat-value" id="val4x">0</div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="bar4x"></div></div>
-                </div>
-                <div class="stat-item">
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">200</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">195</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">185</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">178</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">100</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">130</div></div>
+            </div>
+            <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
+                <span>Kích Thước Nút Bắn Chuẩn</span>
+                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
+            <div class="grid-2">
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
+            </div>
+        </div>
+
+        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
+        <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
+    </div>
+</div>
+
+<script>
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function verifyKey() {
+        var inputField = document.getElementById('activationKey');
+        if (!inputField) return;
+        
+        // Nhận giá trị, viết thường hoàn toàn, xóa khoảng cách thừa
+        var userKey = inputField.value.trim().toLowerCase();
+        
+        // Kiểm tra logic đơn giản nhất: Phải bắt đầu bằng phamhieu
+        if (userKey.indexOf("phamhieu") === 0) {
+            var numberPart = userKey.substring(8); // Cắt lấy chuỗi số sau chữ phamhieu
+            var keyNum = parseInt(numberPart, 10);
+            
+            // Nếu đúng là số từ 1 đến 100 và chuỗi ráp lại trùng khớp 100%
+            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
+                // Chuyển màn hình bằng cách can thiệp style trực tiếp, chống đơ
+                document.getElementById('keySection').style.display = 'none';
+                document.getElementById('searchSection').style.display = 'block';
+                return;
+            }
+        }
+        
+        // Nếu không thỏa mãn điều kiện trên thì báo lỗi
+        alert("❌ Mã khóa không chính xác!\nVui lòng nhập lại mã khóa mới.");
+    }
+
+    function selectDevice(name) {
+        document.getElementById('deviceInput').value = name;
+    }
+
+    function getSensitivity() {
+        var inputVal = document.getElementById('deviceInput').value.trim();
+        if (inputVal === "") { alert("Vui lòng nhập tên dòng máy!"); return; }
+        
+        var general = getRandomInt(185, 200);
+        var redDot = getRandomInt(180, 195);
+        var scope2x = getRandomInt(175, 190);
+        var scope4x = getRandomInt(165, 185);
+        var awm = getRandomInt(85, 100);
+        var look = getRandomInt(110, 140);
+        var buttonSize = getRandomInt(40, 46) + "%";
+
+        document.getElementById('resModel').innerText = inputVal.toUpperCase();
+        document.getElementById('valGeneral').innerText = general;
+        document.getElementById('valRedDot').innerText = redDot;
+        document.getElementById('val2x').innerText = scope2x;
+        document.getElementById('val4x').innerText = scope4x;
+        document.getElementById('valAwm').innerText = awm;
+        document.getElementById('valLook').innerText = look;
+        document.getElementById('valButton').innerText = buttonSize;
+
+        // Chuyển sang màn hình kết quả độ nhạy ngẫu nhiên
+        document.getElementById('searchSection').style.style.display = 'none';
+        document.getElementById('resultSection').style.display = 'block';
+    }
+
+    function showGuide() {
+        alert("Đang tải tệp cấu hình VIP HIẾU LIVE...\n\nHướng dẫn kích hoạt vào máy:\n1. Mở 'Cài đặt' trên iPhone.\n2. Chọn mục 'Đã tải về hồ sơ' nằm ngay dưới tên iCloud.\n3. Nhấn 'Cài đặt' ở góc trên cùng bên phải.");
+    }
+
+    function backToSearch() {
+        document.getElementById('deviceInput').value = ""; 
+        document.getElementById('resultSection').style.display = 'none';
