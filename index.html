@@ -1,29 +1,26 @@
-<p>Red Dot Sight <span class="val">${rand(96, 99)}</span></p>
-                <p>Ống ngắm 2x <span class="val">${rand(92, 95)}</span></p>
-                <p>Ống ngắm 4x <span class="val">${rand(86, 90)}</span></p>
-                <p>Ống ngắm súng tỉa <span class="val">${rand(50, 60)}</span></p>
-                <p>Nút bắn (Size) <span class="val">${isIphone ? rand(42, 46) : rand(48, 54)}%</span></p>
-                <p>Tốc độ con trỏ <span class="val">MAX</span></p>
-                <p>Loot đồ <span class="val">Tự động (Nhanh)</span></p>
-                <p>Kỹ năng kéo tâm <span class="val">Vuốt chữ J / Tốc độ cao</span></p>
-                <hr style="border:0.1px solid #333">
-                <p><b>DPI HỆ THỐNG</b> <span class="vip">ACTIVE (+${rand(250, 450)})</span></p>
-                <p><b>ĐỘ TRỄ CẢM ỨNG</b> <span class="vip">0.1 MS (SIÊU NHẠY)</span></p>
-                
-                <a class="install-btn" href="${CONFIG_LINK}">
-                    BẤM ĐỂ CÀI DPI & 0.1MS VÀO MÁY
-                </a>
-            </div>`;
+html += "<p>Red Dot Sight <span class='val'>" + rand(97, 99) + "</span></p>";
+            html += "<p>Ống ngắm 2x <span class='val'>" + rand(93, 96) + "</span></p>";
+            html += "<p>Ống ngắm 4x <span class='val'>" + rand(88, 92) + "</span></p>";
+            html += "<p>Ống ngắm súng tỉa <span class='val'>" + rand(55, 65) + "</span></p>";
+            html += "<p>Nút bắn (Size) <span class='val'>" + (isIphone ? rand(42, 45) : rand(48, 52)) + "%</span></p>";
+            html += "<p>Loot đồ <span class='val'>Tự động (Nhanh)</span></p>";
+            html += "<p>Kỹ năng kéo tâm <span class='val'>Vuốt chữ J / Tốc độ cao</span></p>";
+            html += "<hr style='border:0.1px solid #333'>";
+            html += "<p><b>DPI HỆ THỐNG</b> <span class='vip'>ACTIVE (+" + rand(300, 500) + ")</span></p>";
+            html += "<p><b>ĐỘ TRỄ CẢM ỨNG</b> <span class='vip'>0.1 MS (SIÊU NHẠY)</span></p>";
+            html += "<a class='install-btn' href='" + CONFIG_URL + "'>BẤM VÀO ĐÂY ĐỂ CÀI DPI & 0.1MS</a>";
+            html += "</div>";
             
             resultsArea.innerHTML = html + resultsArea.innerHTML;
             document.getElementById("phoneName").value = "";
         }
     </script>
 </body>
-</html><!DOCTYPE html>
+</html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>HIẾU LIVE VIP - FIX LỖI</title>
+    <title>HIẾU LIVE VIP - SIÊU CẤP SENS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; text-align: center; padding: 15px; margin: 0; }
@@ -34,13 +31,12 @@
         button { padding: 12px; background: #f00; color: #fff; border: none; border-radius: 10px; font-weight: bold; width: 95%; cursor: pointer; text-transform: uppercase; margin-bottom: 5px; }
         .hidden { display: none; }
         #results { margin-top: 15px; text-align: left; }
-        .card { background: #1a1a1a; border-left: 5px solid #f00; margin-bottom: 15px; padding: 15px; border-radius: 10px; animation: slideIn 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        @keyframes slideIn { from {transform: translateY(20px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        .card { background: #1a1a1a; border-left: 5px solid #f00; margin-bottom: 15px; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         h3 { color: #f00; margin: 0 0 10px 0; font-size: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .val { color: #f00; font-weight: bold; float: right; font-family: monospace; }
+        .val { color: #f00; font-weight: bold; float: right; font-family: monospace; font-size: 15px; }
         .vip { color: #0f0; font-weight: bold; }
         p { margin: 8px 0; font-size: 13px; color: #ddd; border-bottom: 1px dashed #222; padding-bottom: 4px; }
-        .install-btn { background: #008000; margin-top: 15px; font-size: 12px; box-shadow: 0 0 15px #0f0; display: block; text-decoration: none; padding: 12px; border-radius: 10px; color: #fff; font-weight: bold; }
+        .install-btn { background: #008000; margin-top: 15px; font-size: 11px; box-shadow: 0 0 15px #0f0; display: block; text-decoration: none; padding: 12px; border-radius: 10px; color: #fff; font-weight: bold; text-align: center; }
     </style>
 </head>
 <body>
@@ -48,11 +44,13 @@
         <img src="https://imgur.com">
         <h2>HIẾU LIVE GAMING</h2>
 
+        <!-- MÀN HÌNH NHẬP KEY -->
         <div id="keyScreen">
             <input type="password" id="inputKey" placeholder="Nhập Key kích hoạt VIP...">
             <button onclick="checkKey()">Kích hoạt App</button>
         </div>
 
+        <!-- MÀN HÌNH NHẬP MÁY -->
         <div id="mainApp" class="hidden">
             <input type="text" id="phoneName" placeholder="Nhập tên máy (vdu: iPhone 13)">
             <button onclick="addSetting()">LẤY FULL THÔNG SỐ & CÀI ĐẶT</button>
@@ -63,7 +61,8 @@
 
     <script>
         const SECRET_KEY = "phamhieu99";
-        const CONFIG_LINK = "https://githack.com";
+        // Link Githack để ép iPhone tải file cấu hình ngay lập tức
+        const CONFIG_URL = "https://githack.com";
 
         if(localStorage.getItem("hieulive_auth") === "true") showApp();
 
@@ -71,7 +70,7 @@
             if(document.getElementById("inputKey").value.toLowerCase() === SECRET_KEY) {
                 localStorage.setItem("hieulive_auth", "true");
                 showApp();
-            } else { alert("Sai mã kích hoạt!"); }
+            } else { alert("Mã kích hoạt không đúng!"); }
         }
 
         function showApp() {
@@ -82,14 +81,13 @@
         function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
         function addSetting() {
-            let name = document.getElementById("phoneName").value.trim();
+            var name = document.getElementById("phoneName").value.trim();
             if(!name) return alert("Vui lòng nhập tên máy!");
             
-            let isIphone = name.toLowerCase().includes("iphone");
-            let resultsArea = document.getElementById("results");
+            var isIphone = name.toLowerCase().includes("iphone");
+            var resultsArea = document.getElementById("results");
 
-            // SỬA LỖI DẤU NHÁY TẠI ĐÂY
-            let html = `
-            <div class="card">
-                <h3>THIẾT BỊ: ${name.toUpperCase()}</h3>
-                <p>Nhìn xung quanh <span class="val">100</span></p>
+            var html = "";
+            html += "<div class='card'>";
+            html += "<h3>THIẾT BỊ: " + name.toUpperCase() + "</h3>";
+            html += "<p>Nhìn xung quanh <span class='val'>100</span></p>";
