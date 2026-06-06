@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống DPI Free Fire iPhone</title>
+    <title>Hệ Thống Regedit VIP Free Fire</title>
     <style>
         :root {
             --primary: #ff4a4a;
@@ -11,6 +11,7 @@
             --card-bg: #1a1d24;
             --text: #ffffff;
             --text-dim: #a0a5b5;
+            --accent: #28a745;
         }
 
         body {
@@ -21,6 +22,9 @@
             padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .container {
@@ -28,7 +32,7 @@
             max-width: 450px;
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             box-sizing: border-box;
         }
@@ -36,9 +40,11 @@
         h2 {
             text-align: center;
             color: var(--primary);
+            margin-top: 0;
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 20px;
         }
 
         .form-group {
@@ -47,14 +53,14 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--text-dim);
             font-size: 14px;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 2px solid #2e3440;
             background: #252932;
             color: white;
@@ -64,7 +70,7 @@
             transition: 0.3s;
         }
 
-        input[type="text"]:focus {
+        input:focus {
             border-color: var(--primary);
             outline: none;
         }
@@ -80,17 +86,18 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
+            margin-top: 15px;
         }
 
         button:active {
             transform: scale(0.98);
         }
 
-        .result-section {
+        .app-section {
             display: none;
-            margin-top: 25px;
-            border-top: 1px solid #2e3440;
-            padding-top: 20px;
+        }
+        .active-section {
+            display: block !important;
         }
 
         .info-box {
@@ -124,7 +131,7 @@
         .stat-item span {
             display: block;
             color: var(--text-dim);
-            font-size: 12px;
+            font-size: 11px;
             margin-bottom: 4px;
         }
 
@@ -134,153 +141,143 @@
         }
 
         .btn-install {
-            background: #28a745;
-            margin-top: 15px;
+            background: var(--accent);
+        }
+
+        .suggestions {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+        .tag {
+            display: inline-block;
+            background: #252932;
+            padding: 5px 8px;
+            border-radius: 5px;
+            margin: 4px 4px 0 0;
+            cursor: pointer;
+            border: 1px solid #2e3440;
+        }
+        .tag:hover {
+            border-color: var(--primary);
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>DPI REGEDIT IPHONE</h2>
+    <h2>DPI REGEDIT IPHONE VIP</h2>
     
-    <!-- Bước 1: Nhập Key -->
-    <div class="form-group" id="keySection">
-        <label for="activationKey">Nhập Mã Kích Hoạt (Key):</label>
-        <input type="text" id="activationKey" placeholder="Ví dụ: VIP-999-FREE">
-        <button onclick="checkKey()" style="margin-top: 15px;">XÁC THỰC HỆ THỐNG</button>
+    <!-- MÀN HÌNH 1: NHẬP KEY KÍCH HOẠT -->
+    <div class="app-section active-section" id="keySection">
+        <div class="form-group">
+            <label for="activationKey">🔑 Nhập Mã Kích Hoạt (Key VIP):</label>
+            <input type="text" id="activationKey" placeholder="Ví dụ: VIP999">
+            <button onclick="verifyKey()">XÁC THỰC KEY HỆ THỐNG VIP</button>
+        </div>
     </div>
 
-    <!-- Bước 2: Hiển thị thông tin & Cấu hình -->
-    <div class="result-section" id="resultSection">
-        
+    <!-- MÀN HÌNH 2: NHẬP TÊN MÁY -->
+    <div class="app-section" id="searchSection">
+        <div class="form-group">
+            <label for="deviceInput">📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
+            <div class="suggestions">
+                Gợi ý đời máy nhanh: 
+                <span class="tag" onclick="selectDevice('iPhone 11')">iPhone 11</span>
+                <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
+                <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
+            </div>
+            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 3: HIỂN THỊ ĐỘ NHẠY & NÚT CÀI ĐẶT PROFILE -->
+    <div class="app-section" id="resultSection">
         <!-- Thông tin máy -->
         <div class="info-box">
-            <div class="info-title">📱 Thông Tin Thiết Bị</div>
+            <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Dòng Máy</span><div class="stat-value" id="phoneModel">iPhone 15 Pro Max</div></div>
-                <div class="stat-item"><span>Hệ Điều Hành</span><div class="stat-value" id="phoneOs">iOS 17.5</div></div>
-                <div class="stat-item"><span>Màn Hình</span><div class="stat-value">120Hz ProMotion</div></div>
-                <div class="stat-item"><span>Trạng Thái Key</span><div class="stat-value" style="color: #28a745;">Đang Hoạt Động</div></div>
+                <div class="stat-item"><span>Dòng Máy Kích Hoạt</span><div class="stat-value" id="resModel" style="color: #ffc107;">-</div></div>
+                <div class="stat-item"><span>Hệ Thống Profile</span><div class="stat-value" style="color: #28a745;">Sẵn Sàng Nạp</div></div>
             </div>
         </div>
 
-        <!-- Độ nhạy Free Fire -->
+        <!-- Độ nhạy Free Fire Full thông số -->
         <div class="info-box">
-            <div class="info-title">🎯 Độ Nhạy Free Fire Khuyên Dùng</div>
+            <div class="info-title">🎯 Độ Nhạy Kéo Tâm VIP</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value">98</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value">95</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value">92</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value">89</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value">50</div></div>
-                <div class="stat-item"><span>Nhìn</span><div class="stat-value">70</div></div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">100</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">95</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">92</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">88</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">50</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value">65</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
-                <span>Kích Thước Nút Bắn</span>
-                <div class="stat-value" style="color: #ffc107;">45% - 48%</div>
+                <span>Kích Thước Nút Bắn Chuẩn</span>
+                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
             </div>
         </div>
 
-        <!-- Cấu hình ảo nâng cao -->
+        <!-- Cấu hình chạy ngầm ảo -->
         <div class="info-box">
-            <div class="info-title">⚙️ Cấu Hình Chạy Ngầm</div>
+            <div class="info-title">⚙️ Cấu Hình Chạy Ngầm Hệ Thống</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Bản Quyền</span><div class="stat-value">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
+                <div class="stat-item"><span>DPI Ảo Bản Quyền</span><div class="stat-value" id="valDpi">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 mili giây (ms)</div></div>
             </div>
         </div>
 
-        <!-- Nút cài đặt Profile -->
-        <button class="btn-install" onclick="downloadMobileConfig()">CÀI ĐẶT PROFILE DPI VÀO IPHONE</button>
+        <!-- Nút tải file cấu hình cài trực tiếp về máy dạng vip.mobileconfig -->
+        <button class="btn-install" onclick="downloadMobileConfig()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</button>
+        <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
 
 <script>
-    function checkKey() {
-        const keyInput = document.getElementById('activationKey').value.trim();
-        if (keyInput === "") {
-            alert("Vui lòng nhập Key kích hoạt!");
+    // 🔴 BẠN CÓ THỂ ĐỔI KEY KÍCH HOẠT TẠI ĐÂY (Mặc định là: VIP999)
+    const VALID_KEY = "VIP999"; 
+
+    // Cơ sở dữ liệu độ nhạy iPhone chính thức
+    const databaseSensitivity = {
+        "iphone x": { general: 95, redDot: 92, x2: 90, x4: 85, awm: 50, button: "48%", dpi: 900 },
+        "iphone xr": { general: 98, redDot: 94, x2: 92, x4: 88, awm: 45, button: "45%", dpi: 1000 },
+        "iphone xs max": { general: 95, redDot: 92, x2: 89, x4: 85, awm: 48, button: "47%", dpi: 960 },
+        "iphone 11": { general: 100, redDot: 96, x2: 94, x4: 90, awm: 55, button: "43%", dpi: 1100 },
+        "iphone 12": { general: 100, redDot: 98, x2: 95, x4: 92, awm: 50, button: "42%", dpi: 1140 },
+        "iphone 13 pro max": { general: 99, redDot: 96, x2: 94, x4: 91, awm: 45, button: "43%", dpi: 1200 },
+        "iphone 14 pro max": { general: 99, redDot: 97, x2: 95, x4: 92, awm: 45, button: "42%", dpi: 1250 },
+        "iphone 15 pro max": { general: 100, redDot: 98, x2: 96, x4: 93, awm: 45, button: "41%", dpi: 1300 },
+        "iphone 16 pro max": { general: 100, redDot: 99, x2: 97, x4: 94, awm: 45, button: "40%", dpi: 1350 }
+    };
+
+    function verifyKey() {
+        const enteredKey = document.getElementById('activationKey').value.trim();
+        if (enteredKey === VALID_KEY) {
+            switchSection('keySection', 'searchSection');
+        } else {
+            alert("❌ Mã Key VIP không chính xác hoặc đã hết hạn!");
+        }
+    }
+
+    function selectDevice(name) {
+        document.getElementById('deviceInput').value = name;
+    }
+
+    function getSensitivity() {
+        const inputVal = document.getElementById('deviceInput').value.trim();
+        if (inputVal === "") {
+            alert("Vui lòng nhập tên dòng máy iPhone của bạn!");
             return;
         }
 
-        const userAgent = navigator.userAgent;
-        let model = "iPhone 15 Pro Max";
-        let os = "iOS 17.5";
+        const cleanKey = inputVal.toLowerCase();
+        let matchedData = null;
+        let finalModelName = inputVal;
 
-        if (userAgent.includes("iPhone")) {
-            const match = userAgent.match(/OS (\d+)_(\d+)/);
-            if (match) os = `iOS ${match[1]}.${match[2]}`;
-            model = "iPhone (Của Bạn)";
-        }
-
-        document.getElementById('phoneModel').innerText = model;
-        document.getElementById('phoneOs').innerText = os;
-        document.getElementById('keySection').style.display = 'none';
-        document.getElementById('resultSection').style.display = 'block';
-    }
-
-    // Hàm tự động tạo và tải xuống file .mobileconfig
-    function downloadMobileConfig() {
-        // Nội dung tệp cấu hình iOS mẫu hiển thị thông số DPI và giảm độ trễ
-        const configContent = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pset PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadDescription</key>
-            <string>Cấu hình tối ưu hóa độ nhạy cảm ứng cho Free Fire</string>
-            <key>PayloadDisplayName</key>
-            <string>Free Fire Regedit Touch Patch</string>
-            <key>PayloadIdentifier</key>
-            <string>com.ffregedit.dpi.touch</string>
-            <key>PayloadType</key>
-            <string>com.apple.webclip.managed</string>
-            <key>PayloadUUID</key>
-            <string>1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>Label</key>
-            <string>DPI 1200 - 0.1ms</string>
-            <key>URL</key>
-            <string>https://freefire.com</string>
-        </dict>
-    </array>
-    <key>PayloadDescription</key>
-    <string>Hồ sơ cấu hình DPI Ảo 1200 và Độ trễ cảm ứng 0.1ms dành riêng cho iPhone.</string>
-    <key>PayloadDisplayName</key>
-    <string>Hệ Thống Cấu Hình DPI Ảo Free Fire v1.0</string>
-    <key>PayloadIdentifier</key>
-    <string>com.ffregedit.dpi</string>
-    <key>PayloadOrganization</key>
-    <string>FF Regedit Global</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>98765432-1234-5678-abcd-ef0123456789</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-</dict>
-</plist>`;
-
-        // Chuyển đổi nội dung thành tệp dữ liệu có định dạng tải xuống
-        const blob = new Blob([configContent], { type: 'application/x-apple-aspen-config' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = 'DPI_FixDelay.mobileconfig';
-        
-        // Tiến hành tải xuống và thông báo hướng dẫn cho người dùng
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        alert("Tệp 'DPI_FixDelay.mobileconfig' đã tải xuống thành công!\n\nHƯỚNG DẪN KÍCH HOẠT:\n1. Mở 'Cài đặt' trên iPhone.\n2. Chọn mục 'Đã tải về hồ sơ' ở ngay phía dưới tài khoản iCloud.\n3. Ấn 'Cài đặt' ở góc phải để áp dụng DPI 1200 và độ trễ 0.1ms.");
-    }
-</script>
-
-</body>
-</html>
+        for (let key in databaseSensitivity) {
+            if (cleanKey.includes(key) || key.includes(cleanKey)) {
+                matchedData = databaseSensitivity[key];
+                finalModelName = key.toUpperCase();
