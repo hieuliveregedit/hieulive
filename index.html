@@ -1,75 +1,72 @@
-<div class="stat-row"><span>DPI ẢO:</span> <span class="val" id="s6"></span></div>
-        </div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIẾU LIVE VIP - ĐỘ NHẠY</title>
+    <style>
+        :root { --primary: #00ff00; --bg: #050505; }
+        body { font-family: monospace; background: var(--bg); color: var(--primary); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { width: 90%; max-width: 380px; padding: 25px; border: 1px solid var(--primary); text-align: center; background: #111; border-radius: 10px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid var(--primary); color: var(--primary); text-align: center; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: var(--primary); color: #000; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        #main-ui, #result { display: none; }
+        .stat-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid rgba(0,255,0,0.2); }
+        .val { color: #fff; }
+    </style>
+</head>
+<body>
 
-        <p style="color: yellow; font-size: 10px; margin-top: 15px; text-align: center;">⚠️ CẢNH BÁO: Tải Profile bên dưới để kích hoạt cảm ứng 0.1ms.</p>
-        <a href="vip.mobileconfig" class="download-link">KÍCH HOẠT PROFILE VIP</a>
+<div class="container">
+    <!-- MÀN HÌNH KHÓA -->
+    <div id="login-screen">
+        <h2 style="color: #fff">ACCESS DENIED</h2>
+        <input type="password" id="passInput" placeholder="NHẬP KEY BẢO MẬT">
+        <button onclick="checkPass()">XÁC MINH</button>
+    </div>
+
+    <!-- MÀN HÌNH CHÍNH -->
+    <div id="main-ui">
+        <h3>HỆ THỐNG PHÂN TÍCH</h3>
+        <input type="text" id="phoneModel" placeholder="NHẬP TÊN MÁY (VD: IPHONE 11)">
+        <button onclick="getSens()">LẤY ĐỘ NHẠY</button>
+    </div>
+
+    <!-- MÀN HÌNH KẾT QUẢ -->
+    <div id="result">
+        <h4 style="color: #fff">KẾT QUẢ CHO: <span id="resName"></span></h4>
+        <div class="stat-box" style="text-align: left;">
+            <div class="stat-row"><span>XUNG QUANH:</span> <span class="val" id="v1"></span></div>
+            <div class="stat-row"><span>RED DOT:</span> <span class="val" id="v2"></span></div>
+            <div class="stat-row"><span>ỐNG NGẮM 2X:</span> <span class="val" id="v3"></span></div>
+            <div class="stat-row"><span>NÚT BẮN:</span> <span class="val" id="v4"></span></div>
+        </div>
+        <p style="font-size: 11px; color: yellow; margin-top: 15px;">* Cần cài Profile để kích hoạt 0.1ms</p>
+        <a href="vip.mobileconfig" style="color: #ff0000; font-weight: bold; text-decoration: none; border: 1px solid #ff0000; padding: 10px; display: block;">KÍCH HOẠT PROFILE</a>
     </div>
 </div>
 
 <script>
-    const KEY_CHINH_THUC = "PHAMHIEU99"; // Bạn có thể đổi mật khẩu ở đây
-
     function checkPass() {
-        const input = document.getElementById('passInput').value;
-        if (input === KEY_CHINH_THUC) {
+        if (document.getElementById('passInput').value === "PHAMHIEU99") {
             document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('main-app').style.display = 'block';
-        } else {
-            alert("Mật khẩu không chính xác! Vui lòng liên hệ Admin.");
-        }
+            document.getElementById('main-ui').style.display = 'block';
+        } else { alert("Sai mật khẩu!"); }
     }
 
-    function startProcessing() {
+    function getSens() {
         const phone = document.getElementById('phoneModel').value;
-        if (!phone) return alert("Bạn chưa nhập tên điện thoại!");
-
-        document.getElementById('main-app').style.display = 'none';
-        document.getElementById('loading').style.display = 'block';
-
-        let p = 0;
-        const itv = setInterval(() => {
-            p++;
-            document.getElementById('percent').innerText = p + "%";
-            if(p == 20) document.getElementById('loadText').innerText = "Đang nhận diện phần cứng...";
-            if(p == 50) document.getElementById('loadText').innerText = "Đang tối ưu DPI gốc...";
-            if(p == 80) document.getElementById('loadText').innerText = "Đang đồng bộ cảm ứng 0.1ms...";
-            
-            if (p >= 100) {
-                clearInterval(itv);
-                showFinal(phone);
-            }
-        }, 35);
-    }
-
-    function showFinal(name) {
-        document.getElementById('loading').style.display = 'none';
+        if (!phone) return alert("Chưa nhập tên máy!");
+        document.getElementById('main-ui').style.display = 'none';
         document.getElementById('result').style.display = 'block';
-        document.getElementById('resModel').innerText = "THIẾT BỊ: " + name.toUpperCase();
-
-        let n = name.toLowerCase();
-        // PHÂN LOẠI THÔNG SỐ THEO DÒNG MÁY
-        if (n.includes("iphone")) {
-            // Thông số tối ưu riêng cho iPhone (Mượt, nhạy vừa phải)
-            setStats(97 + rand(3), 92 + rand(4), 88 + rand(5), 85 + rand(5), 45 + rand(5), 550 + rand(50));
-        } else if (n.includes("samsung")  n.includes("oppo")  n.includes("xiaomi") || n.includes("redmi")) {
-            // Thông số tối ưu riêng cho Android (Độ nhạy cao để kéo tâm dễ hơn)
-            setStats(100, 96 + rand(3), 94 + rand(4), 90 + rand(5), 50 + rand(5), 650 + rand(100));
-        } else {
-            // Các dòng máy khác lấy ngẫu nhiên trong khoảng chuẩn
-            setStats(95 + rand(5), 90 + rand(8), 85 + rand(10), 80 + rand(10), 48 + rand(7), 500 + rand(200));
-        }
+        document.getElementById('resName').innerText = phone.toUpperCase();
+        
+        // Thuật toán trả số
+        document.getElementById('v1').innerText = Math.floor(Math.random() * 5) + 95;
+        document.getElementById('v2').innerText = Math.floor(Math.random() * 5) + 90;
+        document.getElementById('v3').innerText = Math.floor(Math.random() * 10) + 85;
+        document.getElementById('v4').innerText = "48%";
     }
-
-    function setStats(v1, v2, v3, v4, v5, v6) {
-        document.getElementById('s1').innerText = v1;
-        document.getElementById('s2').innerText = v2;
-        document.getElementById('s3').innerText = v3;
-        document.getElementById('s4').innerText = v4;
-        document.getElementById('s5').innerText = v5 + "%";
-        document.getElementById('s6').innerText = v6;
-    }
-
-    function rand(max) { return Math.floor(Math.random() * max); }
 </script>
 
 </body>
