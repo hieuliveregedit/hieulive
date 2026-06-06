@@ -2,62 +2,44 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
 <plist version="1.0">
 <dict>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-    <key>PayloadIdentifier</key>
-    <string>com.hieulive.sens.pro</string>
-    <key>PayloadUUID</key>
-    <string>A1B2C3D4-E5F6-4789-ABCD-1234567890AB</string>
-    <key>PayloadDisplayName</key>
-    <string>HIẾU LIVE - APP ĐỘ NHẠY VIP</string>
-    <key>PayloadDescription</key>
-    <string>App lấy độ nhạy & Tối ưu cảm ứng 0.1ms. Key: PHAMHIEU99</string>
-    <key>PayloadOrganization</key>
-    <string>Hiếu Live</string>
-    <key>PayloadPassword</key>
-    <string>PHAMHIEU99</string>
-    <key>HasRemovalPasscode</key>
-    <true/>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.hieulive.webclip</string>
-            <key>PayloadUUID</key>
-            <string>B2C3D4E5-F6A7-4890-BCDE-234567890ABC</string>
-            <key>PayloadDisplayName</key>
-            <string>Hiếu Live</string>
-            <key>Label</key>
-            <string>Hiếu Live</string>
-            <key>URL</key>
-            <string>https://github.io</string>
-            <key>IsRemovable</key>
-            <true/>
-            <key>FullScreen</key>
-            <true/>
-        </dict>
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.accessibility.TouchAccommodations</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.hieulive.touch</string>
-            <key>PayloadUUID</key>
-            <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R8</string>
-            <key>TouchAccommodationsEnabled</key>
-            <true/>
-            <key>TouchAccommodationsHoldDuration</key>
-            <real>0.1</real>
-            <key>TouchAccommodationsIgnoreRepeatDuration</key>
-            <real>0.1</real>
-        </dict>
-    </array>
+ <key>PayloadContent</key>
+ <array>
+  <dict>
+   <key>PayloadDescription</key>
+   <string>Tối ưu cảm ứng 0.1ms by Hiếu Live</string>
+   <key>PayloadDisplayName</key>
+   <string>Hiếu Live - Touch VIP</string>
+   <key>PayloadIdentifier</key>
+   <string>com.apple.accessibility.touch.1</string>
+   <key>PayloadType</key>
+   <string>com.apple.accessibility.TouchAccommodations</string>
+   <key>PayloadUUID</key>
+   <string>A1B2C3D4-E5F6-4789-ABCD-1234567890AB</string>
+   <key>PayloadVersion</key>
+   <integer>1</integer>
+   <key>TouchAccommodationsEnabled</key>
+   <true/>
+   <key>TouchAccommodationsHoldDuration</key>
+   <real>0.1</real>
+   <key>TouchAccommodationsIgnoreRepeatDuration</key>
+   <real>0.1</real>
+  </dict>
+ </array>
+ <key>PayloadDescription</key>
+ <string>App lấy độ nhạy & Tối ưu cảm ứng 0.1ms</string>
+ <key>PayloadDisplayName</key>
+ <string>HIẾU LIVE - ĐỘ NHẠY VIP</string>
+ <key>PayloadIdentifier</key>
+ <string>com.hieulive.sens.pro</string>
+ <key>PayloadOrganization</key>
+ <string>Hiếu Live</string>
+ <key>PayloadRemovalDisallowed</key>
+ <false/>
+ <key>PayloadType</key>
+ <string>Configuration</string>
+ <key>PayloadUUID</key>
+ <string>C3D4E5F6-G7H8-I9J0-K1L2-M3N4O5P6Q7R8</string>
+ <key>PayloadVersion</key>
+ <integer>1</integer>
 </dict>
 </plist>
