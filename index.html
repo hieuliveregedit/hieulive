@@ -85,9 +85,9 @@
     <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
-            <!-- FIX ĐỒNG BỘ ĐÚNG ID KHÔNG BỊ TREO NÚT BẤM -->
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
-            <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
+            <!-- ĐÃ THÊM type="button" ĐỂ SAFARI KHÔNG CHẶN PHẢN HỒI LẬT TRANG -->
+            <button type="button" onclick="verifyKey(event)">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
 
@@ -102,7 +102,7 @@
                 <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
                 <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
             </div>
-            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
+            <button type="button" onclick="getSensitivity(event)">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
     </div>
 
@@ -141,12 +141,11 @@
         </div>
 
         <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
-        <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
+        <button type="button" onclick="backToSearch(event)" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
 
 <script>
-    // Hàm băm ký tự tự động tính số ngẫu nhiên cố định riêng cho từng dòng máy khác nhau
     function getFixedNumByDevice(deviceName, min, max, seed) {
         var hash = 0;
         var cleanName = deviceName.toUpperCase().replace(/\s+/g, '') + seed;
@@ -157,7 +156,10 @@
         return min + (Math.abs(hash) % range);
     }
 
-    function verifyKey() {
+    // THÊM BIẾN EVENT ĐỂ CHẶN SAFARI KHÓA NÚT BẤM
+    function verifyKey(e) {
+        if(e) e.preventDefault();
+        
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
         
@@ -168,7 +170,7 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                inputField.blur(); // Thu bàn phím iPhone xuống để mở khóa lệnh chuyển màn hình của Safari
+                inputField.blur(); 
                 document.getElementById('keySection').style.display = 'none';
                 document.getElementById('searchSection').style.display = 'block';
                 return;
@@ -181,8 +183,9 @@
         document.getElementById('deviceInput').value = name;
     }
 
-    // THUẬT TOÁN TỰ ĐỘNG THAY ĐỔI ĐỘ NHẠY KHI NHẬP TÊN ĐIỆN THOẠI KHÁC NHAU
-    function getSensitivity() {
+    function getSensitivity(e) {
+        if(e) e.preventDefault();
+        
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
         var rawDeviceValue = deviceInput.value;
@@ -192,18 +195,36 @@
             return;
         }
 
-        deviceInput.blur(); // Hạ bàn phím
+        deviceInput.blur();
 
-        // Sinh dải số riêng biệt không trùng lặp dựa trên các ký tự chữ nhập vào
-        var generalNum = getFixedNumByDevice(rawDeviceValue, 180, 200, "gen"); // Nhìn xung quanh (180-200)
-        var redDotNum  = getFixedNumByDevice(rawDeviceValue, 175, 195, "red"); // Red Dot (175-195)
-        var scope2xNum = getFixedNumByDevice(rawDeviceValue, 170, 188, "2xx"); // Kính 2x (170-188)
-        var scope4xNum = getFixedNumByDevice(rawDeviceValue, 165, 182, "4xx"); // Kính 4x (165-182)
-        var scopeAwm   = getFixedNumByDevice(rawDeviceValue, 90, 110, "awm");  // Súng ngắm (90-110)
-        var lookNum    = getFixedNumByDevice(rawDeviceValue, 120, 140, "loo");  // Mắt nhìn (120-140)
-        var btnSize    = getFixedNumByDevice(rawDeviceValue, 42, 48, "btn") + "%"; // Size nút bắn
+        var generalNum = getFixedNumByDevice(rawDeviceValue, 180, 200, "gen"); 
+        var redDotNum  = getFixedNumByDevice(rawDeviceValue, 175, 195, "red"); 
+        var scope2xNum = getFixedNumByDevice(rawDeviceValue, 170, 188, "2xx"); 
+        var scope4xNum = getFixedNumByDevice(rawDeviceValue, 165, 182, "4xx"); 
+        var scopeAwm   = getFixedNumByDevice(rawDeviceValue, 90, 110, "awm");  
+        var lookNum    = getFixedNumByDevice(rawDeviceValue, 120, 140, "loo");  
+        var btnSize    = getFixedNumByDevice(rawDeviceValue, 42, 48, "btn") + "%"; 
 
-        // Đổ toàn bộ dữ liệu biến thiên theo máy lên giao diện
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
         document.getElementById('valGeneral').innerText = generalNum;
         document.getElementById('valRedDot').innerText = redDotNum;
+        document.getElementById('val2x').innerText = scope2xNum;
+        document.getElementById('val4x').innerText = scope4xNum;
+        document.getElementById('valAwm').innerText = scopeAwm;
+        document.getElementById('valLook').innerText = lookNum;
+        document.getElementById('valButton').innerText = btnSize;
+            document.getElementById('searchSection').style.display = 'none';
+    document.getElementById('resultSection').style.display = 'block';
+}
+
+function backToSearch(e) {
+    if (e) e.preventDefault();
+    document.getElementById('resultSection').style.display = 'none';
+    document.getElementById('searchSection').style.display = 'block';
+}
+
+function showGuide() {
+    alert("📥 Hệ thống đang tải xuống tệp cấu hình VIP!\nSau khi tải xong, hãy vào ứng dụng 'Cài đặt' trên iPhone để kích hoạt cấu hình Regedit.");
+}
+
+        
