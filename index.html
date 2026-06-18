@@ -22,14 +22,17 @@
         .container { 
             width: 100%; 
             max-width: 440px; 
-            background: linear-gradient(145deg, #11141d, #161b26); 
+            background: #121620; 
             border-radius: 20px; 
             padding: 25px 20px; 
-            box-shadow: 0 10px 30px rgba(255, 74, 74, 0.15); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
             box-sizing: border-box; 
-            border: 1px solid rgba(255, 74, 74, 0.2);
+            border: 1px solid rgba(255, 74, 74, 0.3);
+            position: relative;
+            z-index: 1;
         }
         
+        /* Tiêu đề hiệu ứng phát sáng Neon rực rỡ */
         h2 { 
             text-align: center; 
             color: #ff4a4a; 
@@ -52,9 +55,10 @@
             text-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
         }
         
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; position: relative; z-index: 2; }
         label { display: block; margin-bottom: 12px; color: #a0a5b5; font-size: 14px; font-weight: 500; }
         
+        /* Ô nhập liệu hiện đại bo góc viền đổi màu khi bấm */
         input[type="text"] { 
             width: 100%; 
             padding: 15px; 
@@ -65,6 +69,8 @@
             font-size: 16px; 
             box-sizing: border-box; 
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 3;
         }
         input[type="text"]:focus {
             border-color: #ff4a4a;
@@ -72,10 +78,11 @@
             box-shadow: 0 0 10px rgba(255, 74, 74, 0.3);
         }
         
+        /* Nút bấm Esport - Đã thêm thuộc tính z-index và pointer-events ưu tiên để chống đơ nút */
         button { 
             width: 100%; 
             padding: 15px; 
-            background: linear-gradient(90deg, #ff4a4a, #cc2323); 
+            background: #ff4a4a; 
             color: white; 
             border: none; 
             border-radius: 12px; 
@@ -85,13 +92,17 @@
             margin-top: 15px; 
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 74, 74, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 74, 74, 0.3);
+            position: relative;
+            z-index: 999 !important;
+            pointer-events: auto !important;
         }
+        button:active { background: #cc2323; }
         
-        /* Ẩn duy nhất phần bảng kết quả lúc ban đầu */
-        #resultSection { display: none; }
-        .divider { border-bottom: 1px dashed rgba(255,74,74,0.2); margin: 25px 0; }
+        /* ⚙️ Phân mảnh ẩn màn hình độc lập */
+        .app-section { display: none; }
         
+        /* Hộp thông tin dạng Card kính mờ */
         .info-box { 
             background: rgba(37, 43, 56, 0.6); 
             padding: 18px; 
@@ -102,6 +113,7 @@
         .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 12px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         
+        /* Ô hiển thị thông số chi tiết phát sáng tinh tế */
         .stat-item { 
             background: #141822; 
             padding: 12px; 
@@ -112,11 +124,13 @@
         .stat-item span { display: block; color: #8a90a2; font-size: 11px; margin-bottom: 6px; }
         .stat-value { font-weight: bold; font-size: 18px; color: #ffffff; }
         
+        /* Thanh tiến trình đồ họa mô phỏng DPI tăng độ ngầu */
         .dpi-bar-bg { width: 100%; height: 5px; background: #252b38; border-radius: 3px; margin-top: 6px; overflow: hidden; }
         .dpi-bar-fill { height: 100%; background: #ff4a4a; border-radius: 3px; width: 0%; transition: width 0.5s ease; }
         
+        /* Nút Cài đặt lớn màu xanh lá mượt mắt */
         .btn-install { 
-            background: linear-gradient(90deg, #28a745, #1e7e34); 
+            background: #28a745; 
             display: block; 
             text-align: center; 
             text-decoration: none; 
@@ -127,9 +141,12 @@
             margin-top: 20px; 
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            position: relative;
+            z-index: 99;
         }
         
+        /* Các nút bấm gợi ý nhanh */
         .suggestions { margin-top: 15px; font-size: 13px; color: #a0a5b5; }
         .tag { 
             display: inline-block; 
@@ -150,17 +167,19 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- KHUNG ĐIỀU HƯỚNG TỔNG HỢP: KHÔNG LO BỊ KẸT CHUYỂN MÀN HÌNH -->
-    <div id="mainFormSection">
+    <!-- MÀN HÌNH 1: NHẬP KEY VIP (MẶC ĐỊNH HIỆN ĐẦU TIÊN) -->
+    <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Bước 1: Nhập Mã Kích Hoạt VIP (phamhieu1 - phamhieu100):</label>
-            <input type="text" id="activationKey" placeholder="Gõ Key kích hoạt vào đây...">
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
+            <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
-        
-        <div class="divider"></div>
+    </div>
 
+    <!-- MÀN HÌNH 2: NHẬP TÊN THIẾT BỊ (MẶC ĐỊNH ẨN, CHỈ HIỆN KHI KEY ĐÚNG) -->
+    <div class="app-section" id="searchSection" style="display: none;">
         <div class="form-group">
-            <label>📱 Bước 2: Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <label>📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
             <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
             <div class="suggestions">
                 Gợi ý nhanh đời máy: 
@@ -168,13 +187,12 @@
                 <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
                 <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
             </div>
+            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
-
-        <button onclick="processRegeditSystem()">XÁC THỰC & TRA CỨU HỆ THỐNG VIP</button>
     </div>
 
-    <!-- MÀN HÌNH HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
-    <div id="resultSection">
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY (MẶC ĐỊNH ẨN) -->
+    <div class="app-section" id="resultSection" style="display: none;">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
@@ -224,20 +242,3 @@
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" style="color: #007bff;">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value" style="color: #007bff;">0.1 ms</div></div>
-            </div>
-        </div>
-
-        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
-        <button onclick="backToSearch()" style="background: linear-gradient(145deg, #252b38, #1a1f2c); color: #a0a5b5; box-shadow: none; border: 1px solid #252b38;">TRA CỨU MÁY KHÁC</button>
-    </div>
-</div>
-
-<script>
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    var iphoneDatabase = {
-        "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
