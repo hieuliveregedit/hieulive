@@ -82,9 +82,6 @@ function newDevice(){
 }
 
 function downloadConfig(){
-    // Link chuẩn lấy từ trang cài đặt GitHub Pages của mày
-    const myWebsiteUrl = "https://hieuliveregedit.github.io/hieulive/"; 
-
     const profile = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -117,7 +114,7 @@ function downloadConfig(){
             <key>PayloadDisplayName</key>
             <string>PhamHieu Pro</string>
             <key>URL</key>
-            <string>${myWebsiteUrl}</string>
+            <string>https://hieuliveregedit.github.io/hieulive/</string>
             <key>Label</key>
             <string>PhamHieu Pro</string>
             <key>IsRemovable</key>
