@@ -1,92 +1,86 @@
-// KEY của bạn
-const SECRET_KEY = "HIEUVIP123";
+// ===== KEY SYSTEM =====
+let validKeys = JSON.parse(localStorage.getItem("vip_keys")) || ["HIEUVIP123"];
 
-// lưu dữ liệu
-let usedDevices = JSON.parse(localStorage.getItem("devices")) || [];
-let usedSensitivity = JSON.parse(localStorage.getItem("sens")) || [];
+function generateVIPKey() {
+  let key = "VIP-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  validKeys.push(key);
+  localStorage.setItem("vip_keys", JSON.stringify(validKeys));
+  alert("KEY: " + key);
+}
 
-// LOGIN
 function checkKey() {
   let key = document.getElementById("keyInput").value.trim().toUpperCase();
   let pass = document.getElementById("passwordInput").value.trim().toLowerCase();
 
-  let validPass = false;
-
+  let okPass = false;
   for (let i = 1; i <= 100; i++) {
-    if (pass === "phamhieu" + i) {
-      validPass = true;
-      break;
-    }
+    if (pass === "phamhieu" + i) okPass = true;
   }
 
-  if (key === SECRET_KEY.toUpperCase() && validPass) {
+  if (validKeys.includes(key) && okPass) {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("devicePage").style.display = "block";
   } else {
-    document.getElementById("status").innerText = "❌ Sai key hoặc mật khẩu!";
+    document.getElementById("status").innerText = "Sai key hoặc pass!";
   }
 }
 
-// random không trùng
-function getUniqueSensitivity() {
-  let value;
-
-  do {
-    value = Math.floor(Math.random() * (190 - 150 + 1)) + 150;
-  } while (usedSensitivity.includes(value));
-
-  usedSensitivity.push(value);
-  localStorage.setItem("sens", JSON.stringify(usedSensitivity));
-
-  return value;
-}
-
-// GENERATE
-function generate() {
-  let device = document.getElementById("deviceName").value.trim();
-
-  if (device === "") {
-    alert("❌ Nhập tên máy!");
-    return;
-  }
-
-  if (usedDevices.includes(device)) {
-    alert("❌ Máy này đã dùng rồi!");
-    return;
-  }
-
-  usedDevices.push(device);
-  localStorage.setItem("devices", JSON.stringify(usedDevices));
-
-  let sens = {
-    "General": getUniqueSensitivity(),
-    "Red Dot": getUniqueSensitivity(),
-    "2x Scope": getUniqueSensitivity(),
-    "4x Scope": getUniqueSensitivity(),
-    "AWM Scope": getUniqueSensitivity(),
-    "Free Look": getUniqueSensitivity()
-  };
+// ===== MAIN =====
+function start() {
+  let name = document.getElementById("deviceName").value;
 
   document.getElementById("devicePage").style.display = "none";
-  document.getElementById("resultPage").style.display = "block";
+  document.getElementById("mainPage").style.display = "block";
 
-  document.getElementById("result").innerText = JSON.stringify(sens, null, 2);
+  document.getElementById("deviceText").innerText = name;
 
-  // cấu hình iPhone
-  let config = `
-📱 Cấu hình iPhone:
+  let s = generateSensitivity(name);
 
-- Độ sáng: 80% - 100%
-- FPS: Cao (High/Ultra)
-- Đồ họa: Smooth
-- Tắt tiết kiệm pin
-- Tắt app nền
-- Dọn RAM trước khi chơi
+  document.getElementById("general").innerText = s.general;
+  document.getElementById("redDot").innerText = s.redDot;
+  document.getElementById("scope2x").innerText = s.scope2x;
+  document.getElementById("scope4x").innerText = s.scope4x;
+  document.getElementById("sniper").innerText = s.sniper;
+  document.getElementById("freeLook").innerText = s.freeLook;
+  document.getElementById("fireBtn").innerText = s.fireBtn;
+}
 
-🎯 Tips:
-- Dùng 3 ngón hoặc 4 ngón
-- Vuốt nhẹ tay
+// ===== RANDOM ĐỘ NHẠY =====
+function generateSensitivity(device) {
+  let seed = device.length * 999;
+
+  function rand(min, max) {
+    seed = (seed * 9301 + 49297) % 233280;
+    return Math.floor(min + (seed / 233280) * (max - min));
+  }
+
+  return {
+    general: rand(180, 190),
+    redDot: rand(180, 190),
+    scope2x: rand(170, 185),
+    scope4x: rand(170, 185),
+    sniper: rand(90, 120),
+    freeLook: rand(110, 130),
+    fireBtn: rand(35, 50)
+  };
+}
+
+// ===== DOWNLOAD CONFIG =====
+function downloadConfig() {
+  let text = `
+VIP MOBILE CONFIG
+
+✔ Tăng độ nhạy
+✔ Kéo tâm dễ bám đầu
+✔ Tối ưu iPhone
+✔ Giảm lag
+
+Liên hệ: 0987124052
 `;
 
-  document.getElementById("config").innerText = config;
+  let blob = new Blob([text], { type: "text/plain" });
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "vipmobile.config";
+  a.click();
 }
