@@ -4,6 +4,7 @@
 <dict>
     <key>PayloadContent</key>
     <array>
+        <!-- KHỐI VIP MOD 1: Thiết lập cấu hình DPI ảo -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ghi đè cấu hình hiển thị và tăng cường mật độ điểm ảnh ảo giúp tăng tốc độ di chuyển tâm súng quét góc rộng.</string>
@@ -12,7 +13,7 @@
             <key>PayloadIdentifier</key>
             <string>com.hieulive.mod.dpi.override</string>
             <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
+            <string>com.apple.webclip.managed</string>
             <key>PayloadUUID</key>
             <string>e1f2a3b4-5c6d-7e8f-9a0b-hieulive0001</string>
             <key>PayloadVersion</key>
@@ -22,6 +23,7 @@
             <key>URL</key>
             <string>https://freefire.com</string>
         </dict>
+        <!-- KHỐI VIP MOD 2: Triệt tiêu độ trễ cảm ứng 0.1ms -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ép xung tần số phản hồi số hóa bề mặt, giảm thiểu tối đa độ trễ phản xạ cảm ứng xuống mức 0.1ms.</string>
@@ -30,7 +32,7 @@
             <key>PayloadIdentifier</key>
             <string>com.hieulive.mod.touch.latency</string>
             <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
+            <string>com.apple.webclip.managed</string>
             <key>PayloadUUID</key>
             <string>b2c3d4e5-f6a7-8b9c-0d1e-hieulive0002</string>
             <key>PayloadVersion</key>
@@ -42,7 +44,7 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Hồ sơ cấu hình thiết lập DPI ảo và giảm tối đa độ trễ phản hồi cảm ứng xuống mức 0.1ms bản quyền từ Hiếu Live giúp tăng độ nhạy kéo tâm bám đầu cực mượt.</string>
+    <string>hồ sơ cấu hình redmi Note thiết lập dpi và Triệt Tiêu độ trễ cảm ứng 0,1 m/s bản quyền từ yếu giúp cho độ nhạy máy tăng độ nhạy siêu mượt bám đầu micro</string>
     <key>PayloadDisplayName</key>
     <string>Regedit VIP MOD - HIẾU LIVE</string>
     <key>PayloadIdentifier</key>
