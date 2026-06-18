@@ -4,7 +4,6 @@
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- KHỐI VIP MOD 1: Thiết lập cấu hình DPI ảo -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ghi đè cấu hình hiển thị và tăng cường mật độ điểm ảnh ảo giúp tăng tốc độ di chuyển tâm súng quét góc rộng.</string>
@@ -23,7 +22,6 @@
             <key>URL</key>
             <string>https://freefire.com</string>
         </dict>
-        <!-- KHỐI VIP MOD 2: Triệt tiêu độ trễ cảm ứng 0.1ms -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ép xung tần số phản hồi số hóa bề mặt, giảm thiểu tối đa độ trễ phản xạ cảm ứng xuống mức 0.1ms.</string>
