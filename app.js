@@ -1,126 +1,80 @@
-let validKeys = [];
+// KEY riêng của bạn (chỉ bạn biết)
+const SECRET_KEY = "HIEUVIP123";
 
-// load config key
-fetch("vipmobile.config")
-  .then(res => res.json())
-  .then(data => {
-    validKeys = data.validKeys;
+// lưu máy đã dùng
+let usedDevices = JSON.parse(localStorage.getItem("devices")) || [];
 
-    // load thêm key local
-    let saved = localStorage.getItem("keys");
-    if (saved) {
-      validKeys = validKeys.concat(JSON.parse(saved));
-    }
-  });
+// lưu độ nhạy đã dùng
+let usedSensitivity = JSON.parse(localStorage.getItem("sens")) || [];
 
-// LOGIN
-function checkLogin() {
+// CHECK KEY
+function checkKey() {
   let key = document.getElementById("keyInput").value;
-  let pass = document.getElementById("passwordInput").value;
 
-  let validPass = false;
-
-  for (let i = 1; i <= 100; i++) {
-    if (pass === "phamhieu" + i) {
-      validPass = true;
-      break;
-    }
-  }
-
-  if (validKeys.includes(key) && validPass) {
+  if (key === SECRET_KEY) {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("devicePage").style.display = "block";
   } else {
-    document.getElementById("loginStatus").innerText = "❌ Sai key hoặc mật khẩu!";
+    document.getElementById("status").innerText = "❌ Sai key!";
   }
 }
 
-// TẠO KEY
-function generateKey() {
-  let key = "VIP-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+// RANDOM KHÔNG TRÙNG
+function getUniqueSensitivity() {
+  let value;
 
-  validKeys.push(key);
+  do {
+    value = Math.floor(Math.random() * (190 - 150 + 1)) + 150;
+  } while (usedSensitivity.includes(value));
 
-  let stored = JSON.parse(localStorage.getItem("keys")) || [];
-  stored.push(key);
+  usedSensitivity.push(value);
+  localStorage.setItem("sens", JSON.stringify(usedSensitivity));
 
-  localStorage.setItem("keys", JSON.stringify(stored));
-
-  alert("✅ Key mới: " + key);
+  return value;
 }
 
-// HASH để random ổn định
-function hashCode(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return hash;
-}
-
-// RANDOM THEO MÁY
-function generateSensitivity() {
+// GENERATE
+function generate() {
   let device = document.getElementById("deviceName").value;
-  let ram = document.getElementById("ram").value;
-  let chip = document.getElementById("chip").value;
 
-  let base = hashCode(device + ram + chip);
-
-  function rand(max) {
-    base = (base * 9301 + 49297) % 233280;
-    return Math.abs(Math.floor((base / 233280) * max));
+  if (usedDevices.includes(device)) {
+    alert("❌ Máy này đã dùng rồi!");
+    return;
   }
 
-  let sensitivity = {
-    "General": rand(200),
-    "Red Dot": rand(200),
-    "2x Scope": rand(200),
-    "4x Scope": rand(200),
-    "AWM Scope": rand(200),
-    "Free Look": rand(200)
+  usedDevices.push(device);
+  localStorage.setItem("devices", JSON.stringify(usedDevices));
+
+  let sens = {
+    "General": getUniqueSensitivity(),
+    "Red Dot": getUniqueSensitivity(),
+    "2x Scope": getUniqueSensitivity(),
+    "4x Scope": getUniqueSensitivity(),
+    "AWM Scope": getUniqueSensitivity(),
+    "Free Look": getUniqueSensitivity()
   };
 
-  // hiển thị
   document.getElementById("devicePage").style.display = "none";
   document.getElementById("resultPage").style.display = "block";
 
-  document.getElementById("result").innerText =
-    "Thiết bị: " + device + "\n" +
-    "RAM: " + ram + "\n" +
-    "Chip: " + chip + "\n\n" +
-    JSON.stringify(sensitivity, null, 2);
+  document.getElementById("result").innerText = JSON.stringify(sens, null, 2);
 
-  // LƯU LỊCH SỬ
-  let history = JSON.parse(localStorage.getItem("history")) || [];
+  // CẤU HÌNH IPHONE
+  let iphoneConfig = `
+📱 Cấu hình iPhone:
 
-  history.push({
-    device,
-    ram,
-    chip,
-    sensitivity
-  });
+- Độ sáng: 80% - 100%
+- FPS: Cao (High/Ultra)
+- Đồ họa: Smooth
+- Tắt tiết kiệm pin
+- Bật Assistive Touch (tùy)
+- Tắt thông báo nền
+- Dọn RAM trước khi chơi
 
-  localStorage.setItem("history", JSON.stringify(history));
+🎯 Gợi ý:
+- Dùng 3 ngón hoặc 4 ngón
+- Vuốt nhẹ, không kéo mạnh
+`;
 
-  loadHistory();
+  document.getElementById("config").innerText = iphoneConfig;
 }
-
-// LOAD HISTORY
-function loadHistory() {
-  let history = JSON.parse(localStorage.getItem("history")) || [];
-  let html = "";
-
-  history.reverse().forEach(item => {
-    html += `
-      <div>
-        <b>${item.device}</b><br>
-        RAM: ${item.ram} | Chip: ${item.chip}
-      </div>
-    `;
-  });
-
-  document.getElementById("history").innerHTML = html;
-}
-
-// load khi mở
-window.onload = loadHistory;
