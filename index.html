@@ -1,7 +1,23 @@
 <script>
-    // Hàm tạo số ngẫu nhiên trong khoảng cho trước
+    // Hàm tạo số ngẫu nhiên cho các chỉ số phụ (đổi liên tục sau mỗi lần bấm)
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Thuật toán siêu lọc chuỗi và băm cố định chỉ số Nhìn Xung Quanh từ 150 đến 190
+    function getFixedGeneral(rawName) {
+        // Lọc sạch: Chuyển viết hoa, xóa khoảng trắng đầu cuối, thay thế chuỗi khoảng trắng ở giữa thành 1 dấu cách duy nhất
+        var cleanName = rawName.toUpperCase().trim().replace(/\s+/g, ' ');
+        
+        // Thuật toán băm chuỗi nội dung ký tự
+        var hash = 0;
+        for (var i = 0; i < cleanName.length; i++) {
+            hash = cleanName.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        
+        // Ép kết quả hash chạy chuẩn xác trong dải từ 150 đến 190
+        var finalValue = 150 + Math.abs(hash) % 41; 
+        return finalValue;
     }
 
     // MÀN HÌNH 1: Xác thực mã kích hoạt hệ thống
@@ -34,29 +50,17 @@
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
 
-        // Chuẩn hóa tên dòng máy bằng cách viết hoa và xóa khoảng trắng thừa
-        var deviceName = deviceInput.value.trim().toUpperCase();
+        var rawDeviceValue = deviceInput.value;
 
-        if (deviceName === "") {
+        if (rawDeviceValue.trim() === "") {
             alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
             return;
         }
 
-        // --- PHẦN 1: KHÓA CỐ ĐỊNH CHỈ SỐ "NHÌN XUNG QUANH" THEO TÊN MÁY (150-190) ---
-        var storageKey = "hieulive_general_" + deviceName;
-        var savedGeneral = localStorage.getItem(storageKey);
-        var finalGeneral;
+        // --- PHẦN 1: KHÓA CHẾT "NHÌN XUNG QUANH" THEO TÊN MÁY BẰNG BỘ LỌC CHUỖI NÂNG CAO ---
+        var finalGeneral = getFixedGeneral(rawDeviceValue);
 
-        if (savedGeneral) {
-            // Nếu máy này đã tra cứu trước đó, lấy lại chỉ số Nhìn Xung Quanh cũ
-            finalGeneral = parseInt(savedGeneral, 10);
-        } else {
-            // Nếu tra cứu lần đầu, sinh ngẫu nhiên số từ 150 đến 190 và khóa lại vĩnh viễn cho máy này
-            finalGeneral = getRandomInt(150, 190);
-            localStorage.setItem(storageKey, finalGeneral);
-        }
-
-        // --- PHẦN 2: TỰ ĐỘNG ĐỔI NGẪU NHIÊN CÁC CHỈ SỐ CÒN LẠI SAU MỖI LẦN BẤM TRA CỨU ---
+        // --- PHẦN 2: TỰ ĐỘNG ĐỔI NGẪU NHIÊN CÁC CHỈ SỐ CÒN LẠI SAU MỖI LẦN BẤM ---
         var randomRedDot = getRandomInt(140, 185);
         var randomScope2x = getRandomInt(135, 175);
         var randomScope4x = getRandomInt(130, 165);
@@ -65,8 +69,8 @@
         var randomBtnSize = getRandomInt(41, 49) + "%";
 
         // --- ĐỔ DỮ LIỆU LÊN GIAO DIỆN MÀN HÌNH KẾT QUẢ ---
-        document.getElementById('resModel').innerText = deviceInput.value.trim();
-        document.getElementById('valGeneral').innerText = finalGeneral; // Giữ nguyên theo máy
+        document.getElementById('resModel').innerText = rawDeviceValue.trim();
+        document.getElementById('valGeneral').innerText = finalGeneral; // Luôn cố định theo chuỗi cốt lõi
         document.getElementById('valRedDot').innerText = randomRedDot;  // Đổi ngẫu nhiên liên tục
         document.getElementById('val2x').innerText = randomScope2x;     // Đổi ngẫu nhiên liên tục
         document.getElementById('val4x').innerText = randomScope4x;     // Đổi ngẫu nhiên liên tục
