@@ -3,53 +3,52 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>DPI REGEDIT VIP</title>
+  <title>DPI VIP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="app">
+<!-- LOGIN -->
 
-  <h1>🔥 DPI REGEDIT IPHONE</h1>
-  <p class="sub">By Hiếu Live</p>
+<div id="loginBox" class="app">
+  <h1>🔑 NHẬP KEY</h1>
+  <input id="keyInput">
+  <button onclick="checkKey()">Vào</button>
+</div>
 
-  <!-- ĐỘ NHẠY -->
+<!-- NHẬP MÁY -->
+
+<div id="deviceBox" class="app" style="display:none;">
+  <h1>📱 NHẬP TÊN ĐIỆN THOẠI</h1>
+  <input id="deviceInput">
+  <button onclick="saveDevice()">Tiếp tục</button>
+</div>
+
+<!-- MAIN -->
+
+<div id="mainApp" class="app" style="display:none;">
+  <h1>🔥 DPI IPHONE</h1>
 
   <div class="card">
-    <h2>🎯 ĐỘ NHẠY FREE FIRE</h2>
+    <h2>🎯 ĐỘ NHẠY</h2>
 
 ```
 <div class="grid">
-  <div>Nhìn xung quanh: <b id="look">0</b></div>
-  <div>Red Dot: <b id="red">0</b></div>
-  <div>Scope 2x: <b id="scope2">0</b></div>
-  <div>Scope 4x: <b id="scope4">0</b></div>
-  <div>AWM: <b id="awm">0</b></div>
-  <div>Free Look: <b id="free">0</b></div>
+  <div>Nhìn: <b id="look"></b></div>
+  <div>Red Dot: <b id="red"></b></div>
+  <div>2x: <b id="scope2"></b></div>
+  <div>4x: <b id="scope4"></b></div>
+  <div>AWM: <b id="awm"></b></div>
+  <div>Free: <b id="free"></b></div>
 </div>
-
-<button onclick="genSens()">🎲 Random độ nhạy</button>
 ```
 
   </div>
 
-  <!-- CONFIG -->
-
   <div class="card">
-    <h2>⚙️ CÀI CẤU HÌNH IPHONE</h2>
-
-```
-<ul>
-  <li>✔️ Tăng độ nhạy cảm ứng</li>
-  <li>✔️ Giảm delay kéo tâm</li>
-  <li>✔️ Headshot ổn định</li>
-  <li>✔️ Tối ưu hiệu năng iPhone</li>
-</ul>
-
-<button onclick="downloadConfig()">📥 CÀI CẤU HÌNH</button>
-```
-
+    <h2>⚙️ CÀI DPI</h2>
+    <button onclick="downloadConfig()">📥 CÀI CẤU HÌNH</button>
   </div>
 
 </div>
@@ -58,3 +57,4 @@
 
 </body>
 </html>
+
