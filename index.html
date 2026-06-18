@@ -2,10 +2,9 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* Giao diện Dark Mode cơ bản, không màu sắc sặc sỡ, không hiệu ứng chạy động */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -57,10 +56,7 @@
             cursor: pointer; 
             margin-top: 15px; 
         }
-        
-        /* Chế độ ẩn hiện màn hình độc lập */
-        .app-section { display: none; }
-        
+
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
         .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -81,32 +77,31 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY -->
-    <div class="app-section" id="keySection" style="display: block;">
+    <!-- ⚡ GỘP CHUNG MÀN HÌNH NHẬP LIỆU: LOẠI BỎ HOÀN TOÀN LỖI ĐƠ NÚT TRÊN SAFARI -->
+    <div id="inputForm">
         <div class="form-group">
-            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <label>🔑 Bước 1: Nhập Mã Kích Hoạt VIP (phamhieu1 - phamhieu100):</label>
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
-            <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
-    </div>
 
-    <!-- MÀN HÌNH 2: NHẬP TÊN THIẾT BỊ -->
-    <div class="app-section" id="searchSection">
+        <div style="border-top: 1px dashed #2e3440; margin: 20px 0;"></div>
+
         <div class="form-group">
-            <label>📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
-            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
+            <label>📱 Bước 2: Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max...">
             <div class="suggestions">
                 Gợi ý nhanh: 
                 <span class="tag" onclick="selectDevice('iPhone 11')">iPhone 11</span>
                 <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
                 <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
             </div>
-            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
+
+        <button onclick="processRegeditVIP()">KÍCH HOẠT & TRA CỨU ĐỘ NHẠY VIP</button>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ -->
-    <div class="app-section" id="resultSection">
+    <!-- MÀN HÌNH HIỂN THỊ KẾT QUẢ ĐỘ NHẠY (MẶC ĐỊNH ĐƯỢC ẨN BẰNG JAVASCRIPT ĐỘC LẬP) -->
+    <div id="resultSection" style="display: none;">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
@@ -149,7 +144,6 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // BẢNG DỮ LIỆU ĐỘ NHẠY CỐ ĐỊNH 100% CHO CÁC DÒNG IPHONE (150-190)
     var iphoneDatabase = {
         "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
         "IPHONE 11": 168, "IPHONE 12": 172, "IPHONE 13": 178, "IPHONE 14": 182, "IPHONE 15": 188,
@@ -171,40 +165,45 @@
         return iphoneDatabase["DEFAULT"];
     }
 
-    // HÀM XÁC THỰC - ĐÃ ĐỒNG BỘ CHỮ HOA/THƯỜNG ĐỂ KHÔNG BỊ ĐƠ NÚT
-    function verifyKey() {
-        var inputField = document.getElementById('activationKey');
-        if (!inputField) return;
-        
-        var userKey = inputField.value.trim().toLowerCase();
-        
-        if (userKey.indexOf("phamhieu") === 0) {
-            var numberPart = userKey.substring(8); 
-            var keyNum = parseInt(numberPart, 10);
-            
-            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                document.getElementById('keySection').style.display = 'none';
-                document.getElementById('searchSection').style.display = 'block';
-                return;
-            }
-        }
-        alert("❌ Mã khóa không chính xác!\nVui lòng nhập lại mã khóa mới.");
-    }
-
     function selectDevice(name) {
         document.getElementById('deviceInput').value = name;
     }
 
-    function getSensitivity() {
-        var deviceInput = document.getElementById('deviceInput');
-        if (!deviceInput) return;
-        var rawDeviceValue = deviceInput.value;
+    // THUẬT TOÁN ĐỒNG BỘ: KIỂM TRA KEY VÀ LIÊN KẾT THIẾT BỊ ĐỒNG THỜI KHÔNG SỢ CRASH SAFARI
+    function processRegeditVIP() {
+        var keyField = document.getElementById('activationKey');
+        var deviceField = document.getElementById('deviceInput');
+        
+        if (!keyField || !deviceField) return;
+        
+        var userKey = keyField.value.trim().toLowerCase();
+        var rawDeviceValue = deviceField.value.trim();
 
-        if (rawDeviceValue.trim() === "") {
-            alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
+        if (userKey === "") {
+            alert("❌ Vui lòng nhập Mã Kích Hoạt VIP!");
+            return;
+        }
+        if (rawDeviceValue === "") {
+            alert("❌ Vui lòng điền tên dòng máy iPhone của bạn!");
             return;
         }
 
+        // Xác thực định dạng mã: phamhieu + số (1-100)
+        var isValidKey = false;
+        if (userKey.indexOf("phamhieu") === 0) {
+            var numberPart = userKey.substring(8);
+            var keyNum = parseInt(numberPart, 10);
+            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
+                isValidKey = true;
+            }
+        }
+
+        if (!isValidKey) {
+            alert("❌ Mã khóa không chính xác!\nVui lòng liên hệ chủ box để nhận mã VIP chuẩn.");
+            return;
+        }
+
+        // Tạo thông số ngẫu nhiên nếu Key chính xác
         var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
         var randomRedDot = getRandomInt(140, 185);
         var randomScope2x = getRandomInt(135, 175);
@@ -213,5 +212,8 @@
         var randomLook = getRandomInt(110, 145);
         var randomBtnSize = getRandomInt(41, 49) + "%";
 
-        document.getElementById('resModel').innerText = rawDeviceValue.trim();
+        // Đổ dữ liệu lên màn hình kết quả DPI
+        document.getElementById('resModel').innerText = rawDeviceValue;
         document.getElementById('valGeneral').innerText = finalGeneral;
+        document.getElementById('valRedDot').innerText = randomRedDot;
+        document.getElementById('val2x').innerText = randomScope2x;
