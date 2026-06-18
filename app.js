@@ -82,7 +82,7 @@ function newDevice(){
 }
 
 function downloadConfig(){
-    // Đã đổi thành link GitHub Pages chuẩn của mày ở đây
+    // Link chuẩn lấy từ trang cài đặt GitHub Pages của mày
     const myWebsiteUrl = "https://hieuliveregedit.github.io/hieulive/"; 
 
     const profile = `<?xml version="1.0" encoding="UTF-8"?>
