@@ -2,42 +2,73 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>FF VIP Tool</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <title>VIP MOBILE CONFIG</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- LOGIN -->
-<div id="loginPage">
-  <h2>🔐 Nhập KEY</h2>
+<div id="loginPage" class="container">
+  <h1>🔥 VIP MOBILE 🔥</h1>
 
-  <input type="text" id="keyInput" placeholder="Nhập key">
+  <input type="text" id="keyInput" placeholder="Nhập KEY">
+  <input type="password" id="passwordInput" placeholder="Mật khẩu">
 
-  <input type="text" id="passwordInput" placeholder="phamhieu1 → 100">
-
-  <button onclick="checkKey()">Vào</button>
+  <button onclick="checkKey()">VÀO NGAY</button>
+  <button onclick="generateVIPKey()">TẠO KEY</button>
 
   <p id="status"></p>
 </div>
 
-<!-- DEVICE -->
-<div id="devicePage" style="display:none;">
+<!-- NHẬP MÁY -->
+<div id="devicePage" class="container" style="display:none;">
   <h2>📱 Nhập tên điện thoại</h2>
-
   <input type="text" id="deviceName" placeholder="VD: iPhone 11">
-
-  <button onclick="generate()">Tiếp tục</button>
+  <button onclick="start()">TIẾP TỤC</button>
 </div>
 
-<!-- RESULT -->
-<div id="resultPage" style="display:none;">
-  <h2>🎯 Độ nhạy Free Fire</h2>
+<!-- MAIN -->
+<div id="mainPage" class="container" style="display:none;">
 
-  <pre id="result"></pre>
+  <h1 class="title">DPI REGEDIT IPHONE</h1>
+  <p class="sub">BY HIẾU LIVE</p>
 
-  <h3>⚙️ Cấu hình iPhone</h3>
-  <pre id="config"></pre>
+  <div class="card">
+    <h2>📱 THÔNG TIN VIP</h2>
+    <p id="deviceText"></p>
+    <p style="color:lime;">Vĩnh Viễn</p>
+  </div>
+
+  <div class="card">
+    <h2>🎯 ĐỘ NHẠY MAX 200</h2>
+
+    <div class="grid">
+      <div>Nhìn: <span id="general"></span></div>
+      <div>Red Dot: <span id="redDot"></span></div>
+      <div>2x: <span id="scope2x"></span></div>
+      <div>4x: <span id="scope4x"></span></div>
+      <div>Sniper: <span id="sniper"></span></div>
+      <div>Free Look: <span id="freeLook"></span></div>
+    </div>
+
+    <p>Nút Bắn: <span id="fireBtn"></span>%</p>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ CẤU HÌNH MÁY</h2>
+    <p>DPI: 1200</p>
+    <p>Delay: 0.1ms</p>
+
+    <button onclick="downloadConfig()">📥 Tải Config</button>
+  </div>
+
+  <div class="card">
+    <h2>📦 ORDER VIP</h2>
+    <p>Tăng độ nhạy, kéo tâm dễ bám đầu 🔥</p>
+    <p>Tối ưu iPhone, giảm lag</p>
+    <p><b>Liên hệ: 0987124052</b></p>
+  </div>
+
 </div>
 
 <script src="app.js"></script>
