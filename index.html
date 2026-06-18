@@ -1,67 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>DPI VIP PRO</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP DPI PRO</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-  <!-- LOGIN -->
+<div id="loginBox" class="card big">
+<h1>🔐 NHẬP KEY</h1>
+<input id="keyInput">
+<button onclick="checkKey()">VÀO</button>
+</div>
 
-  <div id="loginBox" class="card big">
-    <h1>🔐 NHẬP KEY VIP</h1>
-    <input id="keyInput" placeholder="Nhập key...">
-    <button onclick="checkKey()">🚀 VÀO NGAY</button>
-  </div>
+<div id="deviceBox" class="card big" style="display:none;">
+<h1>📱 TÊN MÁY</h1>
+<input id="deviceInput">
+<button onclick="saveDevice()">TIẾP</button>
+</div>
 
-  <!-- DEVICE -->
+<div id="mainApp" style="display:none;">
 
-  <div id="deviceBox" class="card big" style="display:none;">
-    <h1>📱 NHẬP TÊN MÁY</h1>
-    <input id="deviceInput" placeholder="Ví dụ: iPhone 11">
-    <button onclick="saveDevice()">👉 TIẾP TỤC</button>
-  </div>
-
-  <!-- APP -->
-
-  <div id="mainApp" style="display:none;">
-
-```
-<h1 class="title">🔥 DPI VIP IPHONE</h1>
+<h1 class="title">🔥 DPI VIP</h1>
 
 <div class="card">
-  <h2>🎯 ĐỘ NHẠY</h2>
-  <div class="grid">
-    <div>Nhìn: <b id="look"></b></div>
-    <div>Red Dot: <b id="red"></b></div>
-    <div>2x: <b id="scope2"></b></div>
-    <div>4x: <b id="scope4"></b></div>
-    <div>AWM: <b id="awm"></b></div>
-    <div>Free: <b id="free"></b></div>
-    <div>🔥 Nút bắn: <b id="fire"></b></div>
-  </div>
+<div>Nhìn: <b id="look"></b></div>
+<div>Red: <b id="red"></b></div>
+<div>2x: <b id="scope2"></b></div>
+<div>4x: <b id="scope4"></b></div>
+<div>AWM: <b id="awm"></b></div>
+<div>Free: <b id="free"></b></div>
+<div>Nút bắn: <b id="fire"></b></div>
 </div>
 
 <div class="card">
-  <h2>⚙️ CẤU HÌNH IPHONE</h2>
-  <button onclick="downloadConfig()">📥 CÀI DPI</button>
+<button onclick="downloadConfig()">CÀI CONFIG</button>
 </div>
 
 <div class="card">
-  <button onclick="newDevice()">➕ NHẬP MÁY KHÁC</button>
+<button onclick="newDevice()">NHẬP MÁY KHÁC</button>
 </div>
-```
 
-  </div>
+</div>
 
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
