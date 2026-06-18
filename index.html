@@ -2,10 +2,9 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* Giao diện Dark Mode nguyên bản */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -58,8 +57,23 @@
             margin-top: 15px; 
         }
         
-        /* Chế độ ẩn hiện màn hình độc lập */
-        .app-section { display: none; }
+        /* 🛠️ SỬA BUG SAFARI: Thay display:none bằng cơ chế ẩn an toàn ẩn dòng */
+        .app-section {
+            position: absolute !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+            z-index: -999 !important;
+        }
+        
+        /* Khi kích hoạt màn hình thì trả lại trạng thái hiển thị */
+        .app-section.active {
+            position: relative !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+            z-index: 1 !important;
+        }
         
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
         .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
@@ -81,8 +95,8 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY (ĐÃ BỎ GỢI Ý CHỮ TRONG LABEL) -->
-    <div class="app-section" id="keySection" style="display: block;">
+    <!-- MÀN HÌNH 1: NHẬP KEY (Mặc định thêm class active để hiển thị) -->
+    <div class="app-section active" id="keySection">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt:</label>
             <input type="text" id="activationKey" placeholder="Nhập Key tại đây...">
@@ -149,7 +163,6 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // Bộ dữ liệu khóa chết thông số "Nhìn xung quanh" (150-190) cố định theo dòng máy iPhone
     var iphoneDatabase = {
         "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
         "IPHONE 11": 168, "IPHONE 12": 172, "IPHONE 13": 178, "IPHONE 14": 182, "IPHONE 15": 188,
@@ -171,10 +184,13 @@
         return iphoneDatabase["DEFAULT"];
     }
 
-    // Hàm kiểm tra key gốc (phamhieu + số từ 1-100) đã vá đồng bộ ID viết hoa/thường để không bị đơ nút
+    // HÀM XÁC THỰC FIX LỖI SAFARI BẰNG CƠ CHẾ CHUYỂN CLASS AN TOÀN
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
+        
+        // Ẩn bàn phím ảo iPhone trước khi chuyển trang để chống đơ nút
+        inputField.blur(); 
         
         var userKey = inputField.value.trim().toLowerCase();
         
@@ -183,8 +199,9 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                document.getElementById('keySection').style.display = 'none';
-                document.getElementById('searchSection').style.display = 'block';
+                // Thay thế lệnh .style.display bằng cách xóa/thêm class active chống lỗi Safari
+                document.getElementById('keySection').classList.remove('active');
+                document.getElementById('searchSection').classList.add('active');
                 return;
             }
         }
@@ -198,20 +215,8 @@
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
+        
+        deviceInput.blur(); // Ẩn bàn phím trước khi chuyển trang kết quả
+
         var rawDeviceValue = deviceInput.value;
 
-        if (rawDeviceValue.trim() === "") {
-            alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
-            return;
-        }
-
-        var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
-        var randomRedDot = getRandomInt(140, 185);
-        var randomScope2x = getRandomInt(135, 175);
-        var randomScope4x = getRandomInt(130, 165);
-        var randomScopeAwm = getRandomInt(80, 110);
-        var randomLook = getRandomInt(110, 145);
-        var randomBtnSize = getRandomInt(41, 49) + "%";
-
-        document.getElementById('resModel').innerText = rawDeviceValue.trim();
-        document.getElementById('valGeneral').innerText = finalGeneral;
