@@ -3,68 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhamHieu Device Analyzer</title>
+    <title>PhamHieu Pro - Cấu Hình Hệ Thống</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-
-    <div id="loginBox" class="card big">
-        <h1>🔐 NHẬP MẬT KHẨU</h1>
-        <input id="keyInput" type="text" placeholder="Nhập mật khẩu...">
-        <button onclick="checkKey()">TIẾP TỤC</button>
-    </div>
-
-    <div id="deviceBox" class="card big" style="display:none;">
-        <h1>📱 NHẬP TÊN MÁY</h1>
-        <input id="deviceInput" type="text" placeholder="Ví dụ: iPhone 15 Pro Max">
-        <button onclick="saveDevice()">PHÂN TÍCH</button>
-    </div>
-
-    <div id="scanBox" class="card" style="display:none;">
-        <h2>🔍 ĐANG PHÂN TÍCH...</h2>
-        <div class="progress">
-            <div id="progressBar"></div>
-        </div>
-        <p id="percent">0%</p>
-    </div>
-
-    <div id="mainApp" style="display:none;">
-        <h1 class="title">⚡ THÔNG TIN THIẾT BỊ</h1>
-
-        <div class="card">
-            <h2 id="deviceName"></h2>
-            <div class="item"><span>Tổng quát</span><b id="look"></b></div>
-            <div class="item"><span>Red Dot</span><b id="red"></b></div>
-            <div class="item"><span>2X Scope</span><b id="scope2"></b></div>
-            <div class="item"><span>4X Scope</span><b id="scope4"></b></div>
-            <div class="item"><span>AWM</span><b id="awm"></b></div>
-            <div class="item"><span>Nhìn tự do</span><b id="free"></b></div>
-            <div class="item"><span>Nút bắn</span><b id="fire"></b></div>
+    <div class="container">
+        <div id="loginBox" class="box animated">
+            <h2>🔑 XÁC THỰC HỆ THỐNG</h2>
+            <p>Vui lòng nhập Key kích hoạt để tiếp tục</p>
+            <input type="text" id="keyInput" placeholder="Nhập Key tại đây...">
+            <button onclick="checkKey()">KÍCH HOẠT</button>
         </div>
 
-        <div class="card" style="border: 1px solid #ff3b30;">
-            <h3 style="color: #ff3b30;">📦 PHAMHIEU PRO CHIP A</h3>
-            <p>🛡️ Xác nhận bởi hệ thống đã xác thực</p>
-            <p>• Phiên bản: CHIP A (Tối ưu cảm ứng)</p>
-            <p>• Trạng thái: Hoạt động</p>
-            <p>• Tương thích: iPhone / iPad</p>
-            <button onclick="downloadConfig()" style="background: linear-gradient(90deg, #00ff66, #007aff);">TẢI PROFILE</button>
+        <div id="deviceBox" class="box animated" style="display: none;">
+            <h2>📱 THÔNG TIN THIẾT BỊ</h2>
+            <p>Nhập tên kiểu máy iPhone/iPad của bạn</p>
+            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 13 Pro Max...">
+            <button onclick="saveDevice()">TIẾP TỤC</button>
         </div>
 
-        <div class="card">
-            <button onclick="newDevice()">NHẬP MÁY KHÁC</button>
+        <div id="scanBox" class="box animated" style="display: none;">
+            <h2>⚡ ĐANG TỐI ƯU HỆ THỐNG</h2>
+            <p>Vui lòng chờ trong giây lát...</p>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <div id="percent">0%</div>
         </div>
 
-        <div class="card contact">
-            <h3>📞 LIÊN HỆ ADMIN</h3>
-            <p>Zalo: 0987124052</p>
+        <div id="mainApp" class="box animated" style="display: none;">
+            <h2 id="deviceName">📱 THIẾT BỊ</h2>
+            <div class="status-success">✓ CẤU HÌNH HOÀN TẤT</div>
+            
+            <div class="result-container">
+                <div class="result-item"><span>Nhìn Xung Quanh:</span> <strong id="look">0</strong></div>
+                <div class="result-item"><span>Red Dot Sight:</span> <strong id="red">0</strong></div>
+                <div class="result-item"><span>Ống Ngắm 2x:</span> <strong id="scope2">0</strong></div>
+                <div class="result-item"><span>Ống Ngắm 4x:</span> <strong id="scope4">0</strong></div>
+                <div class="result-item"><span>Ống Ngắm AWM:</span> <strong id="awm">0</strong></div>
+                <div class="result-item"><span>Nhìn Linh Hoạt:</span> <strong id="free">0</strong></div>
+                <div class="result-item"><span>Nút Bắn Khuyến Nghị:</span> <strong id="fire">0</strong>%</div>
+            </div>
+
+            <button class="btn-download" onclick="downloadConfig()">📦 TẢI PROFILE</button>
+            
+            <a href="https://www.mediafire.com/file/avw3h12ddiobhho/DPIVIP.mobileconfig/file" target="_blank" style="text-decoration: none;">
+                <button class="btn-dpi" style="background: linear-gradient(135deg, #ff416c, #ff4b2b); margin-top: 15px; color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">🎯 CÀI FILE DPI</button>
+            </a>
+
+            <button class="btn-secondary" onclick="newDevice()" style="margin-top: 15px;">ĐỔI THIẾT BỊ KHÁC</button>
         </div>
     </div>
 
-</div>
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
