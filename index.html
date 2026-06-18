@@ -2,10 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE BAN ĐẦU CỦA BẠN */
+        /* Giao diện Dark Mode cơ bản của Hiếu Live */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -58,7 +58,7 @@
             margin-top: 15px; 
         }
         
-        /* Bộ lọc class lật trang an toàn tuyệt đối chống đơ trên iOS Safari */
+        /* Chế độ ẩn hiện màn hình độc lập */
         .app-section { display: none; }
         
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
@@ -69,7 +69,7 @@
         .stat-item span { display: block; color: #a0a5b5; font-size: 11px; margin-bottom: 4px; }
         .stat-value { font-weight: bold; font-size: 16px; }
         
-        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
         
         .suggestions { margin-top: 10px; font-size: 12px; color: #a0a5b5; }
         .tag { display: inline-block; background: #252932; padding: 5px 8px; border-radius: 5px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; }
@@ -81,11 +81,11 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY KHÔNG CHỨA CHỮ GỢI Ý ĐƠN ĐIỆU -->
+    <!-- MÀN HÌNH 1: NHẬP KEY -->
     <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Nhập Mã Kích Hoạt:</label>
-            <input type="text" id="activationKey" placeholder="Nhập Key kích hoạt VIP tại đây...">
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
             <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ THÔNG SỐ ĐỘ NHẠY NGẪU NHIÊN & FILE HEADLOCK VIP -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY CỐ ĐỊNH BAN ĐẦU CỦA HIẾU -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -118,29 +118,28 @@
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">-</div></div>
-                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">-</div></div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">200</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">195</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">185</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">178</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">100</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">130</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
-                <div class="stat-value" id="valButton" style="color: #ffc107;">-</div>
+                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
             </div>
         </div>
 
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" style="color: #ffc107;">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value" style="color: #ffc107;">0.1 ms</div></div>
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
             </div>
         </div>
 
-        <!-- NÚT TẢI FILE HEADLOCK ĐÃ ĐƯỢC MÃ HÓA TRỰC TIẾP AN TOÀN -->
-        <a id="headlockLink" href="#" class="btn-install" onclick="showGuide()">CÀI ĐẶT HEADLOCK VIP VÀO MÁY</a>
+        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
         <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
@@ -150,7 +149,7 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // Tiến trình xử lý nút nhập Key
+    // Logic kiểm tra key nguyên bản của bạn (Đã sửa trùng khớp chữ ID để chạy mượt)
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
@@ -162,7 +161,6 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                inputField.blur(); // Tắt bàn phím ảo iPhone ngay để chống đơ nút lật trang
                 document.getElementById('keySection').style.display = 'none';
                 document.getElementById('searchSection').style.display = 'block';
                 return;
@@ -175,7 +173,6 @@
         document.getElementById('deviceInput').value = name;
     }
 
-    // Tiến trình xử lý nút Tra cứu độ nhạy ngẫu nhiên liên tục
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
@@ -186,24 +183,19 @@
             return;
         }
 
-        deviceInput.blur(); // Ẩn bàn phím ảo
-
-        // Sinh số ngẫu nhiên liên tục sau mỗi lần bấm tra cứu máy
-        var randomGeneral = getRandomInt(185, 200);
-        var randomRedDot = getRandomInt(180, 195);
-        var randomScope2x = getRandomInt(175, 188);
-        var randomScope4x = getRandomInt(170, 182);
-        var randomScopeAwm = getRandomInt(90, 110);
-        var randomLook = getRandomInt(120, 140);
-        var randomBtnSize = getRandomInt(42, 48) + "%";
-
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
-        document.getElementById('valGeneral').innerText = randomGeneral;
-        document.getElementById('valRedDot').innerText = randomRedDot;
-        document.getElementById('val2x').innerText = randomScope2x;
-        document.getElementById('val4x').innerText = randomScope4x;
-        document.getElementById('valAwm').innerText = randomScopeAwm;
-        document.getElementById('valLook').innerText = randomLook;
-        document.getElementById('valButton').innerText = randomBtnSize;
+        document.getElementById('searchSection').style.display = 'none';
+        document.getElementById('resultSection').style.display = 'block';
+    }
 
-        // Mã hóa nhúng trực tiếp tệp cấu hình Headlock (DPI 1200 / Trễ 0.1s) dạng Base64 sạch để qua mặt bộ lọc GitHub 100%
+    function backToSearch() {
+        document.getElementById('resultSection').style.display = 'none';
+        document.getElementById('searchSection').style.display = 'block';
+    }
+
+    function showGuide() {
+        alert("📥 Hệ thống đang tải xuống tệp cấu hình VIP!\nSau khi tải xong, hãy vào ứng dụng 'Cài đặt' trên iPhone để kích hoạt cấu hình Regedit.");
+    }
+</script>
+</body>
+</html>
