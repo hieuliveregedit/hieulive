@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>DPI REGEDIT VIP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,17 +14,19 @@
   <h1>🔥 DPI REGEDIT IPHONE</h1>
   <p class="sub">By Hiếu Live</p>
 
+  <!-- ĐỘ NHẠY -->
+
   <div class="card">
-    <h2>🎯 ĐỘ NHẠY VIP</h2>
+    <h2>🎯 ĐỘ NHẠY FREE FIRE</h2>
 
 ```
 <div class="grid">
-  <div>Nhìn xung quanh: <b id="look"></b></div>
-  <div>Red Dot: <b id="red"></b></div>
-  <div>Scope 2x: <b id="scope2"></b></div>
-  <div>Scope 4x: <b id="scope4"></b></div>
-  <div>AWM: <b id="awm"></b></div>
-  <div>Free Look: <b id="free"></b></div>
+  <div>Nhìn xung quanh: <b id="look">0</b></div>
+  <div>Red Dot: <b id="red">0</b></div>
+  <div>Scope 2x: <b id="scope2">0</b></div>
+  <div>Scope 4x: <b id="scope4">0</b></div>
+  <div>AWM: <b id="awm">0</b></div>
+  <div>Free Look: <b id="free">0</b></div>
 </div>
 
 <button onclick="genSens()">🎲 Random độ nhạy</button>
@@ -31,47 +34,24 @@
 
   </div>
 
+  <!-- CONFIG -->
+
   <div class="card">
-    <h2>⚙️ CẤU HÌNH IPHONE</h2>
-    <p>DPI Ảo: 1200</p>
-    <p>Độ trễ: 0.1ms</p>
+    <h2>⚙️ CÀI CẤU HÌNH IPHONE</h2>
 
 ```
-<button onclick="downloadConfig()">📥 Tải cấu hình iPhone</button>
+<ul>
+  <li>✔️ Tăng độ nhạy cảm ứng</li>
+  <li>✔️ Giảm delay kéo tâm</li>
+  <li>✔️ Headshot ổn định</li>
+  <li>✔️ Tối ưu hiệu năng iPhone</li>
+</ul>
+
+<button onclick="downloadConfig()">📥 CÀI CẤU HÌNH</button>
 ```
 
   </div>
 
-<button class="buy" onclick="showPayment()">💰 MUA KEY (25K/ngày)</button>
-
-</div>
-
-<!-- PAYMENT -->
-
-<div id="paymentBox">
-  <div class="card">
-    <h2>💰 THANH TOÁN</h2>
-
-```
-<p><b>PHAM DUC HIEU</b></p>
-<p>STK: 423345678</p>
-<p class="price">25.000đ / ngày</p>
-
-<img src="qr.png" class="qr">
-
-<p>📌 Nội dung: VIP + SĐT</p>
-<p>📞 0987124052</p>
-
-<input id="phoneInput" placeholder="Nhập SĐT của bạn">
-
-<button onclick="fakeCheck()">✅ Tôi đã thanh toán</button>
-
-<p id="status"></p>
-
-<button onclick="hidePayment()">Đóng</button>
-```
-
-  </div>
 </div>
 
 <script src="app.js"></script>
