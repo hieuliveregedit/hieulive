@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
+        /* GIỮ ĐÚNG GIAO DIỆN DARK MODE NGUYÊN BẢN GỐC CỦA BẠN */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -57,23 +58,8 @@
             margin-top: 15px; 
         }
         
-        /* 🛠️ SỬA BUG SAFARI: Thay display:none bằng cơ chế ẩn an toàn ẩn dòng */
-        .app-section {
-            position: absolute !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-            visibility: hidden !important;
-            z-index: -999 !important;
-        }
-        
-        /* Khi kích hoạt màn hình thì trả lại trạng thái hiển thị */
-        .app-section.active {
-            position: relative !important;
-            opacity: 1 !important;
-            pointer-events: auto !important;
-            visibility: visible !important;
-            z-index: 1 !important;
-        }
+        /* Trạng thái phân mảnh màn hình ẩn hiện nguyên bản */
+        .app-section { display: none; }
         
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
         .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
@@ -95,8 +81,8 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY (Mặc định thêm class active để hiển thị) -->
-    <div class="app-section active" id="keySection">
+    <!-- MÀN HÌNH 1: NHẬP KEY -->
+    <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt:</label>
             <input type="text" id="activationKey" placeholder="Nhập Key tại đây...">
@@ -184,27 +170,30 @@
         return iphoneDatabase["DEFAULT"];
     }
 
-    // HÀM XÁC THỰC FIX LỖI SAFARI BẰNG CƠ CHẾ CHUYỂN CLASS AN TOÀN
+    // ⚡ VÁ TRIỆT ĐỂ LỖI LOGIC NÚT BẤM CHO SAFARI IPHONE
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
         
-        // Ẩn bàn phím ảo iPhone trước khi chuyển trang để chống đơ nút
-        inputField.blur(); 
-        
         var userKey = inputField.value.trim().toLowerCase();
         
-        if (userKey.indexOf("phamhieu") === 0) {
-            var numberPart = userKey.substring(8); 
-            var keyNum = parseInt(numberPart, 10);
-            
-            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                // Thay thế lệnh .style.display bằng cách xóa/thêm class active chống lỗi Safari
-                document.getElementById('keySection').classList.remove('active');
-                document.getElementById('searchSection').classList.add('active');
-                return;
-            }
+        // Tạo trước mảng danh sách 100 key hợp lệ từ phamhieu1 đến phamhieu100 để đối chiếu chuẩn xác 100%
+        var validKeys = [];
+        for (var i = 1; i <= 100; i++) {
+            validKeys.push("phamhieu" + i);
         }
+        
+        // Đối chiếu chuỗi nhập vào trực tiếp với mảng dữ liệu sạch
+        if (validKeys.indexOf(userKey) !== -1) {
+            // Hạ tiêu điểm ô nhập liệu để tắt bàn phím ảo iPhone, giải phóng đơ khung
+            inputField.blur();
+            
+            // Thực thi lệnh lật màn hình
+            document.getElementById('keySection').style.display = 'none';
+            document.getElementById('searchSection').style.display = 'block';
+            return;
+        }
+        
         alert("❌ Mã khóa không chính xác!\nVui lòng nhập lại mã khóa mới.");
     }
 
@@ -216,7 +205,18 @@
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
         
-        deviceInput.blur(); // Ẩn bàn phím trước khi chuyển trang kết quả
-
         var rawDeviceValue = deviceInput.value;
 
+        if (rawDeviceValue.trim() === "") {
+            alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
+            return;
+        }
+
+        deviceInput.blur(); // Tắt bàn phím ảo trước khi lật màn hình kết quả
+
+        var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
+        var randomRedDot = getRandomInt(140, 185);
+        var randomScope2x = getRandomInt(135, 175);
+        var randomScope4x = getRandomInt(130, 165);
+        var randomScopeAwm = getRandomInt(80, 110);
+        var randomLook = getRandomInt(110, 145);
