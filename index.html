@@ -2,47 +2,34 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>FF Sensitivity Tool</title>
-
-  <!-- Font gaming -->
+  <title>FF VIP Tool</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- LOGIN -->
 <div id="loginPage">
-  <h2>🔐 Nhập KEY</h2>
-  <input type="text" id="keyInput" placeholder="Nhập key">
-
-  <h3>Mật khẩu</h3>
-  <input type="text" id="passwordInput" placeholder="phamhieu1...100">
-
-  <button onclick="checkLogin()">Đăng nhập</button>
-  <button onclick="generateKey()">Tạo KEY</button>
-
-  <p id="loginStatus"></p>
+  <h2>🔐 Nhập KEY (cây)</h2>
+  <input type="text" id="keyInput" placeholder="Nhập key của bạn">
+  <button onclick="checkKey()">Vào</button>
+  <p id="status"></p>
 </div>
 
 <!-- DEVICE -->
 <div id="devicePage" style="display:none;">
-  <h2>📱 Thông tin máy</h2>
-
-  <input type="text" id="deviceName" placeholder="Tên máy">
-  <input type="text" id="ram" placeholder="RAM (VD: 4GB)">
-  <input type="text" id="chip" placeholder="Chip (VD: Snapdragon)">
-
-  <button onclick="generateSensitivity()">Tiếp tục</button>
+  <h2>📱 Nhập tên điện thoại</h2>
+  <input type="text" id="deviceName" placeholder="VD: iPhone 11">
+  <button onclick="generate()">Tiếp tục</button>
 </div>
 
 <!-- RESULT -->
 <div id="resultPage" style="display:none;">
-  <h2>🎯 Độ nhạy Free Fire (OB mới)</h2>
+  <h2>🎯 Độ nhạy Free Fire</h2>
   <pre id="result"></pre>
 
-  <h3>📜 Lịch sử máy</h3>
-  <div id="history"></div>
+  <h3>⚙️ Cấu hình iPhone đề xuất</h3>
+  <pre id="config"></pre>
 </div>
 
 <script src="app.js"></script>
