@@ -2,10 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* GIỮ ĐÚNG GIAO DIỆN DARK MODE NGUYÊN BẢN GỐC CỦA BẠN */
+        /* Giao diện Dark Mode cơ bản, không màu sắc sặc sỡ, không hiệu ứng chạy động */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -58,7 +58,7 @@
             margin-top: 15px; 
         }
         
-        /* Trạng thái phân mảnh màn hình ẩn hiện nguyên bản */
+        /* Chế độ ẩn hiện màn hình độc lập */
         .app-section { display: none; }
         
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
@@ -81,11 +81,11 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY -->
+    <!-- MÀN HÌNH 1: NHẬP KEY (Gợi ý: MUA KEY IB CHỦ BOX) -->
     <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Nhập Mã Kích Hoạt:</label>
-            <input type="text" id="activationKey" placeholder="Nhập Key tại đây...">
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
             <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY MAX 200 -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -118,12 +118,12 @@
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">-</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">-</div></div>
-                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">-</div></div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">200</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">195</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">185</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">178</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">100</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">130</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
@@ -149,51 +149,28 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    var iphoneDatabase = {
-        "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
-        "IPHONE 11": 168, "IPHONE 12": 172, "IPHONE 13": 178, "IPHONE 14": 182, "IPHONE 15": 188,
-        "DEFAULT": 170
-    };
-
-    function getAbsoluteGeneral(rawName) {
-        var cleanName = rawName.toUpperCase().trim();
-        if (cleanName.indexOf("15") !== -1) return iphoneDatabase["IPHONE 15"];
-        if (cleanName.indexOf("14") !== -1) return iphoneDatabase["IPHONE 14"];
-        if (cleanName.indexOf("13") !== -1) return iphoneDatabase["IPHONE 13"];
-        if (cleanName.indexOf("12") !== -1) return iphoneDatabase["IPHONE 12"];
-        if (cleanName.indexOf("11") !== -1) return iphoneDatabase["IPHONE 11"];
-        if (cleanName.indexOf("XS") !== -1) return iphoneDatabase["IPHONE XS"];
-        if (cleanName.indexOf("XR") !== -1) return iphoneDatabase["IPHONE XR"];
-        if (cleanName.indexOf("X") !== -1) return iphoneDatabase["IPHONE X"];
-        if (cleanName.indexOf("8") !== -1) return iphoneDatabase["IPHONE 8"];
-        if (cleanName.indexOf("7") !== -1) return iphoneDatabase["IPHONE 7"];
-        return iphoneDatabase["DEFAULT"];
-    }
-
-    // ⚡ VÁ TRIỆT ĐỂ LỖI LOGIC NÚT BẤM CHO SAFARI IPHONE
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
         
+        // Nhận giá trị, viết thường hoàn toàn, xóa khoảng cách thừa
         var userKey = inputField.value.trim().toLowerCase();
         
-        // Tạo trước mảng danh sách 100 key hợp lệ từ phamhieu1 đến phamhieu100 để đối chiếu chuẩn xác 100%
-        var validKeys = [];
-        for (var i = 1; i <= 100; i++) {
-            validKeys.push("phamhieu" + i);
-        }
-        
-        // Đối chiếu chuỗi nhập vào trực tiếp với mảng dữ liệu sạch
-        if (validKeys.indexOf(userKey) !== -1) {
-            // Hạ tiêu điểm ô nhập liệu để tắt bàn phím ảo iPhone, giải phóng đơ khung
-            inputField.blur();
+        // Kiểm tra logic: Phải bắt đầu bằng phamhieu
+        if (userKey.indexOf("phamhieu") === 0) {
+            var numberPart = userKey.substring(8); // Cắt lấy chuỗi số sau chữ phamhieu
+            var keyNum = parseInt(numberPart, 10);
             
-            // Thực thi lệnh lật màn hình
-            document.getElementById('keySection').style.display = 'none';
-            document.getElementById('searchSection').style.display = 'block';
-            return;
+            // Nếu đúng là số từ 1 đến 100 và chuỗi ráp lại trùng khớp 100%
+            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
+                // Chuyển màn hình độc lập
+                document.getElementById('keySection').style.display = 'none';
+                document.getElementById('searchSection').style.display = 'block';
+                return;
+            }
         }
         
+        // Nếu không thỏa mãn điều kiện trên thì báo lỗi
         alert("❌ Mã khóa không chính xác!\nVui lòng nhập lại mã khóa mới.");
     }
 
@@ -204,7 +181,6 @@
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
-        
         var rawDeviceValue = deviceInput.value;
 
         if (rawDeviceValue.trim() === "") {
@@ -212,11 +188,32 @@
             return;
         }
 
-        deviceInput.blur(); // Tắt bàn phím ảo trước khi lật màn hình kết quả
+        // Tạo số ngẫu nhiên ngẫu hứng cho toàn bộ chỉ số khi bấm
+        var randomGeneral = getRandomInt(185, 200);
+        var randomRedDot = getRandomInt(180, 195);
+        var randomScope2x = getRandomInt(175, 188);
+        var randomScope4x = getRandomInt(170, 182);
+        var randomScopeAwm = getRandomInt(90, 110);
+        var randomLook = getRandomInt(120, 140);
+        var randomBtnSize = getRandomInt(42, 48) + "%";
 
-        var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
-        var randomRedDot = getRandomInt(140, 185);
-        var randomScope2x = getRandomInt(135, 175);
-        var randomScope4x = getRandomInt(130, 165);
-        var randomScopeAwm = getRandomInt(80, 110);
-        var randomLook = getRandomInt(110, 145);
+        document.getElementById('resModel').innerText = rawDeviceValue.trim();
+        document.getElementById('valGeneral').innerText = randomGeneral;
+        document.getElementById('valRedDot').innerText = randomRedDot;
+        document.getElementById('val2x').innerText = randomScope2x;
+        document.getElementById('val4x').innerText = randomScope4x;
+        document.getElementById('valAwm').innerText = randomScopeAwm;
+        document.getElementById('valLook').innerText = randomLook;
+        document.getElementById('valButton').innerText = randomBtnSize;
+
+        document.getElementById('searchSection').style.display = 'none';
+        document.getElementById('resultSection').style.display = 'block';
+    }
+
+    function backToSearch() {
+        document.getElementById('resultSection').style.display = 'none';
+        document.getElementById('searchSection').style.display = 'block';
+    }
+
+    function showGuide() {
+        alert("📥 Hệ thống đang tải xuống tệp cấu hình VIP!\nSau khi tải xong, hãy vào ứng dụng 'Cài đặt' trên iPhone để kích hoạt cấu hình Regedit.");
