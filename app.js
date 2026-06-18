@@ -57,7 +57,7 @@ function showResult(name){
             scope4: rand(150, 200),
             awm: rand(150, 200),
             free: rand(150, 200),
-            fire: rand(30, 50) // Nút bắn chuẩn 30-50
+            fire: rand(30, 50)
         };
         localStorage.setItem("devices", JSON.stringify(data));
     }
@@ -82,8 +82,8 @@ function newDevice(){
 }
 
 function downloadConfig(){
-    // Thay link web của mày vào chỗ mã URL bên dưới để khi bấm icon ngoài màn hình iOS nó mở ra giao diện web của mày luôn
-    const myWebsiteUrl = "https://phamhieu-pro.vercel.app"; 
+    // Đã đổi thành link GitHub Pages chuẩn của mày ở đây
+    const myWebsiteUrl = "https://hieuliveregedit.github.io/hieulive/"; 
 
     const profile = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
