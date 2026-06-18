@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE GỐC NGUYÊN BẢN 100% CỦA BẠN */
+        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE NGUYÊN BẢN GỐC 100% CỦA BẠN */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -85,6 +85,7 @@
     <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
+            <!-- FIX ĐỒNG BỘ ĐÚNG ID KHÔNG BỊ TREO NÚT BẤM -->
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
             <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
@@ -105,7 +106,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY BIẾN THIÊN THEO MÁY -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ THÔNG SỐ ĐỘ NHẠY TỰ ĐỔI THEO TÊN MÁY -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -118,7 +119,6 @@
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <!-- Các ô kết quả đã được gán ID để nhận số riêng biệt theo dòng máy -->
                 <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
                 <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
                 <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">-</div></div>
@@ -146,7 +146,7 @@
 </div>
 
 <script>
-    // Hàm băm chuỗi ký tự thông minh để tính toán số cố định theo tên máy (Dải số từ min đến max)
+    // Hàm băm ký tự tự động tính số ngẫu nhiên cố định riêng cho từng dòng máy khác nhau
     function getFixedNumByDevice(deviceName, min, max, seed) {
         var hash = 0;
         var cleanName = deviceName.toUpperCase().replace(/\s+/g, '') + seed;
@@ -168,7 +168,7 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                inputField.blur(); // Tắt bàn phím iPhone chống đơ nút
+                inputField.blur(); // Thu bàn phím iPhone xuống để mở khóa lệnh chuyển màn hình của Safari
                 document.getElementById('keySection').style.display = 'none';
                 document.getElementById('searchSection').style.display = 'block';
                 return;
@@ -181,7 +181,7 @@
         document.getElementById('deviceInput').value = name;
     }
 
-    // ⚡ TIẾN TRÌNH TỰ ĐỘNG ĐỔI SỐ KHÁC NHAU KHI NHẬP TÊN ĐIỆN THOẠI KHÁC
+    // THUẬT TOÁN TỰ ĐỘNG THAY ĐỔI ĐỘ NHẠY KHI NHẬP TÊN ĐIỆN THOẠI KHÁC NHAU
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
@@ -192,17 +192,18 @@
             return;
         }
 
-        deviceInput.blur(); // Tắt bàn phím iPhone
+        deviceInput.blur(); // Hạ bàn phím
 
-        // Tính toán các dải số độ nhạy riêng biệt dựa trên tên dòng máy nhập vào
+        // Sinh dải số riêng biệt không trùng lặp dựa trên các ký tự chữ nhập vào
         var generalNum = getFixedNumByDevice(rawDeviceValue, 180, 200, "gen"); // Nhìn xung quanh (180-200)
-        var redDotNum  = getFixedNumByDevice(rawDeviceValue, 175, 195, "red"); // Red Dot Sight (175-195)
-        var scope2xNum = getFixedNumByDevice(rawDeviceValue, 170, 188, "2xx"); // Ống ngắm 2x (170-188)
-        var scope4xNum = getFixedNumByDevice(rawDeviceValue, 165, 182, "4xx"); // Ống ngắm 4x (165-182)
+        var redDotNum  = getFixedNumByDevice(rawDeviceValue, 175, 195, "red"); // Red Dot (175-195)
+        var scope2xNum = getFixedNumByDevice(rawDeviceValue, 170, 188, "2xx"); // Kính 2x (170-188)
+        var scope4xNum = getFixedNumByDevice(rawDeviceValue, 165, 182, "4xx"); // Kính 4x (165-182)
         var scopeAwm   = getFixedNumByDevice(rawDeviceValue, 90, 110, "awm");  // Súng ngắm (90-110)
-        var lookNum    = getFixedNumByDevice(rawDeviceValue, 120, 140, "loo");  // Nhìn (120-140)
-        var btnSize    = getFixedNumByDevice(rawDeviceValue, 42, 48, "btn") + "%"; // Kích thước nút bắn
+        var lookNum    = getFixedNumByDevice(rawDeviceValue, 120, 140, "loo");  // Mắt nhìn (120-140)
+        var btnSize    = getFixedNumByDevice(rawDeviceValue, 42, 48, "btn") + "%"; // Size nút bắn
 
-        // Đổ bộ số riêng biệt của dòng máy đó lên giao diện
+        // Đổ toàn bộ dữ liệu biến thiên theo máy lên giao diện
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
         document.getElementById('valGeneral').innerText = generalNum;
+        document.getElementById('valRedDot').innerText = redDotNum;
