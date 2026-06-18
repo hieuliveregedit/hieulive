@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIP DPI PRO</title>
+<title>PhamHieu Device Analyzer</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,44 +12,94 @@
 
 <div class="container">
 
+```
 <div id="loginBox" class="card big">
-<h1>🔐 NHẬP KEY</h1>
-<input id="keyInput">
-<button onclick="checkKey()">VÀO</button>
+    <h1>🔐 NHẬP MẬT KHẨU</h1>
+    <input id="keyInput" type="text" placeholder="Nhập mật khẩu">
+    <button onclick="checkKey()">TIẾP TỤC</button>
 </div>
 
 <div id="deviceBox" class="card big" style="display:none;">
-<h1>📱 TÊN MÁY</h1>
-<input id="deviceInput">
-<button onclick="saveDevice()">TIẾP</button>
+    <h1>📱 TÊN MÁY</h1>
+    <input id="deviceInput" type="text" placeholder="Ví dụ: iPhone 15 Pro Max">
+    <button onclick="saveDevice()">PHÂN TÍCH</button>
+</div>
+
+<div id="scanBox" class="card" style="display:none;">
+    <h2>🔍 Đang phân tích thiết bị...</h2>
+
+    <div class="progress">
+        <div id="progressBar"></div>
+    </div>
+
+    <p id="percent">0%</p>
 </div>
 
 <div id="mainApp" style="display:none;">
 
-<h1 class="title">🔥 DPI VIP</h1>
+    <h1 class="title">⚡ THÔNG TIN THIẾT BỊ</h1>
 
-<div class="card">
-<div>Nhìn: <b id="look"></b></div>
-<div>Red: <b id="red"></b></div>
-<div>2x: <b id="scope2"></b></div>
-<div>4x: <b id="scope4"></b></div>
-<div>AWM: <b id="awm"></b></div>
-<div>Free: <b id="free"></b></div>
-<div>Nút bắn: <b id="fire"></b></div>
-</div>
+    <div class="card">
+        <h2 id="deviceName"></h2>
 
-<div class="card">
-<button onclick="downloadConfig()">CÀI CONFIG</button>
-</div>
+        <div class="item">
+            <span>Tổng quát</span>
+            <b id="look"></b>
+        </div>
 
-<div class="card">
-<button onclick="newDevice()">NHẬP MÁY KHÁC</button>
-</div>
+        <div class="item">
+            <span>Red Dot</span>
+            <b id="red"></b>
+        </div>
+
+        <div class="item">
+            <span>2X Scope</span>
+            <b id="scope2"></b>
+        </div>
+
+        <div class="item">
+            <span>4X Scope</span>
+            <b id="scope4"></b>
+        </div>
+
+        <div class="item">
+            <span>AWM</span>
+            <b id="awm"></b>
+        </div>
+
+        <div class="item">
+            <span>Nhìn tự do</span>
+            <b id="free"></b>
+        </div>
+
+        <div class="item">
+            <span>Nút bắn</span>
+            <b id="fire"></b>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📦 Cấu hình mẫu</h3>
+        <p>Profile được tạo cho thiết bị đã phân tích.</p>
+        <button onclick="downloadConfig()">TẢI PROFILE</button>
+    </div>
+
+    <div class="card">
+        <button onclick="newDevice()">NHẬP MÁY KHÁC</button>
+    </div>
+
+    <div class="card contact">
+        <h3>📞 Liên hệ Admin</h3>
+        <p>Admin: 0987124052</p>
+        <p>Hỗ trợ cài đặt và hướng dẫn sử dụng.</p>
+    </div>
 
 </div>
+```
 
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
