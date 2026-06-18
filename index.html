@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE GỐC BAN ĐẦU CỦA BẠN */
+        /* Giao diện Dark Mode nguyên bản */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -81,11 +81,11 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY (Gợi ý: MUA KEY IB CHỦ BOX) -->
+    <!-- MÀN HÌNH 1: NHẬP KEY (ĐÃ BỎ GỢI Ý CHỮ TRONG LABEL) -->
     <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
-            <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
+            <label>🔑 Nhập Mã Kích Hoạt:</label>
+            <input type="text" id="activationKey" placeholder="Nhập Key tại đây...">
             <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
     </div>
@@ -149,7 +149,7 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // ⚡ CHỈ SỐ NHÌN XUNG QUANH ĐƯỢC THIẾT LẬP CỐ ĐỊNH THEO TỪNG ĐỜI MÁY (150-190)
+    // Bộ dữ liệu khóa chết thông số "Nhìn xung quanh" (150-190) cố định theo dòng máy iPhone
     var iphoneDatabase = {
         "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
         "IPHONE 11": 168, "IPHONE 12": 172, "IPHONE 13": 178, "IPHONE 14": 182, "IPHONE 15": 188,
@@ -171,7 +171,7 @@
         return iphoneDatabase["DEFAULT"];
     }
 
-    // LOGIC KIỂM TRA MÃ KHÓA BAN ĐẦU CỦA BẠN (Đã sửa lỗi đồng bộ chữ hoa/thường)
+    // Hàm kiểm tra key gốc (phamhieu + số từ 1-100) đã vá đồng bộ ID viết hoa/thường để không bị đơ nút
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
@@ -183,7 +183,6 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                // Ẩn Màn 1 và hiển thị Màn 2 đúng nguyên bản
                 document.getElementById('keySection').style.display = 'none';
                 document.getElementById('searchSection').style.display = 'block';
                 return;
@@ -196,7 +195,6 @@
         document.getElementById('deviceInput').value = name;
     }
 
-    // LOGIC NHẬN DIỆN THIẾT BỊ VÀ XUẤT ĐỘ NHẠY
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
@@ -207,9 +205,13 @@
             return;
         }
 
-        // Nhìn xung quanh cố định theo đời máy, kính ngắm phụ đổi ngẫu nhiên tăng độ uy tín
         var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
         var randomRedDot = getRandomInt(140, 185);
         var randomScope2x = getRandomInt(135, 175);
         var randomScope4x = getRandomInt(130, 165);
         var randomScopeAwm = getRandomInt(80, 110);
+        var randomLook = getRandomInt(110, 145);
+        var randomBtnSize = getRandomInt(41, 49) + "%";
+
+        document.getElementById('resModel').innerText = rawDeviceValue.trim();
+        document.getElementById('valGeneral').innerText = finalGeneral;
