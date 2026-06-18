@@ -3,52 +3,60 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>DPI VIP</title>
+  <title>DPI VIP PRO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOGIN -->
+<div class="container">
 
-<div id="loginBox" class="app">
-  <h1>🔑 NHẬP KEY</h1>
-  <input id="keyInput">
-  <button onclick="checkKey()">Vào</button>
-</div>
+  <!-- LOGIN -->
 
-<!-- NHẬP MÁY -->
-
-<div id="deviceBox" class="app" style="display:none;">
-  <h1>📱 NHẬP TÊN ĐIỆN THOẠI</h1>
-  <input id="deviceInput">
-  <button onclick="saveDevice()">Tiếp tục</button>
-</div>
-
-<!-- MAIN -->
-
-<div id="mainApp" class="app" style="display:none;">
-  <h1>🔥 DPI IPHONE</h1>
-
-  <div class="card">
-    <h2>🎯 ĐỘ NHẠY</h2>
-
-```
-<div class="grid">
-  <div>Nhìn: <b id="look"></b></div>
-  <div>Red Dot: <b id="red"></b></div>
-  <div>2x: <b id="scope2"></b></div>
-  <div>4x: <b id="scope4"></b></div>
-  <div>AWM: <b id="awm"></b></div>
-  <div>Free: <b id="free"></b></div>
-</div>
-```
-
+  <div id="loginBox" class="card big">
+    <h1>🔐 NHẬP KEY VIP</h1>
+    <input id="keyInput" placeholder="Nhập key...">
+    <button onclick="checkKey()">🚀 VÀO NGAY</button>
   </div>
 
-  <div class="card">
-    <h2>⚙️ CÀI DPI</h2>
-    <button onclick="downloadConfig()">📥 CÀI CẤU HÌNH</button>
+  <!-- DEVICE -->
+
+  <div id="deviceBox" class="card big" style="display:none;">
+    <h1>📱 NHẬP TÊN MÁY</h1>
+    <input id="deviceInput" placeholder="Ví dụ: iPhone 11">
+    <button onclick="saveDevice()">👉 TIẾP TỤC</button>
+  </div>
+
+  <!-- APP -->
+
+  <div id="mainApp" style="display:none;">
+
+```
+<h1 class="title">🔥 DPI VIP IPHONE</h1>
+
+<div class="card">
+  <h2>🎯 ĐỘ NHẠY</h2>
+  <div class="grid">
+    <div>Nhìn: <b id="look"></b></div>
+    <div>Red Dot: <b id="red"></b></div>
+    <div>2x: <b id="scope2"></b></div>
+    <div>4x: <b id="scope4"></b></div>
+    <div>AWM: <b id="awm"></b></div>
+    <div>Free: <b id="free"></b></div>
+    <div>🔥 Nút bắn: <b id="fire"></b></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚙️ CẤU HÌNH IPHONE</h2>
+  <button onclick="downloadConfig()">📥 CÀI DPI</button>
+</div>
+
+<div class="card">
+  <button onclick="newDevice()">➕ NHẬP MÁY KHÁC</button>
+</div>
+```
+
   </div>
 
 </div>
@@ -57,4 +65,3 @@
 
 </body>
 </html>
-
