@@ -13,7 +13,7 @@
             <key>PayloadIdentifier</key>
             <string>com.hieulive.mod.dpi.override</string>
             <key>PayloadType</key>
-            <string>com.apple.webclip.managed</string>
+            <string>com.apple.webClip.managed</string>
             <key>PayloadUUID</key>
             <string>e1f2a3b4-5c6d-7e8f-9a0b-hieulive0001</string>
             <key>PayloadVersion</key>
@@ -32,7 +32,7 @@
             <key>PayloadIdentifier</key>
             <string>com.hieulive.mod.touch.latency</string>
             <key>PayloadType</key>
-            <string>com.apple.webclip.managed</string>
+            <string>com.apple.webClip.managed</string>
             <key>PayloadUUID</key>
             <string>b2c3d4e5-f6a7-8b9c-0d1e-hieulive0002</string>
             <key>PayloadVersion</key>
@@ -43,9 +43,8 @@
             <string>https://freefire.com</string>
         </dict>
     </array>
-    <!-- 🛠️ ĐÃ CẬP NHẬT PHẦN MÔ TẢ VÀ THÊM 2 LỆNH XUỐNG DÒNG (&#10;) CHUẨN ĐỊNH DẠNG APPLE -->
     <key>PayloadDescription</key>
-    <string>hồ sơ cấu hình redmi Note thiết lập dpi và Triệt Tiêu độ trễ cảm ứng 0,1 m/s bản quyền từ yếu&#10;giúp cho độ nhạy máy&#10;tăng độ nhạy siêu mượt bám đầu micro</string>
+    <string>hồ sơ cấu hình redmi Note thiết lập dpi và Triệt Tiêu độ trễ cảm ứng 0,1 m/s bản quyền từ yếu giúp cho độ nhạy máy tăng độ nhạy siêu mượt bám đầu micro</string>
     <key>PayloadDisplayName</key>
     <string>Regedit VIP MOD - HIẾU LIVE</string>
     <key>PayloadIdentifier</key>
