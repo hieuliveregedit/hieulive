@@ -10,25 +10,33 @@
 
 <!-- LOGIN -->
 <div id="loginPage">
-  <h2>🔐 Nhập KEY (cây)</h2>
-  <input type="text" id="keyInput" placeholder="Nhập key của bạn">
+  <h2>🔐 Nhập KEY</h2>
+
+  <input type="text" id="keyInput" placeholder="Nhập key">
+
+  <input type="text" id="passwordInput" placeholder="phamhieu1 → 100">
+
   <button onclick="checkKey()">Vào</button>
+
   <p id="status"></p>
 </div>
 
 <!-- DEVICE -->
 <div id="devicePage" style="display:none;">
   <h2>📱 Nhập tên điện thoại</h2>
+
   <input type="text" id="deviceName" placeholder="VD: iPhone 11">
+
   <button onclick="generate()">Tiếp tục</button>
 </div>
 
 <!-- RESULT -->
 <div id="resultPage" style="display:none;">
   <h2>🎯 Độ nhạy Free Fire</h2>
+
   <pre id="result"></pre>
 
-  <h3>⚙️ Cấu hình iPhone đề xuất</h3>
+  <h3>⚙️ Cấu hình iPhone</h3>
   <pre id="config"></pre>
 </div>
 
