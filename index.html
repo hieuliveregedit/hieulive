@@ -13,33 +13,68 @@
 <div class="container">
 
 ```
+<!-- LOGIN -->
 <div id="loginBox" class="card big">
     <h1>🔐 NHẬP MẬT KHẨU</h1>
-    <input id="keyInput" type="text" placeholder="Nhập mật khẩu">
-    <button onclick="checkKey()">TIẾP TỤC</button>
+
+    <input
+        id="keyInput"
+        type="text"
+        placeholder="Nhập mật khẩu..."
+    >
+
+    <button onclick="checkKey()">
+        TIẾP TỤC
+    </button>
 </div>
 
-<div id="deviceBox" class="card big" style="display:none;">
-    <h1>📱 TÊN MÁY</h1>
-    <input id="deviceInput" type="text" placeholder="Ví dụ: iPhone 15 Pro Max">
-    <button onclick="saveDevice()">PHÂN TÍCH</button>
+<!-- DEVICE -->
+<div
+    id="deviceBox"
+    class="card big"
+    style="display:none;"
+>
+
+    <h1>📱 NHẬP TÊN MÁY</h1>
+
+    <input
+        id="deviceInput"
+        type="text"
+        placeholder="Ví dụ: iPhone 15 Pro Max"
+    >
+
+    <button onclick="saveDevice()">
+        PHÂN TÍCH
+    </button>
+
 </div>
 
-<div id="scanBox" class="card" style="display:none;">
-    <h2>🔍 Đang phân tích thiết bị...</h2>
+<!-- SCAN -->
+<div
+    id="scanBox"
+    class="card"
+    style="display:none;"
+>
+
+    <h2>🔍 ĐANG PHÂN TÍCH...</h2>
 
     <div class="progress">
         <div id="progressBar"></div>
     </div>
 
     <p id="percent">0%</p>
+
 </div>
 
+<!-- MAIN -->
 <div id="mainApp" style="display:none;">
 
-    <h1 class="title">⚡ THÔNG TIN THIẾT BỊ</h1>
+    <h1 class="title">
+        ⚡ THÔNG TIN THIẾT BỊ
+    </h1>
 
     <div class="card">
+
         <h2 id="deviceName"></h2>
 
         <div class="item">
@@ -76,22 +111,36 @@
             <span>Nút bắn</span>
             <b id="fire"></b>
         </div>
+
     </div>
 
     <div class="card">
-        <h3>📦 Cấu hình mẫu</h3>
-        <p>Profile được tạo cho thiết bị đã phân tích.</p>
-        <button onclick="downloadConfig()">TẢI PROFILE</button>
+
+        <h3>📦 PHAMHIEU PRO CHIP A</h3>
+
+        <p>🛡️ Xác nhận bởi hệ thống đã xác thực</p>
+        <p>• Phiên bản: CHIP A</p>
+        <p>• Trạng thái: Hoạt động</p>
+        <p>• Tương thích: iPhone / iPad</p>
+
+        <button onclick="downloadConfig()">
+            TẢI PROFILE
+        </button>
+
     </div>
 
     <div class="card">
-        <button onclick="newDevice()">NHẬP MÁY KHÁC</button>
+        <button onclick="newDevice()">
+            NHẬP MÁY KHÁC
+        </button>
     </div>
 
     <div class="card contact">
-        <h3>📞 Liên hệ Admin</h3>
-        <p>Admin: 0987124052</p>
-        <p>Hỗ trợ cài đặt và hướng dẫn sử dụng.</p>
+
+        <h3>📞 LIÊN HỆ ADMIN</h3>
+
+        <p>Zalo: 0987124052</p>
+
     </div>
 
 </div>
