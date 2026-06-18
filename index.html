@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE BAN ĐẦU CỦA BẠN */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -58,8 +57,22 @@
             margin-top: 15px; 
         }
         
-        /* Chế độ ẩn hiện màn hình độc lập */
-        .app-section { display: none; }
+        /* Giải pháp phân mảnh class an toàn chống đơ hoàn toàn trên iOS Safari */
+        .app-section {
+            position: absolute !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+            display: none !important;
+        }
+        
+        .app-section.active {
+            position: relative !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+            display: block !important;
+        }
         
         .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
         .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
@@ -69,7 +82,7 @@
         .stat-item span { display: block; color: #a0a5b5; font-size: 11px; margin-bottom: 4px; }
         .stat-value { font-weight: bold; font-size: 16px; }
         
-        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
         
         .suggestions { margin-top: 10px; font-size: 12px; color: #a0a5b5; }
         .tag { display: inline-block; background: #252932; padding: 5px 8px; border-radius: 5px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; }
@@ -81,8 +94,8 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- MÀN HÌNH 1: NHẬP KEY -->
-    <div class="app-section" id="keySection" style="display: block;">
+    <!-- MÀN HÌNH 1: ĐĂNG NHẬP KEY -->
+    <div class="app-section active" id="keySection">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
@@ -105,7 +118,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ THÔNG SỐ ĐỘ NHẠY FREE FIRE & DPI ẢO -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -116,7 +129,7 @@
         </div>
 
         <div class="info-box">
-            <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
+            <div class="info-title">🎯 ĐỘ NHẠY FREE FIRE NGẪU NHIÊN</div>
             <div class="grid-2">
                 <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
                 <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
@@ -134,36 +147,40 @@
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" style="color: #ffc107;">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value" style="color: #ffc107;">0.1 ms</div></div>
             </div>
         </div>
 
-        <!-- SỬA ĐỔI LINK TẢI AN TOÀN ĐỂ KHÔNG BỊ SAFARI VÀ GITHUB CHẶN WEB -->
-        <a id="downloadBtn" href="#" class="btn-install" onclick="showGuide(event)">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
+        <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
         <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
 
 <script>
+    // Hàm sinh số ngẫu nhiên
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // Xử lý nút Xác thực màn hình 1
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
         
         var userKey = inputField.value.trim().toLowerCase();
         
+        // Tạo chuỗi kiểm tra từ phamhieu1 đến phamhieu100 công thức an toàn
         if (userKey.indexOf("phamhieu") === 0) {
             var numberPart = userKey.substring(8); 
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
-                inputField.blur(); // Tắt bàn phím iPhone để chống đơ nút
-                document.getElementById('keySection').style.display = 'none';
-                document.getElementById('searchSection').style.display = 'block';
+                inputField.blur(); // Ẩn bàn phím ảo iPhone ngay lập tức để Safari không chặn lệnh script
+                
+                // Sử dụng cơ chế quản lý class active để đổi màn hình không bị đơ
+                document.getElementById('keySection').classList.remove('active');
+                document.getElementById('searchSection').classList.add('active');
                 return;
             }
         }
@@ -174,6 +191,7 @@
         document.getElementById('deviceInput').value = name;
     }
 
+    // Xử lý nút Tra cứu độ nhạy ngẫu nhiên màn hình 2
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
@@ -184,39 +202,20 @@
             return;
         }
 
-        deviceInput.blur();
+        deviceInput.blur(); // Ẩn bàn phím ảo iPhone
 
-        var randomGeneral = getRandomInt(185, 200);
-        var randomRedDot = getRandomInt(180, 195);
-        var randomScope2x = getRandomInt(175, 188);
-        var randomScope4x = getRandomInt(170, 182);
-        var randomScopeAwm = getRandomInt(90, 110);
-        var randomLook = getRandomInt(120, 140);
-        var randomBtnSize = getRandomInt(42, 48) + "%";
+        // Bắt đầu sinh số ngẫu nhiên liên tục sau mỗi lần bấm đúng ý bạn
+        var randomGeneral = getRandomInt(180, 200); 
+        var randomRedDot = getRandomInt(175, 195);  
+        var randomScope2x = getRandomInt(170, 188); 
+        var randomScope4x = getRandomInt(165, 182); 
+        var randomScopeAwm = getRandomInt(90, 110);  
+        var randomLook = getRandomInt(120, 140);    
+        var randomBtnSize = getRandomInt(42, 48) + "%"; 
 
+        // Nạp bộ chỉ số ngẫu nhiên vào giao diện
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
         document.getElementById('valGeneral').innerText = randomGeneral;
         document.getElementById('valRedDot').innerText = randomRedDot;
         document.getElementById('val2x').innerText = randomScope2x;
         document.getElementById('val4x').innerText = randomScope4x;
-        document.getElementById('valAwm').innerText = randomScopeAwm;
-        document.getElementById('valLook').innerText = randomLook;
-        document.getElementById('valButton').innerText = randomBtnSize;
-
-        document.getElementById('searchSection').style.display = 'none';
-        document.getElementById('resultSection').style.display = 'block';
-    }
-
-    function backToSearch() {
-        document.getElementById('resultSection').style.display = 'none';
-        document.getElementById('searchSection').style.display = 'block';
-    }
-
-    // GỢI Ý CHUYỂN HƯỚNG TẢI FILE HOẶC XEM HƯỚNG DẪN ĐỂ TRÁNH LỖI PHISHING
-    function showGuide(e) {
-        e.preventDefault();
-        alert("📥 Hệ thống VIP đang chuẩn bị tải tệp cấu hình!\nDo chính sách bảo mật, vui lòng liên hệ Zalo/Box chủ kênh để nhận link tải trực tiếp file .mobileconfig không bị chặn.");
-    }
-</script>
-</body>
-</html>
