@@ -1,154 +1,71 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PhamHieu Device Analyzer</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhamHieu Device Analyzer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
 
-```
-<!-- LOGIN -->
-<div id="loginBox" class="card big">
-    <h1>🔐 NHẬP MẬT KHẨU</h1>
-
-    <input
-        id="keyInput"
-        type="text"
-        placeholder="Nhập mật khẩu..."
-    >
-
-    <button onclick="checkKey()">
-        TIẾP TỤC
-    </button>
-</div>
-
-<!-- DEVICE -->
-<div
-    id="deviceBox"
-    class="card big"
-    style="display:none;"
->
-
-    <h1>📱 NHẬP TÊN MÁY</h1>
-
-    <input
-        id="deviceInput"
-        type="text"
-        placeholder="Ví dụ: iPhone 15 Pro Max"
-    >
-
-    <button onclick="saveDevice()">
-        PHÂN TÍCH
-    </button>
-
-</div>
-
-<!-- SCAN -->
-<div
-    id="scanBox"
-    class="card"
-    style="display:none;"
->
-
-    <h2>🔍 ĐANG PHÂN TÍCH...</h2>
-
-    <div class="progress">
-        <div id="progressBar"></div>
+    <div id="loginBox" class="card big">
+        <h1>🔐 NHẬP MẬT KHẨU</h1>
+        <p style="text-align:center; color:#aaa; font-size:12px; margin-bottom:10px;">(Thử nhập: phamhieu1)</p>
+        <input id="keyInput" type="text" placeholder="Nhập mật khẩu...">
+        <button onclick="checkKey()">TIẾP TỤC</button>
     </div>
 
-    <p id="percent">0%</p>
-
-</div>
-
-<!-- MAIN -->
-<div id="mainApp" style="display:none;">
-
-    <h1 class="title">
-        ⚡ THÔNG TIN THIẾT BỊ
-    </h1>
-
-    <div class="card">
-
-        <h2 id="deviceName"></h2>
-
-        <div class="item">
-            <span>Tổng quát</span>
-            <b id="look"></b>
-        </div>
-
-        <div class="item">
-            <span>Red Dot</span>
-            <b id="red"></b>
-        </div>
-
-        <div class="item">
-            <span>2X Scope</span>
-            <b id="scope2"></b>
-        </div>
-
-        <div class="item">
-            <span>4X Scope</span>
-            <b id="scope4"></b>
-        </div>
-
-        <div class="item">
-            <span>AWM</span>
-            <b id="awm"></b>
-        </div>
-
-        <div class="item">
-            <span>Nhìn tự do</span>
-            <b id="free"></b>
-        </div>
-
-        <div class="item">
-            <span>Nút bắn</span>
-            <b id="fire"></b>
-        </div>
-
+    <div id="deviceBox" class="card big" style="display:none;">
+        <h1>📱 NHẬP TÊN MÁY</h1>
+        <input id="deviceInput" type="text" placeholder="Ví dụ: iPhone 15 Pro Max">
+        <button onclick="saveDevice()">PHÂN TÍCH</button>
     </div>
 
-    <div class="card">
-
-        <h3>📦 PHAMHIEU PRO CHIP A</h3>
-
-        <p>🛡️ Xác nhận bởi hệ thống đã xác thực</p>
-        <p>• Phiên bản: CHIP A</p>
-        <p>• Trạng thái: Hoạt động</p>
-        <p>• Tương thích: iPhone / iPad</p>
-
-        <button onclick="downloadConfig()">
-            TẢI PROFILE
-        </button>
-
+    <div id="scanBox" class="card" style="display:none;">
+        <h2>🔍 ĐANG PHÂN TÍCH...</h2>
+        <div class="progress">
+            <div id="progressBar"></div>
+        </div>
+        <p id="percent">0%</p>
     </div>
 
-    <div class="card">
-        <button onclick="newDevice()">
-            NHẬP MÁY KHÁC
-        </button>
+    <div id="mainApp" style="display:none;">
+        <h1 class="title">⚡ THÔNG TIN THIẾT BỊ</h1>
+
+        <div class="card">
+            <h2 id="deviceName"></h2>
+            <div class="item"><span>Tổng quát</span><b id="look"></b></div>
+            <div class="item"><span>Red Dot</span><b id="red"></b></div>
+            <div class="item"><span>2X Scope</span><b id="scope2"></b></div>
+            <div class="item"><span>4X Scope</span><b id="scope4"></b></div>
+            <div class="item"><span>AWM</span><b id="awm"></b></div>
+            <div class="item"><span>Nhìn tự do</span><b id="free"></b></div>
+            <div class="item"><span>Nút bắn</span><b id="fire"></b></div>
+        </div>
+
+        <div class="card" style="border: 1px solid #ff3b30;">
+            <h3 style="color: #ff3b30;">📦 PHAMHIEU PRO CHIP A</h3>
+            <p>🛡️ Xác nhận bởi hệ thống đã xác thực</p>
+            <p>• Phiên bản: CHIP A (Tối ưu cảm ứng)</p>
+            <p>• Trạng thái: Hoạt động</p>
+            <p>• Tương thích: iPhone / iPad</p>
+            <button onclick="downloadConfig()" style="background: linear-gradient(90deg, #00ff66, #007aff);">TẢI PROFILE</button>
+        </div>
+
+        <div class="card">
+            <button onclick="newDevice()">NHẬP MÁY KHÁC</button>
+        </div>
+
+        <div class="card contact">
+            <h3>📞 LIÊN HỆ ADMIN</h3>
+            <p>Zalo: 0987124052</p>
+        </div>
     </div>
-
-    <div class="card contact">
-
-        <h3>📞 LIÊN HỆ ADMIN</h3>
-
-        <p>Zalo: 0987124052</p>
-
-    </div>
-
-</div>
-```
 
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
