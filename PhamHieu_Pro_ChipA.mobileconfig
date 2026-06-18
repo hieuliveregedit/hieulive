@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadIdentifier</key>
+    <string>com.phamhieu.config.pro</string>
+    <key>PayloadUUID</key>
+    <string>8A4F1D92-E29B-4D31-9F22-A1B2C3D4E5F6</string>
+    <key>PayloadDisplayName</key>
+    <string>📦 PHAMHIEU PRO CHIP A</string>
+    <key>PayloadDescription</key>
+    <string>• Phiên bản: PHAMHIEU PRO&#xA;• Trạng thái: Hoạt động&#xA;• Tối ưu hóa cấu hình hệ thống iOS&#xA;• Khuyến nghị khởi động lại máy sau khi cài đặt&#xA;• Liên hệ Zalo Admin: 0987124052</string>
+    <key>PayloadOrganization</key>
+    <string>PhamHieu Tech (Đã xác thực)</string>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.phamhieu.webclip</string>
+            <key>PayloadUUID</key>
+            <string>9B5F2E03-F30C-5E42-A033-B2C3D4E5F6A7</string>
+            <key>PayloadDisplayName</key>
+            <string>PhamHieu Pro</string>
+            <key>URL</key>
+            <string>https://hieuliveregedit.github.io/hieulive/</string>
+            <key>Label</key>
+            <string>PhamHieu Pro</string>
+            <key>IsRemovable</key>
+            <true/>
+            <key>FullScreen</key>
+            <true/>
+        </dict>
+    </array>
+</dict>
+</plist>
