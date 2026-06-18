@@ -8,47 +8,35 @@ text-align: center;
 
 .app {
 padding: 20px;
-max-width: 500px;
-margin: auto;
 }
 
-h1 {
-color: #ff3b3b;
+input {
+padding: 10px;
+border-radius: 10px;
+border: none;
+width: 80%;
+margin-top: 10px;
 }
 
-.sub {
-color: #aaa;
+button {
+padding: 12px;
+border-radius: 10px;
+border: none;
+margin-top: 10px;
+background: #22c55e;
+color: white;
+font-size: 15px;
 }
 
 .card {
 background: #1e293b;
 padding: 15px;
-margin: 15px 0;
+margin: 15px;
 border-radius: 15px;
-box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 10px;
-}
-
-button {
-padding: 12px;
-border: none;
-border-radius: 10px;
-background: #22c55e;
-color: white;
-margin-top: 10px;
-cursor: pointer;
-font-size: 15px;
-}
-
-button:hover {
-opacity: 0.9;
-}
-
-ul {
-text-align: left;
 }
