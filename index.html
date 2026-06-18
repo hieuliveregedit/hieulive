@@ -1,76 +1,80 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>VIP MOBILE CONFIG</title>
+  <title>DPI REGEDIT VIP</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginPage" class="container">
-  <h1>🔥 VIP MOBILE 🔥</h1>
+<div class="app">
 
-  <input type="text" id="keyInput" placeholder="Nhập KEY">
-  <input type="password" id="passwordInput" placeholder="Mật khẩu">
+  <h1>🔥 DPI REGEDIT IPHONE</h1>
+  <p class="sub">By Hiếu Live</p>
 
-  <button onclick="checkKey()">VÀO NGAY</button>
-  <button onclick="generateVIPKey()">TẠO KEY</button>
+  <div class="card">
+    <h2>🎯 ĐỘ NHẠY VIP</h2>
 
-  <p id="status"></p>
+```
+<div class="grid">
+  <div>Nhìn xung quanh: <b id="look"></b></div>
+  <div>Red Dot: <b id="red"></b></div>
+  <div>Scope 2x: <b id="scope2"></b></div>
+  <div>Scope 4x: <b id="scope4"></b></div>
+  <div>AWM: <b id="awm"></b></div>
+  <div>Free Look: <b id="free"></b></div>
 </div>
 
-<!-- NHẬP MÁY -->
-<div id="devicePage" class="container" style="display:none;">
-  <h2>📱 Nhập tên điện thoại</h2>
-  <input type="text" id="deviceName" placeholder="VD: iPhone 11">
-  <button onclick="start()">TIẾP TỤC</button>
+<button onclick="genSens()">🎲 Random độ nhạy</button>
+```
+
+  </div>
+
+  <div class="card">
+    <h2>⚙️ CẤU HÌNH IPHONE</h2>
+    <p>DPI Ảo: 1200</p>
+    <p>Độ trễ: 0.1ms</p>
+
+```
+<button onclick="downloadConfig()">📥 Tải cấu hình iPhone</button>
+```
+
+  </div>
+
+<button class="buy" onclick="showPayment()">💰 MUA KEY (25K/ngày)</button>
+
 </div>
 
-<!-- MAIN -->
-<div id="mainPage" class="container" style="display:none;">
+<!-- PAYMENT -->
 
-  <h1 class="title">DPI REGEDIT IPHONE</h1>
-  <p class="sub">BY HIẾU LIVE</p>
-
+<div id="paymentBox">
   <div class="card">
-    <h2>📱 THÔNG TIN VIP</h2>
-    <p id="deviceText"></p>
-    <p style="color:lime;">Vĩnh Viễn</p>
+    <h2>💰 THANH TOÁN</h2>
+
+```
+<p><b>PHAM DUC HIEU</b></p>
+<p>STK: 423345678</p>
+<p class="price">25.000đ / ngày</p>
+
+<img src="qr.png" class="qr">
+
+<p>📌 Nội dung: VIP + SĐT</p>
+<p>📞 0987124052</p>
+
+<input id="phoneInput" placeholder="Nhập SĐT của bạn">
+
+<button onclick="fakeCheck()">✅ Tôi đã thanh toán</button>
+
+<p id="status"></p>
+
+<button onclick="hidePayment()">Đóng</button>
+```
+
   </div>
-
-  <div class="card">
-    <h2>🎯 ĐỘ NHẠY MAX 200</h2>
-
-    <div class="grid">
-      <div>Nhìn: <span id="general"></span></div>
-      <div>Red Dot: <span id="redDot"></span></div>
-      <div>2x: <span id="scope2x"></span></div>
-      <div>4x: <span id="scope4x"></span></div>
-      <div>Sniper: <span id="sniper"></span></div>
-      <div>Free Look: <span id="freeLook"></span></div>
-    </div>
-
-    <p>Nút Bắn: <span id="fireBtn"></span>%</p>
-  </div>
-
-  <div class="card">
-    <h2>⚙️ CẤU HÌNH MÁY</h2>
-    <p>DPI: 1200</p>
-    <p>Delay: 0.1ms</p>
-
-    <button onclick="downloadConfig()">📥 Tải Config</button>
-  </div>
-
-  <div class="card">
-    <h2>📦 ORDER VIP</h2>
-    <p>Tăng độ nhạy, kéo tâm dễ bám đầu 🔥</p>
-    <p>Tối ưu iPhone, giảm lag</p>
-    <p><b>Liên hệ: 0987124052</b></p>
-  </div>
-
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
