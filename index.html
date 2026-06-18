@@ -93,10 +93,10 @@
         }
         button:active { transform: scale(0.98); }
         
-        /* CSS QUAN TRỌNG: Ẩn các màn hình phụ mặc định để không bị đè nhau */
-        .app-section { display: none; }
+        /* SỬA LỖI ĐÈ CSS: Ẩn các màn hình phụ mặc định bằng cơ chế an toàn hơn */
+        #searchSection, #resultSection { display: none; }
         
-        /* Hộp thông tin dạng Card kính mờ (Glassmorphism) */
+        /* Hộp thông tin dạng Card kính mờ */
         .info-box { 
             background: rgba(37, 43, 56, 0.6); 
             padding: 18px; 
@@ -162,7 +162,7 @@
     <div class="sub-title">BY HIẾU LIVE</div>
     
     <!-- MÀN HÌNH 1: NHẬP KEY VIP -->
-    <div class="app-section" id="keySection" style="display: block;">
+    <div class="app-section" id="keySection">
         <div class="form-group">
             <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
