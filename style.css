@@ -1,63 +1,27 @@
-body {
-margin: 0;
-font-family: Arial;
-background: linear-gradient(135deg,#020617,#0f172a);
-color: white;
+body{
+background:black;
+color:white;
+font-family:Arial;
+text-align:center;
 }
 
-.container {
-max-width: 500px;
-margin: auto;
-padding: 20px;
+.container{
+max-width:400px;
+margin:auto;
+padding:20px;
 }
 
-.title {
-text-align: center;
-font-size: 28px;
-margin-bottom: 10px;
+.card{
+background:#222;
+padding:15px;
+margin-top:10px;
+border-radius:10px;
 }
 
-.card {
-background: #1e293b;
-padding: 20px;
-margin-top: 15px;
-border-radius: 20px;
-box-shadow: 0 0 20px rgba(0,255,100,0.2);
-}
-
-.big {
-text-align: center;
-}
-
-h1 {
-font-size: 24px;
-}
-
-input {
-width: 100%;
-padding: 15px;
-border-radius: 15px;
-border: none;
-margin-top: 15px;
-font-size: 16px;
-}
-
-button {
-width: 100%;
-padding: 15px;
-border-radius: 15px;
-border: none;
-margin-top: 15px;
-font-size: 16px;
-background: linear-gradient(90deg,#22c55e,#16a34a);
-color: white;
-font-weight: bold;
-}
-
-.grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 10px;
-margin-top: 10px;
-font-size: 18px;
+input,button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+border:none;
 }
