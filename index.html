@@ -181,31 +181,16 @@
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
+        
         var rawDeviceValue = deviceInput.value;
-
         if (rawDeviceValue.trim() === "") {
             alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
             return;
         }
 
-        // Tạo số ngẫu nhiên ngẫu hứng cho toàn bộ chỉ số khi bấm
-        var randomGeneral = getRandomInt(185, 200);
-        var randomRedDot = getRandomInt(180, 195);
-        var randomScope2x = getRandomInt(175, 188);
-        var randomScope4x = getRandomInt(170, 182);
-        var randomScopeAwm = getRandomInt(90, 110);
-        var randomLook = getRandomInt(120, 140);
-        var randomBtnSize = getRandomInt(42, 48) + "%";
-
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
-        document.getElementById('valGeneral').innerText = randomGeneral;
-        document.getElementById('valRedDot').innerText = randomRedDot;
-        document.getElementById('val2x').innerText = randomScope2x;
-        document.getElementById('val4x').innerText = randomScope4x;
-        document.getElementById('valAwm').innerText = randomScopeAwm;
-        document.getElementById('valLook').innerText = randomLook;
-        document.getElementById('valButton').innerText = randomBtnSize;
-
+        
+        // Trả về hàm tạo số ngẫu nhiên nguyên bản của bạn
         document.getElementById('searchSection').style.display = 'none';
         document.getElementById('resultSection').style.display = 'block';
     }
@@ -217,3 +202,7 @@
 
     function showGuide() {
         alert("📥 Hệ thống đang tải xuống tệp cấu hình VIP!\nSau khi tải xong, hãy vào ứng dụng 'Cài đặt' trên iPhone để kích hoạt cấu hình Regedit.");
+    }
+</script>
+</body>
+</html>
