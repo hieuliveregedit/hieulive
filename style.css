@@ -1,50 +1,81 @@
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-  text-align: center;
+margin: 0;
+font-family: Arial;
+background: #0f172a;
+color: white;
+text-align: center;
 }
 
-.container {
-  padding: 20px;
+.app {
+padding: 20px;
 }
 
-input {
-  width: 80%;
-  padding: 12px;
-  margin: 10px;
-  border-radius: 10px;
-  border: none;
-}
-
-button {
-  padding: 12px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #22c55e;
-  color: white;
-  font-weight: bold;
-}
-
-.card {
-  background: #1e293b;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 15px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.title {
-  color: red;
+h1 {
+color: #ff3b3b;
 }
 
 .sub {
-  color: gold;
+color: #aaa;
+}
+
+.card {
+background: #1e293b;
+padding: 15px;
+margin: 15px;
+border-radius: 15px;
+}
+
+.grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+
+button {
+padding: 10px;
+border: none;
+border-radius: 10px;
+background: #22c55e;
+color: white;
+margin-top: 10px;
+cursor: pointer;
+}
+
+.buy {
+background: #f59e0b;
+width: 90%;
+}
+
+#paymentBox {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.8);
+display: none;
+justify-content: center;
+align-items: center;
+}
+
+.qr {
+width: 200px;
+border-radius: 10px;
+}
+
+.price {
+color: yellow;
+}
+
+input {
+padding: 10px;
+width: 90%;
+margin-top: 10px;
+border-radius: 10px;
+border: none;
+}
+
+#status {
+margin-top: 10px;
+font-weight: bold;
 }
