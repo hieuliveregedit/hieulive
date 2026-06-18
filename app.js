@@ -57,7 +57,7 @@ function showResult(name){
             scope4: rand(150, 200),
             awm: rand(150, 200),
             free: rand(150, 200),
-            fire: rand(30, 50) // Tầm nút bắn đã đổi thành từ 30 đến 50
+            fire: rand(30, 50) // Nút bắn chuẩn 30-50
         };
         localStorage.setItem("devices", JSON.stringify(data));
     }
@@ -82,7 +82,9 @@ function newDevice(){
 }
 
 function downloadConfig(){
-    // Đoạn mã tạo cấu hình Profile Apple .mobileconfig chuẩn hóa
+    // Thay link web của mày vào chỗ mã URL bên dưới để khi bấm icon ngoài màn hình iOS nó mở ra giao diện web của mày luôn
+    const myWebsiteUrl = "https://phamhieu-pro.vercel.app"; 
+
     const profile = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -114,4 +116,23 @@ function downloadConfig(){
             <string>9B5F2E03-F30C-5E42-A033-B2C3D4E5F6A7</string>
             <key>PayloadDisplayName</key>
             <string>PhamHieu Pro</string>
-            <key>URL
+            <key>URL</key>
+            <string>${myWebsiteUrl}</string>
+            <key>Label</key>
+            <string>PhamHieu Pro</string>
+            <key>IsRemovable</key>
+            <true/>
+            <key>FullScreen</key>
+            <true/>
+        </dict>
+    </array>
+</dict>
+</plist>`;
+
+    const blob = new Blob([profile], { type: "application/x-apple-aspen-config" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "PhamHieu_Pro_ChipA.mobileconfig";
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
