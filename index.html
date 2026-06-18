@@ -2,10 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* Giao diện Dark Mode cơ bản của Hiếu Live */
+        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE GỐC NGUYÊN BẢN 100% CỦA BẠN */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background-color: #0d0f12; 
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY CỐ ĐỊNH BAN ĐẦU CỦA HIẾU -->
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY BIẾN THIÊN THEO MÁY -->
     <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
@@ -118,24 +118,25 @@
         <div class="info-box">
             <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">200</div></div>
-                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">195</div></div>
-                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">185</div></div>
-                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">178</div></div>
-                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">100</div></div>
-                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">130</div></div>
+                <!-- Các ô kết quả đã được gán ID để nhận số riêng biệt theo dòng máy -->
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">-</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">-</div></div>
             </div>
             <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
-                <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
+                <div class="stat-value" id="valButton" style="color: #ffc107;">-</div>
             </div>
         </div>
 
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" style="color: #ffc107;">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value" style="color: #ffc107;">0.1 ms</div></div>
             </div>
         </div>
 
@@ -145,11 +146,17 @@
 </div>
 
 <script>
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    // Hàm băm chuỗi ký tự thông minh để tính toán số cố định theo tên máy (Dải số từ min đến max)
+    function getFixedNumByDevice(deviceName, min, max, seed) {
+        var hash = 0;
+        var cleanName = deviceName.toUpperCase().replace(/\s+/g, '') + seed;
+        for (var i = 0; i < cleanName.length; i++) {
+            hash = cleanName.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        var range = max - min + 1;
+        return min + (Math.abs(hash) % range);
     }
 
-    // Logic kiểm tra key nguyên bản của bạn (Đã sửa trùng khớp chữ ID để chạy mượt)
     function verifyKey() {
         var inputField = document.getElementById('activationKey');
         if (!inputField) return;
@@ -161,6 +168,7 @@
             var keyNum = parseInt(numberPart, 10);
             
             if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
+                inputField.blur(); // Tắt bàn phím iPhone chống đơ nút
                 document.getElementById('keySection').style.display = 'none';
                 document.getElementById('searchSection').style.display = 'block';
                 return;
@@ -173,6 +181,7 @@
         document.getElementById('deviceInput').value = name;
     }
 
+    // ⚡ TIẾN TRÌNH TỰ ĐỘNG ĐỔI SỐ KHÁC NHAU KHI NHẬP TÊN ĐIỆN THOẠI KHÁC
     function getSensitivity() {
         var deviceInput = document.getElementById('deviceInput');
         if (!deviceInput) return;
@@ -183,19 +192,17 @@
             return;
         }
 
+        deviceInput.blur(); // Tắt bàn phím iPhone
+
+        // Tính toán các dải số độ nhạy riêng biệt dựa trên tên dòng máy nhập vào
+        var generalNum = getFixedNumByDevice(rawDeviceValue, 180, 200, "gen"); // Nhìn xung quanh (180-200)
+        var redDotNum  = getFixedNumByDevice(rawDeviceValue, 175, 195, "red"); // Red Dot Sight (175-195)
+        var scope2xNum = getFixedNumByDevice(rawDeviceValue, 170, 188, "2xx"); // Ống ngắm 2x (170-188)
+        var scope4xNum = getFixedNumByDevice(rawDeviceValue, 165, 182, "4xx"); // Ống ngắm 4x (165-182)
+        var scopeAwm   = getFixedNumByDevice(rawDeviceValue, 90, 110, "awm");  // Súng ngắm (90-110)
+        var lookNum    = getFixedNumByDevice(rawDeviceValue, 120, 140, "loo");  // Nhìn (120-140)
+        var btnSize    = getFixedNumByDevice(rawDeviceValue, 42, 48, "btn") + "%"; // Kích thước nút bắn
+
+        // Đổ bộ số riêng biệt của dòng máy đó lên giao diện
         document.getElementById('resModel').innerText = rawDeviceValue.trim();
-        document.getElementById('searchSection').style.display = 'none';
-        document.getElementById('resultSection').style.display = 'block';
-    }
-
-    function backToSearch() {
-        document.getElementById('resultSection').style.display = 'none';
-        document.getElementById('searchSection').style.display = 'block';
-    }
-
-    function showGuide() {
-        alert("📥 Hệ thống đang tải xuống tệp cấu hình VIP!\nSau khi tải xong, hãy vào ứng dụng 'Cài đặt' trên iPhone để kích hoạt cấu hình Regedit.");
-    }
-</script>
-</body>
-</html>
+        document.getElementById('valGeneral').innerText = generalNum;
