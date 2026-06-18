@@ -2,16 +2,16 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Regedit VIP - HIẾU LIVE</title>
     <style>
-        /* Giao diện Gaming Dark Mode Cyberpunk cao cấp */
+        /* GIỮ NGUYÊN GIAO DIỆN DARK MODE GỐC BAN ĐẦU CỦA BẠN */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #080a0e; 
+            background-color: #0d0f12; 
             color: #ffffff; 
             margin: 0; 
-            padding: 15px; 
+            padding: 20px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -21,127 +21,58 @@
         
         .container { 
             width: 100%; 
-            max-width: 440px; 
-            background: linear-gradient(145deg, #11141d, #161b26); 
-            border-radius: 20px; 
-            padding: 25px 20px; 
-            box-shadow: 0 10px 30px rgba(255, 74, 74, 0.15); 
+            max-width: 450px; 
+            background: #1a1d24; 
+            border-radius: 15px; 
+            padding: 25px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
             box-sizing: border-box; 
-            border: 1px solid rgba(255, 74, 74, 0.2);
         }
         
-        h2 { 
-            text-align: center; 
-            color: #ff4a4a; 
-            margin: 0 0 5px 0; 
-            text-transform: uppercase; 
-            font-size: 24px; 
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(255, 74, 74, 0.6);
-        }
-        
-        .sub-title { 
-            text-align: center; 
-            color: #ffc107; 
-            font-size: 14px; 
-            font-weight: bold; 
-            margin-bottom: 30px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            text-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
-        }
-        
+        h2 { text-align: center; color: #ff4a4a; margin: 0 0 5px 0; text-transform: uppercase; font-size: 20px; }
+        .sub-title { text-align: center; color: #ffc107; font-size: 13px; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; }
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 12px; color: #a0a5b5; font-size: 14px; font-weight: 500; }
+        label { display: block; margin-bottom: 10px; color: #a0a5b5; font-size: 14px; }
         
         input[type="text"] { 
             width: 100%; 
-            padding: 15px; 
-            border: 2px solid #252b38; 
-            background: #1a1f2c; 
+            padding: 14px; 
+            border: 2px solid #2e3440; 
+            background: #252932; 
             color: white; 
-            border-radius: 12px; 
+            border-radius: 10px; 
             font-size: 16px; 
             box-sizing: border-box; 
-            transition: all 0.3s ease;
-        }
-        input[type="text"]:focus {
-            border-color: #ff4a4a;
-            outline: none;
-            box-shadow: 0 0 10px rgba(255, 74, 74, 0.3);
         }
         
         button { 
             width: 100%; 
-            padding: 15px; 
-            background: linear-gradient(90deg, #ff4a4a, #cc2323); 
+            padding: 14px; 
+            background: #ff4a4a; 
             color: white; 
             border: none; 
-            border-radius: 12px; 
+            border-radius: 10px; 
             font-size: 16px; 
             font-weight: bold; 
             cursor: pointer; 
             margin-top: 15px; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 74, 74, 0.4);
         }
         
-        /* Chỉ ẩn duy nhất bảng kết quả lúc đầu để tránh lỗi Sandbox */
-        #resultSection { display: none; }
-        .divider { border-bottom: 1px dashed rgba(255,74,74,0.2); margin: 25px 0; }
+        /* Chế độ ẩn hiện màn hình độc lập */
+        .app-section { display: none; }
         
-        .info-box { 
-            background: rgba(37, 43, 56, 0.6); 
-            padding: 18px; 
-            border-radius: 14px; 
-            margin-bottom: 15px; 
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 12px; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-box { background: #252932; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .info-title { font-weight: bold; color: #ff4a4a; margin-bottom: 10px; text-transform: uppercase; font-size: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         
-        .stat-item { 
-            background: #141822; 
-            padding: 12px; 
-            border-radius: 10px; 
-            font-size: 14px; 
-            border: 1px solid #1e2535;
-        }
-        .stat-item span { display: block; color: #8a90a2; font-size: 11px; margin-bottom: 6px; }
-        .stat-value { font-weight: bold; font-size: 18px; color: #ffffff; }
+        .stat-item { background: #1e222b; padding: 10px; border-radius: 8px; font-size: 14px; }
+        .stat-item span { display: block; color: #a0a5b5; font-size: 11px; margin-bottom: 4px; }
+        .stat-value { font-weight: bold; font-size: 16px; }
         
-        .dpi-bar-bg { width: 100%; height: 5px; background: #252b38; border-radius: 3px; margin-top: 6px; overflow: hidden; }
-        .dpi-bar-fill { height: 100%; background: #ff4a4a; border-radius: 3px; width: 0%; transition: width 0.5s ease; }
+        .btn-install { background: #28a745; display: block; text-align: center; text-decoration: none; color: white; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
         
-        .btn-install { 
-            background: linear-gradient(90deg, #28a745, #1e7e34); 
-            display: block; 
-            text-align: center; 
-            text-decoration: none; 
-            color: white; 
-            padding: 15px; 
-            border-radius: 12px; 
-            font-weight: bold; 
-            margin-top: 20px; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
-        }
-        
-        .suggestions { margin-top: 15px; font-size: 13px; color: #a0a5b5; }
-        .tag { 
-            display: inline-block; 
-            background: #1a1f2c; 
-            padding: 6px 12px; 
-            border-radius: 8px; 
-            margin: 6px 4px 0 0; 
-            cursor: pointer; 
-            border: 1px solid #252b38; 
-            font-size: 12px;
-            color: #ffc107;
-        }
+        .suggestions { margin-top: 10px; font-size: 12px; color: #a0a5b5; }
+        .tag { display: inline-block; background: #252932; padding: 5px 8px; border-radius: 5px; margin: 4px 4px 0 0; cursor: pointer; border: 1px solid #2e3440; }
     </style>
 </head>
 <body>
@@ -150,72 +81,51 @@
     <h2>DPI REGEDIT IPHONE</h2>
     <div class="sub-title">BY HIẾU LIVE</div>
     
-    <!-- HIỂN THỊ TRỰC TIẾP FORM NHẬP: CHỐNG LỖI ĐƠ NÚT TUYỆT ĐỐI -->
-    <div id="mainFormSection">
+    <!-- MÀN HÌNH 1: NHẬP KEY (Gợi ý: MUA KEY IB CHỦ BOX) -->
+    <div class="app-section" id="keySection" style="display: block;">
         <div class="form-group">
-            <label>🔑 Bước 1: Nhập Mã Kích Hoạt VIP (phamhieu1 - phamhieu100):</label>
+            <label>🔑 Nhập Mã Kích Hoạt (Key VIP HIẾU LIVE - Vĩnh Viễn):</label>
             <input type="text" id="activationKey" placeholder="MUA KEY IB CHỦ BOX">
+            <button onclick="verifyKey()">XÁC THỰC HỆ THỐNG VIP</button>
         </div>
-        
-        <div class="divider"></div>
+    </div>
 
+    <!-- MÀN HÌNH 2: NHẬP TÊN THIẾT BỊ -->
+    <div class="app-section" id="searchSection">
         <div class="form-group">
-            <label>📱 Bước 2: Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
+            <label>📱 Nhập Tên Dòng Máy iPhone Để Lấy Độ Nhạy:</label>
             <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 11, iPhone 15 Pro Max..." autocomplete="off">
             <div class="suggestions">
-                Gợi ý nhanh đời máy: 
+                Gợi ý nhanh: 
                 <span class="tag" onclick="selectDevice('iPhone 11')">iPhone 11</span>
                 <span class="tag" onclick="selectDevice('iPhone 13 Pro Max')">iPhone 13 Pro Max</span>
                 <span class="tag" onclick="selectDevice('iPhone 15 Pro Max')">iPhone 15 Pro Max</span>
             </div>
+            <button onclick="getSensitivity()">TRA CỨU ĐỘ NHẠY & CẤU HÌNH</button>
         </div>
-
-        <button onclick="processRegeditSystem()">XÁC THỰC & TRA CỨU HỆ THỐNG VIP</button>
     </div>
 
-    <!-- MÀN HÌNH HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
-    <div id="resultSection">
+    <!-- MÀN HÌNH 3: HIỂN THỊ KẾT QUẢ ĐỘ NHẠY -->
+    <div class="app-section" id="resultSection">
         <div class="info-box">
             <div class="info-title">Thông Tin Thiết Bị VIP</div>
             <div class="grid-2">
-                <div class="stat-item"><span>Dòng Máy Kích Hoạt</span><div class="stat-value" id="resModel" style="color: #ffc107;">-</div></div>
+                <div class="stat-item"><span>Dòng Máy Kích Hoạt</span><div class="stat-value" id="resModel">-</div></div>
                 <div class="stat-item"><span>Thời Hạn Sử Dụng</span><div class="stat-value" style="color: #28a745;">Vĩnh Viễn</div></div>
             </div>
         </div>
 
         <div class="info-box">
-            <div class="info-title">🎯 ĐỘ NHẠY KÉO TÂM HIẾU LIVE (MAX 200)</div>
+            <div class="info-title">🎯 Độ Nhạy Kéo Tâm HIẾU LIVE (MAX 200)</div>
             <div class="grid-2">
-                <div class="stat-item">
-                    <span>Nhìn Xung Quanh</span>
-                    <div class="stat-value" id="valGeneral" style="color: #ff4a4a;">-</div>
-                    <div class="dpi-bar-bg"><div class="dpi-bar-fill" id="barGeneral"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Red Dot Sight</span>
-                    <div class="stat-value" id="valRedDot">-</div>
-                    <div class="dpi-bar-bg"><div class="dpi-bar-fill" id="barRedDot" style="background:#fff;"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Ống Ngắm 2x</span>
-                    <div class="stat-value" id="val2x">-</div>
-                    <div class="dpi-bar-bg"><div class="dpi-bar-fill" id="bar2x" style="background:#ffc107;"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Ống Ngắm 4x</span>
-                    <div class="stat-value" id="val4x">-</div>
-                    <div class="dpi-bar-bg"><div class="dpi-bar-fill" id="bar4x" style="background:#ffc107;"></div></div>
-                </div>
-                <div class="stat-item">
-                    <span>Súng Ngắm (AWM)</span>
-                    <div class="stat-value" id="valAwm">-</div>
-                </div>
-                <div class="stat-item">
-                    <span>Nhìn (Mắt)</span>
-                    <div class="stat-value" id="valLook">-</div>
-                </div>
+                <div class="stat-item"><span>Nhìn Xung Quanh</span><div class="stat-value" id="valGeneral">-</div></div>
+                <div class="stat-item"><span>Red Dot Sight</span><div class="stat-value" id="valRedDot">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm 2x</span><div class="stat-value" id="val2x">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm 4x</span><div class="stat-value" id="val4x">-</div></div>
+                <div class="stat-item"><span>Ống Ngắm Súng Ngắm</span><div class="stat-value" id="valAwm">-</div></div>
+                <div class="stat-item"><span>Nhìn</span><div class="stat-value" id="valLook">-</div></div>
             </div>
-            <div class="stat-item" style="margin-top: 12px; background: rgba(255, 193, 7, 0.05); border-color: rgba(255, 193, 7, 0.2);">
+            <div class="stat-item" style="margin-top: 10px; background: #1e222b;">
                 <span>Kích Thước Nút Bắn Chuẩn</span>
                 <div class="stat-value" id="valButton" style="color: #ffc107;">45%</div>
             </div>
@@ -224,13 +134,13 @@
         <div class="info-box">
             <div class="info-title">⚙️ Thông Số Định Cấu Hình Máy</div>
             <div class="grid-2">
-                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value" style="color: #007bff;">1200 DPI</div></div>
-                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value" style="color: #007bff;">0.1 ms</div></div>
+                <div class="stat-item"><span>DPI Ảo Chạy Ngầm</span><div class="stat-value">1200 DPI</div></div>
+                <div class="stat-item"><span>Độ Trễ Phản Hồi</span><div class="stat-value">0.1 ms</div></div>
             </div>
         </div>
 
         <a href="vip.mobileconfig" class="btn-install" onclick="showGuide()">CÀI ĐẶT VIP.MOBILECONFIG VÀO MÁY</a>
-        <button onclick="backToSearch()" style="background: linear-gradient(145deg, #252b38, #1a1f2c); color: #a0a5b5; box-shadow: none; border: 1px solid #252b38;">TRA CỨU MÁY KHÁC</button>
+        <button onclick="backToSearch()" style="background: #343a40; margin-top: 10px;">TRA CỨU MÁY KHÁC</button>
     </div>
 </div>
 
@@ -239,5 +149,67 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    // ⚡ CHỈ SỐ NHÌN XUNG QUANH ĐƯỢC THIẾT LẬP CỐ ĐỊNH THEO TỪNG ĐỜI MÁY (150-190)
     var iphoneDatabase = {
         "IPHONE 7": 155, "IPHONE 8": 158, "IPHONE X": 162, "IPHONE XS": 165, "IPHONE XR": 165,
+        "IPHONE 11": 168, "IPHONE 12": 172, "IPHONE 13": 178, "IPHONE 14": 182, "IPHONE 15": 188,
+        "DEFAULT": 170
+    };
+
+    function getAbsoluteGeneral(rawName) {
+        var cleanName = rawName.toUpperCase().trim();
+        if (cleanName.indexOf("15") !== -1) return iphoneDatabase["IPHONE 15"];
+        if (cleanName.indexOf("14") !== -1) return iphoneDatabase["IPHONE 14"];
+        if (cleanName.indexOf("13") !== -1) return iphoneDatabase["IPHONE 13"];
+        if (cleanName.indexOf("12") !== -1) return iphoneDatabase["IPHONE 12"];
+        if (cleanName.indexOf("11") !== -1) return iphoneDatabase["IPHONE 11"];
+        if (cleanName.indexOf("XS") !== -1) return iphoneDatabase["IPHONE XS"];
+        if (cleanName.indexOf("XR") !== -1) return iphoneDatabase["IPHONE XR"];
+        if (cleanName.indexOf("X") !== -1) return iphoneDatabase["IPHONE X"];
+        if (cleanName.indexOf("8") !== -1) return iphoneDatabase["IPHONE 8"];
+        if (cleanName.indexOf("7") !== -1) return iphoneDatabase["IPHONE 7"];
+        return iphoneDatabase["DEFAULT"];
+    }
+
+    // LOGIC KIỂM TRA MÃ KHÓA BAN ĐẦU CỦA BẠN (Đã sửa lỗi đồng bộ chữ hoa/thường)
+    function verifyKey() {
+        var inputField = document.getElementById('activationKey');
+        if (!inputField) return;
+        
+        var userKey = inputField.value.trim().toLowerCase();
+        
+        if (userKey.indexOf("phamhieu") === 0) {
+            var numberPart = userKey.substring(8); 
+            var keyNum = parseInt(numberPart, 10);
+            
+            if (!isNaN(keyNum) && keyNum >= 1 && keyNum <= 100 && "phamhieu" + keyNum === userKey) {
+                // Ẩn Màn 1 và hiển thị Màn 2 đúng nguyên bản
+                document.getElementById('keySection').style.display = 'none';
+                document.getElementById('searchSection').style.display = 'block';
+                return;
+            }
+        }
+        alert("❌ Mã khóa không chính xác!\nVui lòng nhập lại mã khóa mới.");
+    }
+
+    function selectDevice(name) {
+        document.getElementById('deviceInput').value = name;
+    }
+
+    // LOGIC NHẬN DIỆN THIẾT BỊ VÀ XUẤT ĐỘ NHẠY
+    function getSensitivity() {
+        var deviceInput = document.getElementById('deviceInput');
+        if (!deviceInput) return;
+        var rawDeviceValue = deviceInput.value;
+
+        if (rawDeviceValue.trim() === "") {
+            alert("❌ Vui lòng nhập tên dòng máy iPhone của bạn!");
+            return;
+        }
+
+        // Nhìn xung quanh cố định theo đời máy, kính ngắm phụ đổi ngẫu nhiên tăng độ uy tín
+        var finalGeneral = getAbsoluteGeneral(rawDeviceValue);
+        var randomRedDot = getRandomInt(140, 185);
+        var randomScope2x = getRandomInt(135, 175);
+        var randomScope4x = getRandomInt(130, 165);
+        var randomScopeAwm = getRandomInt(80, 110);
