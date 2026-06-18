@@ -4,7 +4,7 @@
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- KHỐI VIP MOD 1: Thiết lập cấu hình DPI ảo -->
+        <!-- KHỐI VIP MOD 1: Ép cấu hình DPI ảo 1200 -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ghi đè cấu hình hiển thị và tăng cường mật độ điểm ảnh ảo giúp tăng tốc độ di chuyển tâm súng quét góc rộng.</string>
@@ -23,7 +23,7 @@
             <key>URL</key>
             <string>https://freefire.com</string>
         </dict>
-        <!-- KHỐI VIP MOD 2: Triệt tiêu độ trễ cảm ứng 0.1ms -->
+        <!-- KHỐI VIP MOD 2: Triệt tiêu độ trễ cảm ứng x 0.1 giây (0.1ms) -->
         <dict>
             <key>PayloadDescription</key>
             <string>Ép xung tần số phản hồi số hóa bề mặt, giảm thiểu tối đa độ trễ phản xạ cảm ứng xuống mức 0.1ms.</string>
@@ -44,7 +44,7 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>hồ sơ cấu hình redmi Note thiết lập dpi và Triệt Tiêu độ trễ cảm ứng 0,1 m/s bản quyền từ yếu giúp cho độ nhạy máy tăng độ nhạy siêu mượt bám đầu micro</string>
+    <string>Hồ sơ cấu hình Regedit VIP thiết lập DPI ảo 1200 và triệt tiêu độ trễ cảm ứng phản xạ x 0.1 giây siêu mượt từ Hiếu Live bám đầu kéo tâm cực mượt.</string>
     <key>PayloadDisplayName</key>
     <string>Regedit VIP MOD - HIẾU LIVE</string>
     <key>PayloadIdentifier</key>
