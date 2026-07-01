@@ -1,8 +1,8 @@
 function checkKey(){
     let key = document.getElementById("keyInput").value.toLowerCase().trim();
 
-    // Thay đổi mật khẩu duy nhất thành "dpivip1"
-    if(key === "dpivip1"){
+    // Thay đổi mật khẩu duy nhất thành "JCST HTS4"
+    if(key === "jcst hts4"){
         loginBox.style.display = "none";
         deviceBox.style.display = "block";
     } else {
