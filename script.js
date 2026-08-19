@@ -1,6 +1,6 @@
 // KẾT NỐI SUPABASE CHUẨN XÁC
 const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let isKeyValid = false;
@@ -15,11 +15,10 @@ function switchTab(tabId, btn) {
     // Ẩn tất cả các tab
     document.querySelectorAll('.tab-content').forEach(t => {
         t.classList.remove('active');
-        t.style.display = 'none';
     });
 
     // Bỏ active tất cả các nút bấm menu
-    document.querySelectorAll('.bottom-nav button, .nav-btn').forEach(b => {
+    document.querySelectorAll('.nav-btn').forEach(b => {
         b.classList.remove('active');
     });
     
@@ -27,7 +26,6 @@ function switchTab(tabId, btn) {
     const target = document.getElementById('tab-' + tabId);
     if (target) {
         target.classList.add('active');
-        target.style.display = 'block';
     }
     
     // Sáng nút được bấm
@@ -81,38 +79,32 @@ async function checkKey() {
     }
 }
 
-// Hàm xử lý khi đúng key: Hiện menu dưới và nhảy sang tab Func
+// Hàm xử lý khi đúng key: Ẩn tab home, hiện menu dưới và nhảy sang tab Func
 function moKhoaThanhCong() {
     isKeyValid = true;
-    const statusMsg = document.getElementById("statusMsg");
-    statusMsg.innerText = "Trạng thái: Đã kích hoạt thành công! ✅";
-    statusMsg.style.color = "#28a745";
 
     // 1. HIỆN THANH ĐIỀU HƯỚNG 4 NÚT Ở DƯỚI LÊN
     const nav = document.getElementById("bottomNav");
     if(nav) {
-        nav.style.display = "flex";
         nav.classList.remove("hidden");
     }
 
-    // 2. ẨN TẤT CẢ CÁC TAB HIỆN TẠI (Đặc biệt là ẩn tab-home đi)
+    // 2. ẨN TẤT CẢ CÁC TAB HIỆN TẠI (Ẩn tab-home)
     document.querySelectorAll('.tab-content').forEach(t => {
         t.classList.remove('active');
-        t.style.display = 'none';
     });
 
     // 3. HIỆN TAB 'func' (Tác vụ) LÊN
     const funcTab = document.getElementById('tab-func');
     if(funcTab) {
         funcTab.classList.add('active');
-        funcTab.style.display = 'block';
     }
 
-    // 4. LÀM SÁNG NÚT 'Func' TRÊN THANH MENU
-    const buttons = document.querySelectorAll('.bottom-nav button, .nav-btn');
+    // 4. LÀM SÁNG NÚT 'Func' TRÊN THANH MENU (Nút thứ 2)
+    const buttons = document.querySelectorAll('.nav-btn');
     buttons.forEach(b => b.classList.remove('active'));
     if(buttons.length > 1) {
-        buttons[1].classList.add('active'); // Nút thứ 2 là Func
+        buttons[1].classList.add('active'); 
     }
 
     alert("Kích hoạt thành công! Đã mở khóa các tính năng.");
