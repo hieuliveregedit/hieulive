@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HieuLive Lock - 2 Cột</title>
+    <title>HieuLive Lock</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- Nhớ đổi link style.css nếu tên file khác -->
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        /* Copy toàn bộ đoạn CSS mới ở trên vào đây nếu không dùng file style.css riêng */
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<!-- THÊM CLASS 'two-columns' VÀO BODY -->
-<body class="two-columns">
+<body>
 
-<!-- === CỘT TRÁI: ĐĂNG NHẬP & THÔNG TIN === -->
-<div class="main-left-panel">
-    <div style="margin-bottom:30px;">
-        <h4 style="font-size:12px; color:var(--text-sub); margin:0;">PREMIUM MOBILE DASHBOARD</h4>
-        <h1 style="font-size:24px; margin:5px 0 0 0; color:#e50914;">HIEULIVE LOCK</h1>
-    </div>
+<div class="header-title">
+    <h4>PREMIUM MOBILE DASHBOARD</h4>
+    <h1>HIEULIVE LOCK</h1>
+</div>
 
-    <!-- TAB 1: HOME (NẰM TRONG CỘT TRÁI) -->
-    <div id="tab-home-left" class="tab-content-sidebar active">
+<div class="container">
+
+    <!-- TAB 1: HOME (NHẬP KEY) -->
+    <div id="tab-home" class="tab-content active">
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <span style="font-weight:bold; font-size:14px;">HIEULIVE V4 API KEY</span>
@@ -38,21 +33,20 @@
 
             <div class="input-group" style="margin-top:15px;">
                 <label class="input-label">MÃ THIẾT BỊ (HWID)</label>
-                <!-- Giữ nguyên giá trị HWID của bố mày -->
                 <input type="text" id="hwidInput" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
             </div>
 
             <div class="status-box" id="statusMsg">Chưa kích hoạt - Vui lòng nhập Key để vào trang tác vụ</div>
         </div>
 
-        <!-- THÔNG TIN ADMIN -->
+        <!-- THÔNG TIN ADMIN CÓ AVT HIEU.JPG -->
         <div class="card" style="display:flex; align-items:center; gap:15px;">
             <div style="width:50px; height:50px; border-radius:50%; background:#333; overflow:hidden; border: 2px solid #e50914; flex-shrink: 0;">
                 <img src="HIEU.jpg" alt="HieuLive" style="width:100%; height:100%; object-fit: cover;">
             </div>
             <div>
-                <h3 style="font-size:16px; margin:0;">HieuLive</h3>
-                <p style="font-size:12px; color:var(--text-sub); margin:5px 0 0 0;">HieuLive / Admin</p>
+                <h3 style="font-size:16px;">HieuLive</h3>
+                <p style="font-size:12px; color:var(--text-sub);">HieuLive / Admin</p>
             </div>
         </div>
 
@@ -60,73 +54,69 @@
             <h4 style="font-size:12px; color:var(--text-sub); margin-bottom:10px;">THÔNG TIN ỨNG DỤNG</h4>
             <div style="font-size:13px; line-height:2;">
                 <div style="display:flex; justify-content:space-between;"><span>Tên ứng dụng</span><strong>HieuLive Lock</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Điều hướng</span><strong>4 Tab</strong></div>
                 <div style="display:flex; justify-content:space-between;"><span>Quản trị</span><strong style="color:#007bff;">HieuLive</strong></div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- === CỘT PHẢI: NỘI DUNG CÁC TAB CHỨC NĂNG === -->
-<div class="main-right-panel">
-    <div class="container">
-
-        <!-- TAB 2: FUNC (TÁC VỤ) -->
-        <div id="tab-func" class="tab-content">
-            <div class="card">
-                <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:10px;">SYSTEM FUNCTION VIP</h4>
-                <div class="func-item">
-                    <div class="func-info"><h5>AIMLOCK</h5><p>Bám đầu thông minh - AI ngắm đầu</p></div>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-                <div class="func-item">
-                    <div class="func-info"><h5>STABILITY ASSIST</h5><p>Nhẹ tâm - Ổn định đường ngắm</p></div>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-                <div class="func-item">
-                    <div class="func-info"><h5>AIM HOLD</h5><p>Ghim tâm - Giữ cố định điểm ngắm</p></div>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
-                <div class="func-item">
-                    <div class="func-info"><h5>HEADSHOT FIX</h5><p>Fix lỗi đầu - Hiệu chỉnh điểm ngắm</p></div>
-                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-                </div>
+    <!-- TAB 2: FUNC (TÁC VỤ) -->
+    <div id="tab-func" class="tab-content">
+        <div class="card">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:10px;">SYSTEM FUNCTION VIP</h4>
+            <div class="func-item">
+                <div class="func-info"><h5>AIMLOCK</h5><p>Bám đầu thông minh - AI ngắm đầu</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>STABILITY ASSIST</h5><p>Nhẹ tâm - Ổn định đường ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>AIM HOLD</h5><p>Ghim tâm - Giữ cố định điểm ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>HEADSHOT FIX</h5><p>Fix lỗi đầu - Hiệu chỉnh điểm ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
             </div>
         </div>
-
-        <!-- TAB 3: BOOST (TÁC VỤ) -->
-        <div id="tab-boost" class="tab-content">
-            <div class="card">
-                <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">FREE FIRE BOOSTER</h4>
-                <div style="margin-bottom:15px;">
-                    <label style="font-size:12px; display:block; margin-bottom:5px;">AIMLOCK BOOSTER</label>
-                    <input type="range" min="0" max="100" value="0" style="width:100%;" oninput="this.nextElementSibling.innerText = this.value + '%'">
-                    <span style="font-size:11px; color:var(--text-sub); display:block; text-align:right;">0%</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 4: CÀI ĐẶT -->
-        <div id="tab-settings" class="tab-content">
-            <div class="card">
-                <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">HỆ THỐNG</h4>
-                <div class="func-item">
-                    <div class="func-info"><h5>Thông báo</h5><p>Thông báo nhanh hệ thống</p></div>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                </div>
-                <div class="func-item">
-                    <div class="func-info"><h5>Lớp bảo mật</h5><p>Bảo vệ HieuLive Lock</p></div>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-                </div>
-                <button class="btn btn-sub" style="margin-top:15px;" onclick="logout()">ĐĂNG XUẤT</button>
-            </div>
-        </div>
-
     </div>
+
+    <!-- TAB 3: BOOST (TÁC VỤ) -->
+    <div id="tab-boost" class="tab-content">
+        <div class="card">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">FREE FIRE BOOSTER</h4>
+            <div style="margin-bottom:15px;">
+                <label style="font-size:12px; display:block; margin-bottom:5px;">AIMLOCK BOOSTER</label>
+                <input type="range" min="0" max="100" value="0" style="width:100%;" oninput="this.nextElementSibling.innerText = this.value + '%'">
+                <span style="font-size:11px; color:var(--text-sub); display:block; text-align:right;">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: CÀI ĐẶT -->
+    <div id="tab-settings" class="tab-content">
+        <div class="card">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">HỆ THỐNG</h4>
+            <div class="func-item">
+                <div class="func-info"><h5>Thông báo</h5><p>Thông báo nhanh hệ thống</p></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>Lớp bảo mật</h5><p>Bảo vệ HieuLive Lock</p></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <button class="btn btn-sub" style="margin-top:15px;" onclick="logout()">ĐĂNG XUẤT</button>
+        </div>
+    </div>
+
 </div>
 
-<!-- === THANH NAV MOBILE (HIỆN KHI KÍCH HOẠT) === -->
+<!-- NAV BAR 4 TAB (ẨN LÚC ĐẦU) -->
 <div class="bottom-nav hidden" id="bottomNav" style="display: none !important;">
-    <button class="nav-btn active" onclick="switchTab('func', this)"><span>Func</span></button>
+    <button class="nav-btn active" onclick="switchTab('home', this)"><span>Home</span></button>
+    <button class="nav-btn" onclick="switchTab('func', this)"><span>Func</span></button>
     <button class="nav-btn" onclick="switchTab('boost', this)"><span>Boost</span></button>
     <button class="nav-btn" onclick="switchTab('settings', this)"><span>Cài đặt</span></button>
 </div>
