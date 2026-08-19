@@ -2,55 +2,250 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhamHieu Pro - Cấu Hình Hệ Thống</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIPLOCK - HieuLive API App Hỗ Trợ Kéo Tâm</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="loginBox" class="box animated">
-            <h2>🔑 XÁC THỰC HỆ THỐNG</h2>
-            <p>Vui lòng nhập Key kích hoạt để tiếp tục</p>
-            <input type="text" id="keyInput" placeholder="Nhập Key tại đây...">
-            <button onclick="checkKey()">KÍCH HOẠT</button>
+
+<div class="mobile-container">
+
+    <!-- TAB 1: HOME -->
+    <div id="tab-home" class="tab-content active">
+        <div class="header-title">
+            <div class="sub">PREMIUM MOBILE DASHBOARD</div>
+            <div class="main">VIPLOCK</div>
         </div>
 
-        <div id="deviceBox" class="box animated" style="display: none;">
-            <h2>📱 THÔNG TIN THIẾT BỊ</h2>
-            <p>Nhập tên kiểu máy iPhone/iPad của bạn</p>
-            <input type="text" id="deviceInput" placeholder="Ví dụ: iPhone 13 Pro Max...">
-            <button onclick="saveDevice()">TIẾP TỤC</button>
-        </div>
-
-        <div id="scanBox" class="box animated" style="display: none;">
-            <h2>⚡ ĐANG TỐI ƯU HỆ THỐNG</h2>
-            <p>Vui lòng chờ trong giây lát...</p>
-            <div class="progress-bar-container">
-                <div id="progressBar" class="progress-bar"></div>
+        <div class="card profile-card">
+            <img src="https://via.placeholder.com/100/e61c43/ffffff?text=HL" alt="Avatar" class="avatar">
+            <div class="profile-info">
+                <h3>Hieu Live</h3>
+                <p>Developer / Admin</p>
             </div>
-            <div id="percent">0%</div>
         </div>
 
-        <div id="mainApp" class="box animated" style="display: none;">
-            <h2 id="deviceName">📱 THIẾT BỊ</h2>
-            <div class="status-success">✓ CẤU HÌNH HOÀN TẤT</div>
-            
-            <div class="result-container">
-                <div class="result-item"><span>Nhìn Xung Quanh:</span> <strong id="look">0</strong></div>
-                <div class="result-item"><span>Red Dot Sight:</span> <strong id="red">0</strong></div>
-                <div class="result-item"><span>Ống Ngắm 2x:</span> <strong id="scope2">0</strong></div>
-                <div class="result-item"><span>Ống Ngắm 4x:</span> <strong id="scope4">0</strong></div>
-                <div class="result-item"><span>Ống Ngắm AWM:</span> <strong id="awm">0</strong></div>
-                <div class="result-item"><span>Nhìn Linh Hoạt:</span> <strong id="free">0</strong></div>
-                <div class="result-item"><span>Nút Bắn Khuyến Nghị:</span> <strong id="fire">0</strong>%</div>
+        <div class="card">
+            <div class="grid-2x2">
+                <button class="btn-social">Telegram</button>
+                <button class="btn-social">Zalo</button>
+                <button class="btn-social">TikTok 1</button>
+                <button class="btn-social">TikTok 2</button>
             </div>
+        </div>
 
-            <button class="btn-download" onclick="downloadConfig()">📦 TẢI PROFILE</button>
-
-            <button class="btn-secondary" onclick="newDevice()" style="margin-top: 15px;">ĐỔI THIẾT BỊ KHÁC</button>
+        <div class="card">
+            <div class="info-title">THÔNG TIN ỨNG DỤNG</div>
+            <div class="info-row">
+                <span class="info-label">Tên ứng dụng</span>
+                <span class="info-val">VIPLOCK</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Giao diện</span>
+                <span class="info-val highlight">Dark Neon Red</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Điều hướng</span>
+                <span class="info-val">5 Tab</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Game hỗ trợ</span>
+                <span class="info-val highlight">Free Fire / Free Fire MAX</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Booster mặc định</span>
+                <span class="info-val">100%</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Ngôn ngữ</span>
+                <span class="info-val">Tiếng Việt</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Quản trị</span>
+                <span class="info-val blue">Hieu Live</span>
+            </div>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- TAB 2: FUNC -->
+    <div id="tab-func" class="tab-content">
+        <div class="header-title">
+            <div class="sub">SYSTEM FUNCTION VIP</div>
+            <div class="main">VIPLOCK</div>
+        </div>
+
+        <div class="card">
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>AIMLOCK</h4>
+                    <p>Bám đầu thông minh - AI tự động căn chuẩn điểm ngắm</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>STABILITY ASSIST</h4>
+                    <p>Nhẹ tâm - Ổn định đường ngắm, giảm độ trôi</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>AIM HOLD</h4>
+                    <p>Ghim tâm - Giữ cố định điểm ngắm khi tấn công</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>AIM LOCKDOWN</h4>
+                    <p>Đằm tâm - Khóa vị trí ngắm chắc chắn</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>SENSITIVITY BOOSTER</h4>
+                    <p>Nhạy - Tăng độ nhạy cảm ứng và phản hồi</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>HEADSHOT FIX</h4>
+                    <p>Fix lỗi đầu - Hiệu chỉnh sai số điểm ngắm</p>
+                </div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: BOOST -->
+    <div id="tab-boost" class="tab-content">
+        <div class="header-title">
+            <div class="sub">BOOSTER & ALIGNMENT</div>
+            <div class="main">VIPLOCK</div>
+        </div>
+
+        <div class="card">
+            <div class="range-group">
+                <div class="range-header"><span>AIMLOCK</span><span id="v1">50%</span></div>
+                <input type="range" class="range-slider" min="0" max="100" value="50" oninput="updateVal('v1', this.value)">
+            </div>
+            <div class="range-group">
+                <div class="range-header"><span>STABILITY ASSIST</span><span id="v2">70%</span></div>
+                <input type="range" class="range-slider" min="0" max="100" value="70" oninput="updateVal('v2', this.value)">
+            </div>
+            <div class="range-group">
+                <div class="range-header"><span>AIM HOLD</span><span id="v3">60%</span></div>
+                <input type="range" class="range-slider" min="0" max="100" value="60" oninput="updateVal('v3', this.value)">
+            </div>
+            <div class="range-group">
+                <div class="range-header"><span>HEADSHOT FIX</span><span id="v4">80%</span></div>
+                <input type="range" class="range-slider" min="0" max="100" value="80" oninput="updateVal('v4', this.value)">
+            </div>
+            <div class="range-group">
+                <div class="range-header"><span>BULLET ALIGN</span><span id="v5">90%</span></div>
+                <input type="range" class="range-slider" min="0" max="100" value="90" oninput="updateVal('v5', this.value)">
+            </div>
+            <button class="btn-action">KÍCH HOẠT BOOSTER</button>
+        </div>
+    </div>
+
+    <!-- TAB 4: LIVE (API KEY) -->
+    <div id="tab-live" class="tab-content">
+        <div class="header-title">
+            <div class="sub">HIEULIVE V4 API SERVER KEY</div>
+            <div class="main">KÍCH HOẠT KEY</div>
+        </div>
+
+        <div class="card">
+            <div class="info-title">MÃ KÍCH HOẠT</div>
+            <input type="text" class="input-box" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
+            <div class="grid-2x2" style="margin-top:0; margin-bottom:12px;">
+                <button class="btn-social">📋 Dán</button>
+                <button class="btn-social">🗑️ Xóa</button>
+            </div>
+
+            <div class="info-title">MÃ THIẾT BỊ (HWID)</div>
+            <input type="text" class="input-box" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
+            <button class="btn-social" style="width:100%; margin-bottom:12px;">📋 Sao chép mã thiết bị</button>
+
+            <button class="btn-action">Kiểm tra Key</button>
+            <button class="btn-action btn-secondary">Kích hoạt (1 Thiết bị)</button>
+        </div>
+    </div>
+
+    <!-- TAB 5: SETTINGS -->
+    <div id="tab-settings" class="tab-content">
+        <div class="header-title">
+            <div class="sub">BẢNG CÀI ĐẶT CAO CẤP</div>
+            <div class="main">CÀI ĐẶT</div>
+        </div>
+
+        <div class="card">
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>Hiệu ứng âm thanh</h4>
+                    <p>Phản hồi âm thanh giao diện</p>
+                </div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>Thông báo</h4>
+                    <p>Thông báo nhanh của hệ thống</p>
+                </div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>Lớp bảo mật</h4>
+                    <p>Giữ lớp bảo vệ premium luôn hoạt động</p>
+                </div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="control-item">
+                <div class="control-text">
+                    <h4>Tự động tối ưu</h4>
+                    <p>Giữ cấu hình runtime luôn sẵn sàng</p>
+                </div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+        </div>
+
+        <div class="card">
+            <button class="btn-action btn-secondary" style="margin-bottom:8px;">ĐẶT LẠI CẤU HÌNH</button>
+            <button class="btn-action" style="background:#4a0d18;">ĐĂNG XUẤT</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
+    <div class="nav-item active" onclick="switchTab('tab-home', this)">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-func', this)">
+        <span class="nav-icon">⚙️</span>
+        <span>Func</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-boost', this)">
+        <span class="nav-icon">⚡</span>
+        <span>Boost</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-live', this)">
+        <span class="nav-icon">📡</span>
+        <span>Live</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('tab-settings', this)">
+        <span class="nav-icon">🛠️</span>
+        <span>Cài đặt</span>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
