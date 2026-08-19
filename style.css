@@ -1,73 +1,182 @@
-/* --- CSS MỚI ĐỂ CHIA 2 CỘT --- */
 :root {
-    --left-width: 350px; /* Độ rộng cố định của cột trái */
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --text-main: #ffffff;
+    --text-sub: #a0a0a0;
+    --accent: #e50914;
+    --border: #333;
 }
 
-body.two-columns {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     margin: 0;
-    overflow: hidden; /* Tránh cuộn trang tổng */
-}
-
-.main-left-panel {
-    width: var(--left-width);
-    background: #181818; /* Màu nền đậm hơn cho cột trái */
-    display: flex;
-    flex-direction: column;
     padding: 20px;
-    border-right: 1px solid #333;
-    overflow-y: auto; /* Cho phép cuộn cột trái */
-}
-
-.main-right-panel {
-    flex: 1; /* Chiếm phần còn lại của màn hình */
-    background: #121212;
-    padding: 30px;
-    overflow-y: auto; /* Cho phép cuộn nội dung tab */
     display: flex;
-    justify-content: center; /* Căn giữa nội dung tab */
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-/* Ẩn header title cũ */
-.header-title {
-    display: none;
-}
-
-/* Tinh chỉnh lại container trong 2 cột */
-.main-right-panel .container {
+.container {
     width: 100%;
-    max-width: 800px; /* Giới hạn độ rộng tối đa của vùng nội dung tab */
-    background: transparent;
-    box-shadow: none;
-    margin: 0;
-    padding: 0;
+    max-width: 400px;
 }
 
-.main-left-panel .card {
-    background: #202020;
+.header-title {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-/* Responsive cho mobile */
-@media (max-width: 768px) {
-    body.two-columns {
-        flex-direction: column; /* Xếp chồng trên mobile */
-        height: auto;
-        overflow: visible;
-    }
-    .main-left-panel {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #333;
-    }
-    .main-right-panel {
-        padding: 20px;
-    }
-    .main-right-panel .container {
-        max-width: 100%;
-    }
+.header-title h4 {
+    font-size: 11px;
+    color: var(--text-sub);
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.header-title h1 {
+    font-size: 22px;
+    margin: 0;
+    color: var(--accent);
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-label {
+    font-size: 11px;
+    color: var(--text-sub);
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    background: #2b2b2b;
+    border: 1px solid var(--border);
+    color: #fff;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-main {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-main:hover {
+    background: #b20710;
+}
+
+.btn-sub {
+    background: #333;
+    color: #fff;
+    border: 1px solid var(--border);
+}
+
+.status-box {
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--text-sub);
+    text-align: center;
+    padding: 8px;
+    background: #252525;
+    border-radius: 5px;
+}
+
+/* Các thành phần chức năng */
+.func-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.func-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.func-info h5 {
+    margin: 0 0 3px 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+.func-info p {
+    margin: 0;
+    font-size: 11px;
+    color: var(--text-sub);
+}
+
+/* Ẩn hiện Tab mặc định */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Thanh điều hướng dưới đáy */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #181818;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-sub);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.nav-btn.active {
+    color: #fff;
+    background: var(--accent);
 }
