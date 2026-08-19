@@ -43,7 +43,8 @@ input[type="text"] { width: 100%; padding: 12px; background: #0a0405; border: 1p
 input:checked + .slider { background-color: var(--accent-glow); }
 input:checked + .slider:before { transform: translateX(20px); background-color: #fff; }
 
-.locked { opacity: 0.4; pointer-events: none; filter: grayscale(1); }
+/* Ẩn menu khi chưa kích hoạt */
+.hidden { display: none !important; }
 
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #120709; border-top: 1px solid var(--card-border); display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
 .nav-btn { background: none; border: none; color: var(--text-sub); font-size: 11px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
