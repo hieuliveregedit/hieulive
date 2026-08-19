@@ -19,7 +19,7 @@ function switchTab(tabId, btn) {
     btn.classList.add('active');
 }
 
-// Kiểm Tra Key trên Supabase
+// Kiểm Tra Key trên Supabase (Khớp với cột key_code và is_active)
 async function checkKey() {
     const keyVal = document.getElementById("keyInput").value.trim();
     const statusMsg = document.getElementById("statusMsg");
@@ -36,26 +36,28 @@ async function checkKey() {
         const { data, error } = await _supabase
             .from('keys')
             .select('*')
-            .eq('key', keyVal)
-            .eq('status', 'active');
+            .eq('key_code', keyVal)
+            .eq('is_active', true);
 
         if (data && data.length > 0) {
             isKeyValid = true;
             statusMsg.innerText = "Trạng thái: Đã kích hoạt thành công! ✅";
             statusMsg.style.color = "#28a745";
 
-            // HIỆN THANH MENU ĐIỀU HƯỚNG BÊN DƯỚI KHI THÀNH CÔNG
-            document.getElementById("bottomNav").classList.remove("hidden");
+            // HIỆN THANH MENU ĐIỀU HƯỚNG BÊN DƯỚI
+            const nav = document.getElementById("bottomNav");
+            nav.style.display = "flex";
+            nav.classList.remove("hidden");
 
             alert("Kích hoạt thành công! Đã mở khóa các trang tác vụ.");
             
-            // Tự động chuyển thẳng sang trang Func (tác vụ) luôn cho mượt
+            // Tự động chuyển thẳng sang trang Func
             switchTab('func', document.querySelectorAll('.nav-btn')[1]);
 
         } else {
-            statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc đã hết hạn ❌";
+            statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc chưa kích hoạt ❌";
             statusMsg.style.color = "#ff4d4d";
-            alert("Key/Mật khẩu không chính xác!");
+            alert("Key không chính xác hoặc chưa được kích hoạt!");
         }
     } catch (e) {
         statusMsg.innerText = "Lỗi kết nối máy chủ!";
