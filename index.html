@@ -3,101 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIPLOCK DASHBOARD</title>
+    <title>HieuLive Lock</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { background-color: #121212; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
-        .card { background: #1e1e1e; padding: 20px; border-radius: 12px; max-width: 400px; margin: auto; border: 1px solid #333; }
-        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 6px; border: none; text-align: center; }
-        button { width: 95%; padding: 12px; margin: 5px 0; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; background: #e50914; color: white; }
-        .func-btn { background: #333; cursor: not-allowed; opacity: 0.5; }
-        .active-btn { background: #28a745 !important; cursor: pointer !important; opacity: 1 !important; }
-        .status { margin-top: 10px; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card">
-    <h2>VIPLOCK DASHBOARD</h2>
-    
-    <input type="text" id="keyInput" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
-    <button onclick="checkAndActivateKey()">KÍCH HOẠT (1 THIẾT BỊ)</button>
-
-    <p id="statusMsg" class="status" style="color: #ff4d4d;">Trạng thái: Chưa kích hoạt Key</p>
-
-    <hr style="border-color: #333; margin: 20px 0;">
-
-    <h3>CHỨC NĂNG GAME</h3>
-    <button id="btnAim" class="func-btn" onclick="toggleFunc('btnAim', 'Aimlock')">BẬT AIMLOCK (LOCK 99%)</button>
-    <button id="btnHead" class="func-btn" onclick="toggleFunc('btnHead', 'Kéo Tâm Auto')">BẬT KÉO TÂM AUTO</button>
+<div class="header-title">
+    <h4>PREMIUM MOBILE DASHBOARD</h4>
+    <h1>HIEULIVE LOCK</h1>
 </div>
 
-<script>
-    // Điền thông tin Supabase của bạn
-    const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-    const SUPABASE_KEY = "SERVICE_ROLE_HOAC_ANON_KEY_CUA_BAN"; 
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+<div class="container">
 
-    let isActivated = false;
+    <!-- TAB 1: HOME -->
+    <div id="tab-home" class="tab-content active">
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <span style="font-weight:bold; font-size:14px;">HIEULIVE V4 API KEY</span>
+                <button class="btn-sub" style="width:auto; padding:5px 10px; margin:0;" onclick="resetInput()">Nhập lại</button>
+            </div>
 
-    async function checkAndActivateKey() {
-        const keyVal = document.getElementById("keyInput").value.trim();
-        const statusMsg = document.getElementById("statusMsg");
+            <div class="input-group">
+                <label class="input-label">MÃ KÍCH HOẠT</label>
+                <input type="text" id="keyInput" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
+            </div>
 
-        if (!keyVal) {
-            alert("Vui lòng nhập Key trước!");
-            return;
-        }
+            <button class="btn btn-main" onclick="checkKey()">Kích hoạt (1 thiết bị)</button>
 
-        statusMsg.innerText = "Đang kiểm tra Key...";
-        statusMsg.style.color = "#ffc107";
+            <div class="input-group" style="margin-top:15px;">
+                <label class="input-label">MÃ THIẾT BỊ (HWID)</label>
+                <input type="text" id="hwidInput" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
+            </div>
 
-        try {
-            // Kiểm tra key trong bảng 'keys' trên Supabase
-            const { data, error } = await _supabase
-                .from('keys')
-                .select('*')
-                .eq('key', keyVal)
-                .eq('status', 'active');
+            <div class="status-box" id="statusMsg">Chưa kích hoạt</div>
+        </div>
 
-            if (data && data.length > 0) {
-                isActivated = true;
-                statusMsg.innerText = "Trạng thái: Đã Kích Hoạt Thành Công! ✅";
-                statusMsg.style.color = "#28a745";
+        <div class="card" style="display:flex; align-items:center; gap:15px;">
+            <div style="width:50px; height:50px; border-radius:50%; background:#333; overflow:hidden;">
+                <img src="https://via.placeholder.com/50" alt="HieuLive" style="width:100%; height:100%;">
+            </div>
+            <div>
+                <h3 style="font-size:16px;">HieuLive</h3>
+                <p style="font-size:12px; color:var(--text-sub);">HieuLive / Admin</p>
+            </div>
+        </div>
 
-                // Mở khóa tất cả nút chức năng
-                document.getElementById("btnAim").classList.add("active-btn");
-                document.getElementById("btnHead").classList.add("active-btn");
-                alert("Kích hoạt thành công! Các tác vụ Aimlock đã được mở khóa.");
-            } else {
-                statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc đã hết hạn ❌";
-                statusMsg.style.color = "#ff4d4d";
-                alert("Key sai hoặc không tồn tại!");
-            }
-        } catch (err) {
-            statusMsg.innerText = "Lỗi kết nối máy chủ!";
-            console.error(err);
-        }
-    }
+        <div class="card">
+            <h4 style="font-size:12px; color:var(--text-sub); margin-bottom:10px;">THÔNG TIN ỨNG DỤNG</h4>
+            <div style="font-size:13px; line-height:2;">
+                <div style="display:flex; justify-content:space-between;"><span>Tên ứng dụng</span><strong>HieuLive Lock</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Điều hướng</span><strong>4 Tab</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Quản trị</span><strong style="color:#007bff;">HieuLive</strong></div>
+            </div>
+        </div>
+    </div>
 
-    function toggleFunc(btnId, funcName) {
-        if (!isActivated) {
-            alert("Bạn phải nhập Key chuẩn và bấm 'KÍCH HOẠT' thì mới dùng được nút này!");
-            return;
-        }
+    <!-- TAB 2: FUNC (KHÓA MẶC ĐỊNH) -->
+    <div id="tab-func" class="tab-content">
+        <div class="card locked" id="funcLockArea">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:10px;">SYSTEM FUNCTION VIP</h4>
+            
+            <div class="func-item">
+                <div class="func-info"><h5>AIMLOCK</h5><p>Bám đầu thông minh - AI ngắm đầu</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>STABILITY ASSIST</h5><p>Nhẹ tâm - Ổn định đường ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>AIM HOLD</h5><p>Ghim tâm - Giữ cố định điểm ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>HEADSHOT FIX</h5><p>Fix lỗi đầu - Hiệu chỉnh điểm ngắm</p></div>
+                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+        </div>
+    </div>
 
-        const btn = document.getElementById(btnId);
-        if (btn.innerText.includes("BẬT")) {
-            btn.innerText = "TẮT " + funcName.toUpperCase();
-            btn.style.background = "#dc3545";
-            alert("Đã kích hoạt tác vụ: " + funcName);
-        } else {
-            btn.innerText = "BẬT " + funcName.toUpperCase();
-            btn.style.background = "#28a745";
-            alert("Đã tắt tác vụ: " + funcName);
-        }
-    }
-</script>
+    <!-- TAB 3: BOOST (KHÓA MẶC ĐỊNH) -->
+    <div id="tab-boost" class="tab-content">
+        <div class="card locked" id="boostLockArea">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">FREE FIRE BOOSTER</h4>
+            <div style="margin-bottom:15px;">
+                <label style="font-size:12px; display:block; margin-bottom:5px;">AIMLOCK BOOSTER</label>
+                <input type="range" min="0" max="100" value="0" style="width:100%;" oninput="this.nextElementSibling.innerText = this.value + '%'">
+                <span style="font-size:11px; color:var(--text-sub); display:block; text-align:right;">0%</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- TAB 4: CÀI ĐẶT -->
+    <div id="tab-settings" class="tab-content">
+        <div class="card">
+            <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">HỆ THỐNG</h4>
+            <div class="func-item">
+                <div class="func-info"><h5>Thông báo</h5><p>Thông báo nhanh hệ thống</p></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <div class="func-item">
+                <div class="func-info"><h5>Lớp bảo mật</h5><p>Bảo vệ HieuLive Lock</p></div>
+                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+            <button class="btn btn-sub" style="margin-top:15px;" onclick="logout()">ĐĂNG XUẤT</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAR 4 TAB (ĐÃ BỎ TAB LIVE) -->
+<div class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('home', this)"><span>Home</span></button>
+    <button class="nav-btn" onclick="switchTab('func', this)"><span>Func</span></button>
+    <button class="nav-btn" onclick="switchTab('boost', this)"><span>Boost</span></button>
+    <button class="nav-btn" onclick="switchTab('settings', this)"><span>Cài đặt</span></button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
