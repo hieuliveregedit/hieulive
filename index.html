@@ -16,7 +16,7 @@
 
 <div class="container">
 
-    <!-- TAB 1: HOME -->
+    <!-- TAB 1: HOME (NHẬP KEY) -->
     <div id="tab-home" class="tab-content active">
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
@@ -36,7 +36,7 @@
                 <input type="text" id="hwidInput" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
             </div>
 
-            <div class="status-box" id="statusMsg">Chưa kích hoạt</div>
+            <div class="status-box" id="statusMsg">Chưa kích hoạt - Vui lòng nhập Key để vào trang tác vụ</div>
         </div>
 
         <div class="card" style="display:flex; align-items:center; gap:15px;">
@@ -59,11 +59,10 @@
         </div>
     </div>
 
-    <!-- TAB 2: FUNC (KHÓA MẶC ĐỊNH) -->
+    <!-- TAB 2: FUNC (TÁC VỤ) -->
     <div id="tab-func" class="tab-content">
-        <div class="card locked" id="funcLockArea">
+        <div class="card">
             <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:10px;">SYSTEM FUNCTION VIP</h4>
-            
             <div class="func-item">
                 <div class="func-info"><h5>AIMLOCK</h5><p>Bám đầu thông minh - AI ngắm đầu</p></div>
                 <label class="switch"><input type="checkbox"><span class="slider"></span></label>
@@ -83,9 +82,9 @@
         </div>
     </div>
 
-    <!-- TAB 3: BOOST (KHÓA MẶC ĐỊNH) -->
+    <!-- TAB 3: BOOST (TÁC VỤ) -->
     <div id="tab-boost" class="tab-content">
-        <div class="card locked" id="boostLockArea">
+        <div class="card">
             <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">FREE FIRE BOOSTER</h4>
             <div style="margin-bottom:15px;">
                 <label style="font-size:12px; display:block; margin-bottom:5px;">AIMLOCK BOOSTER</label>
@@ -113,8 +112,8 @@
 
 </div>
 
-<!-- NAV BAR 4 TAB (ĐÃ BỎ TAB LIVE) -->
-<div class="bottom-nav">
+<!-- NAV BAR 4 TAB (BỊ ẨN LÚC ĐẦU - NHẬP KEY XONG MỚI HIỆN) -->
+<div class="bottom-nav hidden" id="bottomNav">
     <button class="nav-btn active" onclick="switchTab('home', this)"><span>Home</span></button>
     <button class="nav-btn" onclick="switchTab('func', this)"><span>Func</span></button>
     <button class="nav-btn" onclick="switchTab('boost', this)"><span>Boost</span></button>
