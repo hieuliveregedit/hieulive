@@ -17,6 +17,25 @@
             <div class="main">VIPLOCK</div>
         </div>
 
+        <!-- KHUNG NHẬP KEY KÍCH HOẠT -->
+        <div class="card">
+            <div class="info-title">HIEULIVE V4 API KEY</div>
+            <input type="text" id="license-key" class="input-box" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
+            
+            <div class="grid-2x2" style="margin-top:0; margin-bottom:12px;">
+                <button class="btn-social" onclick="pasteKey()">📋 Dán</button>
+                <button class="btn-social" onclick="clearKey()">🗑️ Xóa</button>
+            </div>
+
+            <div class="info-title">MÃ THIẾT BỊ (HWID)</div>
+            <input type="text" id="hwid" class="input-box" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
+            <button class="btn-social" style="width:100%; margin-bottom:12px;" onclick="copyHWID()">📋 Sao chép mã thiết bị</button>
+
+            <button class="btn-action" onclick="checkKey()">KIỂM TRA KEY</button>
+            <button class="btn-action btn-secondary" onclick="activateKey()">KÍCH HOẠT (1 THIẾT BỊ)</button>
+        </div>
+
+        <!-- PROFILE & THÔNG TIN -->
         <div class="card profile-card">
             <img src="https://via.placeholder.com/100/e61c43/ffffff?text=HL" alt="Avatar" class="avatar">
             <div class="profile-info">
@@ -46,7 +65,7 @@
             </div>
             <div class="info-row">
                 <span class="info-label">Điều hướng</span>
-                <span class="info-val">5 Tab</span>
+                <span class="info-val">4 Tab</span>
             </div>
             <div class="info-row">
                 <span class="info-label">Game hỗ trợ</span>
@@ -152,31 +171,7 @@
         </div>
     </div>
 
-    <!-- TAB 4: LIVE (API KEY) -->
-    <div id="tab-live" class="tab-content">
-        <div class="header-title">
-            <div class="sub">HIEULIVE V4 API SERVER KEY</div>
-            <div class="main">KÍCH HOẠT KEY</div>
-        </div>
-
-        <div class="card">
-            <div class="info-title">MÃ KÍCH HOẠT</div>
-            <input type="text" class="input-box" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
-            <div class="grid-2x2" style="margin-top:0; margin-bottom:12px;">
-                <button class="btn-social">📋 Dán</button>
-                <button class="btn-social">🗑️ Xóa</button>
-            </div>
-
-            <div class="info-title">MÃ THIẾT BỊ (HWID)</div>
-            <input type="text" class="input-box" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
-            <button class="btn-social" style="width:100%; margin-bottom:12px;">📋 Sao chép mã thiết bị</button>
-
-            <button class="btn-action">Kiểm tra Key</button>
-            <button class="btn-action btn-secondary">Kích hoạt (1 Thiết bị)</button>
-        </div>
-    </div>
-
-    <!-- TAB 5: SETTINGS -->
+    <!-- TAB 4: SETTINGS -->
     <div id="tab-settings" class="tab-content">
         <div class="header-title">
             <div class="sub">BẢNG CÀI ĐẶT CAO CẤP</div>
@@ -222,7 +217,7 @@
 
 </div>
 
-<!-- BOTTOM NAVIGATION -->
+<!-- BOTTOM NAVIGATION (4 TAB) -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchTab('tab-home', this)">
         <span class="nav-icon">🏠</span>
@@ -235,10 +230,6 @@
     <div class="nav-item" onclick="switchTab('tab-boost', this)">
         <span class="nav-icon">⚡</span>
         <span>Boost</span>
-    </div>
-    <div class="nav-item" onclick="switchTab('tab-live', this)">
-        <span class="nav-icon">📡</span>
-        <span>Live</span>
     </div>
     <div class="nav-item" onclick="switchTab('tab-settings', this)">
         <span class="nav-icon">🛠️</span>
