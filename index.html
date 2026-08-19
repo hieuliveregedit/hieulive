@@ -9,19 +9,18 @@
 </head>
 <body>
 
-<div class="header-title">
-    <h4>PREMIUM MOBILE DASHBOARD</h4>
-    <h1>HIEULIVE LOCK</h1>
-</div>
-
 <div class="container">
+    <div class="header-title">
+        <h4>PREMIUM MOBILE DASHBOARD</h4>
+        <h1>HIEULIVE LOCK</h1>
+    </div>
 
     <!-- TAB 1: HOME (NHẬP KEY) -->
     <div id="tab-home" class="tab-content active">
         <div class="card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <span style="font-weight:bold; font-size:14px;">HIEULIVE V4 API KEY</span>
-                <button class="btn-sub" style="width:auto; padding:5px 10px; margin:0;" onclick="resetInput()">Nhập lại</button>
+                <button class="btn btn-sub" style="width:auto; padding:5px 10px; margin:0;" onclick="resetInput()">Nhập lại</button>
             </div>
 
             <div class="input-group">
@@ -39,14 +38,14 @@
             <div class="status-box" id="statusMsg">Chưa kích hoạt - Vui lòng nhập Key để vào trang tác vụ</div>
         </div>
 
-        <!-- THÔNG TIN ADMIN CÓ AVT HIEU.JPG -->
+        <!-- THÔNG TIN ADMIN -->
         <div class="card" style="display:flex; align-items:center; gap:15px;">
             <div style="width:50px; height:50px; border-radius:50%; background:#333; overflow:hidden; border: 2px solid #e50914; flex-shrink: 0;">
                 <img src="HIEU.jpg" alt="HieuLive" style="width:100%; height:100%; object-fit: cover;">
             </div>
             <div>
-                <h3 style="font-size:16px;">HieuLive</h3>
-                <p style="font-size:12px; color:var(--text-sub);">HieuLive / Admin</p>
+                <h3 style="font-size:16px; margin:0;">HieuLive</h3>
+                <p style="font-size:12px; color:var(--text-sub); margin:5px 0 0 0;">HieuLive / Admin</p>
             </div>
         </div>
 
@@ -83,7 +82,7 @@
         </div>
     </div>
 
-    <!-- TAB 3: BOOST (TÁC VỤ) -->
+    <!-- TAB 3: BOOST -->
     <div id="tab-boost" class="tab-content">
         <div class="card">
             <h4 style="color:var(--text-sub); font-size:12px; margin-bottom:15px;">FREE FIRE BOOSTER</h4>
@@ -114,9 +113,9 @@
 </div>
 
 <!-- NAV BAR 4 TAB (ẨN LÚC ĐẦU) -->
-<div class="bottom-nav hidden" id="bottomNav" style="display: none !important;">
-    <button class="nav-btn active" onclick="switchTab('home', this)"><span>Home</span></button>
-    <button class="nav-btn" onclick="switchTab('func', this)"><span>Func</span></button>
+<div class="bottom-nav hidden" id="bottomNav">
+    <button class="nav-btn" onclick="switchTab('home', this)"><span>Home</span></button>
+    <button class="nav-btn active" onclick="switchTab('func', this)"><span>Func</span></button>
     <button class="nav-btn" onclick="switchTab('boost', this)"><span>Boost</span></button>
     <button class="nav-btn" onclick="switchTab('settings', this)"><span>Cài đặt</span></button>
 </div>
