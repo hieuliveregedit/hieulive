@@ -1,6 +1,6 @@
 // KẾT NỐI SUPABASE CHUẨN XÁC
 const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let isKeyValid = false;
@@ -12,13 +12,25 @@ function switchTab(tabId, btn) {
         return;
     }
 
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.bottom-nav .nav-btn, .nav-btn').forEach(b => b.classList.remove('active'));
+    // Ẩn tất cả các tab
+    document.querySelectorAll('.tab-content').forEach(t => {
+        t.classList.remove('active');
+        t.style.display = 'none';
+    });
+
+    // Bỏ active tất cả các nút bấm menu
+    document.querySelectorAll('.bottom-nav button, .nav-btn').forEach(b => {
+        b.classList.remove('active');
+    });
     
+    // Hiện tab được chọn
     const target = document.getElementById('tab-' + tabId);
     if (target) {
         target.classList.add('active');
+        target.style.display = 'block';
     }
+    
+    // Sáng nút được bấm
     if (btn) {
         btn.classList.add('active');
     }
@@ -39,7 +51,7 @@ async function checkKey() {
 
     // MỞ KHÓA NẾU LÀ KEY CỨNG 123456
     if (keyVal === "123456") {
-        thanhCongVaChuyenTab();
+        moKhoaThanhCong();
         return;
     }
 
@@ -57,7 +69,7 @@ async function checkKey() {
         }
 
         if (data && data.length > 0) {
-            thanhCongVaChuyenTab();
+            moKhoaThanhCong();
         } else {
             statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc chưa kích hoạt ❌";
             statusMsg.style.color = "#ff4d4d";
@@ -69,36 +81,41 @@ async function checkKey() {
     }
 }
 
-// Hàm xử lý khi đúng key: Mở khóa thanh menu và TỰ ĐỘNG CHUYỂN SANG TAB FUNC
-function thanhCongVaChuyenTab() {
+// Hàm xử lý khi đúng key: Hiện menu dưới và nhảy sang tab Func
+function moKhoaThanhCong() {
     isKeyValid = true;
     const statusMsg = document.getElementById("statusMsg");
     statusMsg.innerText = "Trạng thái: Đã kích hoạt thành công! ✅";
     statusMsg.style.color = "#28a745";
 
-    // Hiện thanh điều hướng dưới lên
+    // 1. HIỆN THANH ĐIỀU HƯỚNG 4 NÚT Ở DƯỚI LÊN
     const nav = document.getElementById("bottomNav");
     if(nav) {
         nav.style.display = "flex";
         nav.classList.remove("hidden");
     }
 
-    // TỰ ĐỘNG CHUYỂN SANG TAB 'func' (Tác vụ)
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.bottom-nav .nav-btn, .nav-btn').forEach(b => b.classList.remove('active'));
+    // 2. ẨN TẤT CẢ CÁC TAB HIỆN TẠI (Đặc biệt là ẩn tab-home đi)
+    document.querySelectorAll('.tab-content').forEach(t => {
+        t.classList.remove('active');
+        t.style.display = 'none';
+    });
 
+    // 3. HIỆN TAB 'func' (Tác vụ) LÊN
     const funcTab = document.getElementById('tab-func');
     if(funcTab) {
         funcTab.classList.add('active');
+        funcTab.style.display = 'block';
     }
 
-    // Kích hoạt sáng nút Func trên menu (nút thứ 2)
-    const funcBtn = document.querySelectorAll('.bottom-nav .nav-btn')[1] || document.querySelector('.nav-btn:nth-child(2)');
-    if(funcBtn) {
-        funcBtn.classList.add('active');
+    // 4. LÀM SÁNG NÚT 'Func' TRÊN THANH MENU
+    const buttons = document.querySelectorAll('.bottom-nav button, .nav-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+    if(buttons.length > 1) {
+        buttons[1].classList.add('active'); // Nút thứ 2 là Func
     }
 
-    alert("Kích hoạt thành công! Đang chuyển sang trang tác vụ...");
+    alert("Kích hoạt thành công! Đã mở khóa các tính năng.");
 }
 
 function resetInput() {
