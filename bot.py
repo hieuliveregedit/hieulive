@@ -1,40 +1,20 @@
-import os, random, string, requests
+import os
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
+# Lấy Token từ biến môi trường BOT_TOKEN trên Render
+TOKEN = os.getenv("BOT_TOKEN")
 
-def tao_key():
-    p1 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    p2 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    p3 = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))
-    return f"VIPLOCK-{p1}-{p2}-{p3}"
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Chào bạn! Nhấn /getkey để lấy Key nhé.")
 
-async def genkey(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.effective_user.id != ADMIN_ID:
-        await update.message.reply_text("❌ Bạn không có quyền!")
-        return
-
-    days = int(context.args[0]) if context.args else 30
-    key_code = tao_key()
-
-    headers = {
-        "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {"key_code": key_code, "duration_days": days}
-    res = requests.post(f"{SUPABASE_URL}/rest/v1/keys", json=data, headers=headers)
-
-    if res.status_code in [200, 201]:
-        await update.message.reply_text(f"🎉 **KEY MỚI:** `{key_code}`\n⏳ Hạn dùng: {days} ngày", parse_mode="Markdown")
-    else:
-        await update.message.reply_text("❌ Lỗi lưu Database!")
+async def getkey(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # Bạn có thể sửa chữ 'KEY-KEOTAM-123456' thành key của bạn
+    await update.message.reply_text("Key kéo tâm của bạn là: KEY-KEOTAM-123456")
 
 if __name__ == '__main__':
-    app = Application.builder().token(TELEGRAM_TOKEN).build()
-    app.add_handler(CommandHandler("genkey", genkey))
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("getkey", getkey))
+    print("Bot đang chạy...")
     app.run_polling()
