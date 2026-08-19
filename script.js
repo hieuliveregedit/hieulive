@@ -1,6 +1,6 @@
 // KẾT NỐI SUPABASE
 const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-const SUPABASE_KEY = "SERVICE_ROLE_HOAC_ANON_KEY_CUA_BAN"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let isKeyValid = false;
@@ -19,7 +19,7 @@ function switchTab(tabId, btn) {
     btn.classList.add('active');
 }
 
-// Kiểm Tra Key trên Supabase (Khớp với cột key_code và is_active)
+// Kiểm Tra Key trên Supabase
 async function checkKey() {
     const keyVal = document.getElementById("keyInput").value.trim();
     const statusMsg = document.getElementById("statusMsg");
