@@ -2,241 +2,102 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIPLOCK - HieuLive API App Hỗ Trợ Kéo Tâm</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIPLOCK DASHBOARD</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { background-color: #121212; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 12px; max-width: 400px; margin: auto; border: 1px solid #333; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 6px; border: none; text-align: center; }
+        button { width: 95%; padding: 12px; margin: 5px 0; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; background: #e50914; color: white; }
+        .func-btn { background: #333; cursor: not-allowed; opacity: 0.5; }
+        .active-btn { background: #28a745 !important; cursor: pointer !important; opacity: 1 !important; }
+        .status { margin-top: 10px; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-<div class="mobile-container">
+<div class="card">
+    <h2>VIPLOCK DASHBOARD</h2>
+    
+    <input type="text" id="keyInput" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
+    <button onclick="checkAndActivateKey()">KÍCH HOẠT (1 THIẾT BỊ)</button>
 
-    <!-- TAB 1: HOME -->
-    <div id="tab-home" class="tab-content active">
-        <div class="header-title">
-            <div class="sub">PREMIUM MOBILE DASHBOARD</div>
-            <div class="main">VIPLOCK</div>
-        </div>
+    <p id="statusMsg" class="status" style="color: #ff4d4d;">Trạng thái: Chưa kích hoạt Key</p>
 
-        <!-- KHUNG NHẬP KEY KÍCH HOẠT -->
-        <div class="card">
-            <div class="info-title">HIEULIVE V4 API KEY</div>
-            <input type="text" id="license-key" class="input-box" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
-            
-            <div class="grid-2x2" style="margin-top:0; margin-bottom:12px;">
-                <button class="btn-social" onclick="pasteKey()">📋 Dán</button>
-                <button class="btn-social" onclick="clearKey()">🗑️ Xóa</button>
-            </div>
+    <hr style="border-color: #333; margin: 20px 0;">
 
-            <div class="info-title">MÃ THIẾT BỊ (HWID)</div>
-            <input type="text" id="hwid" class="input-box" value="67131251-0A5B-4A22-87F7-5AC791F2799B" readonly>
-            <button class="btn-social" style="width:100%; margin-bottom:12px;" onclick="copyHWID()">📋 Sao chép mã thiết bị</button>
-
-            <button class="btn-action" onclick="checkKey()">KIỂM TRA KEY</button>
-            <button class="btn-action btn-secondary" onclick="activateKey()">KÍCH HOẠT (1 THIẾT BỊ)</button>
-        </div>
-
-        <!-- PROFILE & THÔNG TIN -->
-        <div class="card profile-card">
-            <img src="https://via.placeholder.com/100/e61c43/ffffff?text=HL" alt="Avatar" class="avatar">
-            <div class="profile-info">
-                <h3>Hieu Live</h3>
-                <p>Developer / Admin</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="grid-2x2">
-                <button class="btn-social">Telegram</button>
-                <button class="btn-social">Zalo</button>
-                <button class="btn-social">TikTok 1</button>
-                <button class="btn-social">TikTok 2</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="info-title">THÔNG TIN ỨNG DỤNG</div>
-            <div class="info-row">
-                <span class="info-label">Tên ứng dụng</span>
-                <span class="info-val">VIPLOCK</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Giao diện</span>
-                <span class="info-val highlight">Dark Neon Red</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Điều hướng</span>
-                <span class="info-val">4 Tab</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Game hỗ trợ</span>
-                <span class="info-val highlight">Free Fire / Free Fire MAX</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Booster mặc định</span>
-                <span class="info-val">100%</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Ngôn ngữ</span>
-                <span class="info-val">Tiếng Việt</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Quản trị</span>
-                <span class="info-val blue">Hieu Live</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: FUNC -->
-    <div id="tab-func" class="tab-content">
-        <div class="header-title">
-            <div class="sub">SYSTEM FUNCTION VIP</div>
-            <div class="main">VIPLOCK</div>
-        </div>
-
-        <div class="card">
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>AIMLOCK</h4>
-                    <p>Bám đầu thông minh - AI tự động căn chuẩn điểm ngắm</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>STABILITY ASSIST</h4>
-                    <p>Nhẹ tâm - Ổn định đường ngắm, giảm độ trôi</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>AIM HOLD</h4>
-                    <p>Ghim tâm - Giữ cố định điểm ngắm khi tấn công</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>AIM LOCKDOWN</h4>
-                    <p>Đằm tâm - Khóa vị trí ngắm chắc chắn</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>SENSITIVITY BOOSTER</h4>
-                    <p>Nhạy - Tăng độ nhạy cảm ứng và phản hồi</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>HEADSHOT FIX</h4>
-                    <p>Fix lỗi đầu - Hiệu chỉnh sai số điểm ngắm</p>
-                </div>
-                <label class="switch"><input type="checkbox"><span class="slider"></span></label>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 3: BOOST -->
-    <div id="tab-boost" class="tab-content">
-        <div class="header-title">
-            <div class="sub">BOOSTER & ALIGNMENT</div>
-            <div class="main">VIPLOCK</div>
-        </div>
-
-        <div class="card">
-            <div class="range-group">
-                <div class="range-header"><span>AIMLOCK</span><span id="v1">50%</span></div>
-                <input type="range" class="range-slider" min="0" max="100" value="50" oninput="updateVal('v1', this.value)">
-            </div>
-            <div class="range-group">
-                <div class="range-header"><span>STABILITY ASSIST</span><span id="v2">70%</span></div>
-                <input type="range" class="range-slider" min="0" max="100" value="70" oninput="updateVal('v2', this.value)">
-            </div>
-            <div class="range-group">
-                <div class="range-header"><span>AIM HOLD</span><span id="v3">60%</span></div>
-                <input type="range" class="range-slider" min="0" max="100" value="60" oninput="updateVal('v3', this.value)">
-            </div>
-            <div class="range-group">
-                <div class="range-header"><span>HEADSHOT FIX</span><span id="v4">80%</span></div>
-                <input type="range" class="range-slider" min="0" max="100" value="80" oninput="updateVal('v4', this.value)">
-            </div>
-            <div class="range-group">
-                <div class="range-header"><span>BULLET ALIGN</span><span id="v5">90%</span></div>
-                <input type="range" class="range-slider" min="0" max="100" value="90" oninput="updateVal('v5', this.value)">
-            </div>
-            <button class="btn-action">KÍCH HOẠT BOOSTER</button>
-        </div>
-    </div>
-
-    <!-- TAB 4: SETTINGS -->
-    <div id="tab-settings" class="tab-content">
-        <div class="header-title">
-            <div class="sub">BẢNG CÀI ĐẶT CAO CẤP</div>
-            <div class="main">CÀI ĐẶT</div>
-        </div>
-
-        <div class="card">
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>Hiệu ứng âm thanh</h4>
-                    <p>Phản hồi âm thanh giao diện</p>
-                </div>
-                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>Thông báo</h4>
-                    <p>Thông báo nhanh của hệ thống</p>
-                </div>
-                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>Lớp bảo mật</h4>
-                    <p>Giữ lớp bảo vệ premium luôn hoạt động</p>
-                </div>
-                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-            </div>
-            <div class="control-item">
-                <div class="control-text">
-                    <h4>Tự động tối ưu</h4>
-                    <p>Giữ cấu hình runtime luôn sẵn sàng</p>
-                </div>
-                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
-            </div>
-        </div>
-
-        <div class="card">
-            <button class="btn-action btn-secondary" style="margin-bottom:8px;">ĐẶT LẠI CẤU HÌNH</button>
-            <button class="btn-action" style="background:#4a0d18;">ĐĂNG XUẤT</button>
-        </div>
-    </div>
-
+    <h3>CHỨC NĂNG GAME</h3>
+    <button id="btnAim" class="func-btn" onclick="toggleFunc('btnAim', 'Aimlock')">BẬT AIMLOCK (LOCK 99%)</button>
+    <button id="btnHead" class="func-btn" onclick="toggleFunc('btnHead', 'Kéo Tâm Auto')">BẬT KÉO TÂM AUTO</button>
 </div>
 
-<!-- BOTTOM NAVIGATION (4 TAB) -->
-<div class="bottom-nav">
-    <div class="nav-item active" onclick="switchTab('tab-home', this)">
-        <span class="nav-icon">🏠</span>
-        <span>Home</span>
-    </div>
-    <div class="nav-item" onclick="switchTab('tab-func', this)">
-        <span class="nav-icon">⚙️</span>
-        <span>Func</span>
-    </div>
-    <div class="nav-item" onclick="switchTab('tab-boost', this)">
-        <span class="nav-icon">⚡</span>
-        <span>Boost</span>
-    </div>
-    <div class="nav-item" onclick="switchTab('tab-settings', this)">
-        <span class="nav-icon">🛠️</span>
-        <span>Cài đặt</span>
-    </div>
-</div>
+<script>
+    // Điền thông tin Supabase của bạn
+    const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
+    const SUPABASE_KEY = "SERVICE_ROLE_HOAC_ANON_KEY_CUA_BAN"; 
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-<script src="script.js"></script>
+    let isActivated = false;
+
+    async function checkAndActivateKey() {
+        const keyVal = document.getElementById("keyInput").value.trim();
+        const statusMsg = document.getElementById("statusMsg");
+
+        if (!keyVal) {
+            alert("Vui lòng nhập Key trước!");
+            return;
+        }
+
+        statusMsg.innerText = "Đang kiểm tra Key...";
+        statusMsg.style.color = "#ffc107";
+
+        try {
+            // Kiểm tra key trong bảng 'keys' trên Supabase
+            const { data, error } = await _supabase
+                .from('keys')
+                .select('*')
+                .eq('key', keyVal)
+                .eq('status', 'active');
+
+            if (data && data.length > 0) {
+                isActivated = true;
+                statusMsg.innerText = "Trạng thái: Đã Kích Hoạt Thành Công! ✅";
+                statusMsg.style.color = "#28a745";
+
+                // Mở khóa tất cả nút chức năng
+                document.getElementById("btnAim").classList.add("active-btn");
+                document.getElementById("btnHead").classList.add("active-btn");
+                alert("Kích hoạt thành công! Các tác vụ Aimlock đã được mở khóa.");
+            } else {
+                statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc đã hết hạn ❌";
+                statusMsg.style.color = "#ff4d4d";
+                alert("Key sai hoặc không tồn tại!");
+            }
+        } catch (err) {
+            statusMsg.innerText = "Lỗi kết nối máy chủ!";
+            console.error(err);
+        }
+    }
+
+    function toggleFunc(btnId, funcName) {
+        if (!isActivated) {
+            alert("Bạn phải nhập Key chuẩn và bấm 'KÍCH HOẠT' thì mới dùng được nút này!");
+            return;
+        }
+
+        const btn = document.getElementById(btnId);
+        if (btn.innerText.includes("BẬT")) {
+            btn.innerText = "TẮT " + funcName.toUpperCase();
+            btn.style.background = "#dc3545";
+            alert("Đã kích hoạt tác vụ: " + funcName);
+        } else {
+            btn.innerText = "BẬT " + funcName.toUpperCase();
+            btn.style.background = "#28a745";
+            alert("Đã tắt tác vụ: " + funcName);
+        }
+    }
+</script>
+
 </body>
 </html>
