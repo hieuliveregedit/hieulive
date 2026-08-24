@@ -1,26 +1,27 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
-const token = '8849614440:AAEhTf2xy89_ajYvk32tOeLdJNQcOq8yLkY';
+// Token mới đã được cập nhật
+const token = '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
 const bot = new TelegramBot(token, { polling: true });
 
 const app = express();
 app.use(express.json());
 
-// Database lưu trữ key tạm thời trên RAM
+// Cơ sở dữ liệu lưu Key tạm thời trên RAM
 global.keyDatabase = {};
 
-// Lệnh /taokey trên Telegram
+// Lệnh /taokey gửi qua Telegram
 bot.onText(/\/taokey/, (msg) => {
     const chatId = msg.chat.id;
     const newKey = 'HL-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
     
     global.keyDatabase[newKey] = { status: 'unused', hwid: null };
 
-    bot.sendMessage(chatId, `✅ Đã tạo Key thành công!\n\n🔑 Mã Key: \`${newKey}\`\n📌 Giới hạn: 1 Máy duy nhất\n⚡ Trạng thái: Chưa sử dụng`, { parse_mode: 'Markdown' });
+    bot.sendMessage(chatId, `✅ **Đã tạo Key thành công!**\n\n🔑 Mã Key: \`${newKey}\`\n📌 Giới hạn: 1 Thiết bị duy nhất\n⚡ Trạng thái: Chưa sử dụng`, { parse_mode: 'Markdown' });
 });
 
-// API xác thực từ Web gửi sang
+// API nhận yêu cầu kiểm tra Key từ trang Web
 app.post('/api/verify', (req, res) => {
     const { key, hwid } = req.body;
 
