@@ -8,7 +8,6 @@ body {
     box-shadow: 0 0 25px rgba(139, 0, 0, 0.18);
 }
 
-/* Tùy chỉnh nút bật tắt (Toggle switch) */
 .custom-toggle {
     appearance: none;
     width: 36px;
@@ -43,7 +42,6 @@ body {
     background-color: #ffffff;
 }
 
-/* Tùy chỉnh thanh trượt (Range Slider) */
 .custom-range {
     accent-color: #8b0000;
     background: #1f1217;
