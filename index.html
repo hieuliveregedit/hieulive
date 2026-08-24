@@ -6,17 +6,6 @@
     <title>AIMLOCK HL VER2 MOBILE DASHBOARD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Cấu hình PWA & Android App -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#9333ea">
-    <meta name="mobile-web-app-capable" content="yes">
-
-    <!-- Cấu hình Web Clip cực xịn cho iOS / Safari dùng ảnh HIEU.jpg -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Aimlock">
-    <link rel="apple-touch-icon" href="HIEU.jpg">
 </head>
 <body class="pb-28 select-none">
 
@@ -86,11 +75,6 @@
                 <a href="https://www.tiktok.com/@hieulivene" target="_blank" id="btn-tiktok1" class="bg-[#100d14] border border-[#2a1b3d] hover:border-[#4c2875] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition text-center block no-underline">🎵 TikTok 1</a>
                 <a href="https://www.tiktok.com/@BACGAUREAL_01" target="_blank" id="btn-tiktok2" class="bg-[#100d14] border border-[#2a1b3d] hover:border-[#4c2875] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition text-center block no-underline">🎵 TikTok 2</a>
             </div>
-
-            <!-- Nút Cài đặt ứng dụng / Web Clip ra màn hình chính -->
-            <button onclick="playSound(); installApp()" class="w-full py-3 bg-gradient-to-r from-purple-700 to-purple-600 hover:opacity-90 text-white rounded-2xl text-xs font-bold shadow-lg shadow-purple-950/50 flex items-center justify-center gap-2 transition">
-                <span>📱</span> TẢI & CÀI ĐẶT ỨNG DỤNG LÊN MÁY
-            </button>
 
             <div class="bg-[#100d14] border border-[#2a1b3d] rounded-3xl p-4 space-y-3">
                 <h3 class="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">Thông tin ứng dụng</h3>
@@ -288,7 +272,6 @@
             </div>
 
             <div class="space-y-2 pt-1">
-                <button onclick="playSound(); installApp()" class="w-full bg-[#181124] hover:bg-[#231935] text-[#c084fc] border border-[#33204a] py-3 rounded-2xl text-xs font-bold transition">📲 CÀI ĐẶT LÊN MÀN HÌNH CHÍNH</button>
                 <button onclick="playSound(); alert('Đã đặt lại cấu hình AIMLOCK HIEULIVE!')" class="w-full bg-[#100d14] border border-[#2a1b3d] hover:border-[#4c2875] text-zinc-300 py-3 rounded-2xl text-xs font-bold transition">ĐẶT LẠI CẤU HÌNH</button>
                 <button onclick="playSound(); logout()" class="w-full bg-[#100d14] border border-[#4a1c2b] text-[#f472b6] hover:bg-[#1f0c16] py-3 rounded-2xl text-xs font-bold transition">ĐĂNG XUẤT</button>
             </div>
