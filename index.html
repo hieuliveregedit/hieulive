@@ -13,7 +13,7 @@
     <div id="auth-screen" class="p-5 max-w-md mx-auto min-h-screen flex flex-col justify-center">
         <div class="bg-[#120e11]/90 border border-[#2a171c] rounded-3xl p-6 custom-glow space-y-5">
             <div class="text-center">
-                <h1 class="text-sm font-black tracking-widest text-[#ff4d6d]">UCHIHA V4 API SERVER KEY</h1>
+                <h1 class="text-sm font-black tracking-widest text-[#ff4d6d]">HIEU LIVE API SERVER KEY</h1>
                 <p class="text-[11px] text-zinc-500 mt-1">Nhập key từ hệ thống Telegram Bot</p>
             </div>
 
@@ -61,29 +61,30 @@
         <!-- TAB 1: HOME -->
         <div id="tab-home" class="space-y-4">
             <div class="bg-[#140e11] border border-[#25171c] rounded-3xl p-4 flex items-center gap-4">
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100" class="w-14 h-14 rounded-2xl object-cover border border-[#3b2027]">
+                <!-- Đã cập nhật ảnh đại diện mới theo yêu cầu -->
+                <img src="image_d307a8.jpg" class="w-14 h-14 rounded-2xl object-cover border border-[#3b2027]" alt="Hieu Live Avatar">
                 <div>
-                    <h2 class="font-bold text-sm text-white">Đức Thắng</h2>
-                    <p class="text-xs text-zinc-500">Developer / Admin</p>
+                    <h2 class="font-bold text-sm text-white">Hieu Live</h2>
+                    <p class="text-xs text-zinc-500">Streamer / Admin</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                <button class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">Telegram</button>
-                <button class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">Zalo</button>
-                <button class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">TikTok 1</button>
-                <button class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">TikTok 2</button>
+                <button id="btn-telegram" class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">Telegram</button>
+                <button id="btn-zalo" class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">Zalo</button>
+                <button id="btn-tiktok1" class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">TikTok 1</button>
+                <button id="btn-tiktok2" class="bg-[#140e11] border border-[#25171c] hover:border-[#3b2027] p-3 rounded-2xl text-xs font-medium text-zinc-300 transition">TikTok 2</button>
             </div>
 
             <div class="bg-[#140e11] border border-[#25171c] rounded-3xl p-4 space-y-3">
                 <h3 class="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">Thông tin ứng dụng</h3>
-                <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Tên ứng dụng</span> <span class="font-semibold text-zinc-300">UULTRALOCK</span></div>
+                <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Tên ứng dụng</span> <span class="font-semibold text-zinc-300">ULTRALOCK</span></div>
                 <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Giao diện</span> <span class="font-semibold text-[#ff758c]">Dark Neon Red</span></div>
                 <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Điều hướng</span> <span class="font-semibold text-zinc-300">5 Tab</span></div>
                 <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Game hỗ trợ</span> <span class="font-semibold text-[#f59e0b]">Free Fire / Free Fire MAX</span></div>
                 <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Booster mặc định</span> <span class="font-semibold text-zinc-300">100%</span></div>
                 <div class="flex justify-between text-xs py-1.5 border-b border-[#201317]"><span class="text-zinc-500">Ngôn ngữ</span> <span class="font-semibold text-zinc-300">Tiếng Việt</span></div>
-                <div class="flex justify-between text-xs py-1.5"><span class="text-zinc-500">Quản trị</span> <span class="font-semibold text-[#3b82f6]">Đức Thắng</span></div>
+                <div class="flex justify-between text-xs py-1.5"><span class="text-zinc-500">Quản trị</span> <span class="font-semibold text-[#3b82f6]">Hieu Live</span></div>
             </div>
         </div>
 
@@ -91,7 +92,6 @@
         <div id="tab-func" class="space-y-3 hidden">
             <div class="text-[10px] font-bold text-zinc-500 px-1 tracking-wider uppercase">System Funciton VIP</div>
             
-            <!-- Item 1 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">🎯</div>
@@ -106,7 +106,6 @@
                 </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">📈</div>
@@ -121,7 +120,6 @@
                 </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">🔒</div>
@@ -136,7 +134,6 @@
                 </div>
             </div>
 
-            <!-- Item 4 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">🛡️</div>
@@ -151,7 +148,6 @@
                 </div>
             </div>
 
-            <!-- Item 5 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">⚡</div>
@@ -166,7 +162,6 @@
                 </div>
             </div>
 
-            <!-- Item 6 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">🖥️</div>
@@ -181,7 +176,6 @@
                 </div>
             </div>
 
-            <!-- Item 7 -->
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">👑</div>
@@ -197,7 +191,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: BOOST (Thanh trượt Sliders & Vòng tròn %) -->
+        <!-- TAB 3: BOOST -->
         <div id="tab-boost" class="space-y-4 hidden">
             <div class="grid grid-cols-2 gap-3">
                 <div class="bg-[#140e11] border border-[#25171c] p-3.5 rounded-3xl text-center space-y-1">
@@ -219,33 +213,27 @@
                     <button class="bg-[#8b0000] hover:bg-[#a50000] text-white text-[10px] font-bold px-4 py-2 rounded-xl transition">BOOSTER</button>
                 </div>
 
-                <!-- Slider 1 -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">01 AIMLOCK</span><span id="s1-val" class="text-[#ff4d6d] font-mono">0%</span></div>
                     <input type="range" min="0" max="100" value="0" oninput="updateBoostVal('s1-val', this.value)" class="w-full custom-range">
                 </div>
-                <!-- Slider 2 -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">02 STABILITY ASSIST</span><span id="s2-val" class="text-[#ff4d6d] font-mono">0%</span></div>
                     <input type="range" min="0" max="100" value="0" oninput="updateBoostVal('s2-val', this.value)" class="w-full custom-range">
                 </div>
-                <!-- Slider 3 -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">03 AIM HOLD</span><span id="s3-val" class="text-[#ff4d6d] font-mono">0%</span></div>
                     <input type="range" min="0" max="100" value="0" oninput="updateBoostVal('s3-val', this.value)" class="w-full custom-range">
                 </div>
-                <!-- Slider 4 -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">04 HEADSHOT FIX</span><span id="s4-val" class="text-[#ff4d6d] font-mono">0%</span></div>
                     <input type="range" min="0" max="100" value="0" oninput="updateBoostVal('s4-val', this.value)" class="w-full custom-range">
                 </div>
-                <!-- Slider 5 -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">05 BULLET ALIGN</span><span id="s5-val" class="text-[#ff4d6d] font-mono">0%</span></div>
                     <input type="range" min="0" max="100" value="0" oninput="updateBoostVal('s5-val', this.value)" class="w-full custom-range">
                 </div>
 
-                <!-- Thống kê vòng tròn -->
                 <div class="bg-[#0b080a] border border-[#221318] p-4 rounded-2xl flex items-center justify-between">
                     <div class="w-16 h-16 rounded-full border-2 border-[#5c0d15] bg-[#1a080d] flex items-center justify-center font-black text-white text-sm shadow-inner shadow-red-950">0%</div>
                     <div class="space-y-1.5 w-3/5 text-[11px]">
@@ -257,16 +245,17 @@
             </div>
         </div>
 
-        <!-- TAB 4: LIVE -->
+        <!-- TAB 4: LIVE (Đã chuyển thành tính năng Mở Game) -->
         <div id="tab-live" class="space-y-4 hidden">
             <div class="bg-[#140e11] border border-[#25171c] p-6 rounded-3xl text-center space-y-4">
                 <div class="w-14 h-14 bg-[#1f1217] border border-[#3b1e26] text-[#ff4d6d] rounded-2xl mx-auto flex items-center justify-center text-xl font-black">🔴</div>
-                <h2 class="font-bold text-sm text-white">Sẵn sàng khởi chạy trò chơi</h2>
-                <button onclick="alert('Đang mở Free Fire...')" class="w-full bg-[#8b0000] hover:bg-[#a50000] py-3 rounded-2xl text-xs font-bold text-white transition">MỞ GAME NGAY</button>
+                <h2 class="font-bold text-sm text-white">Khởi chạy game trực tiếp</h2>
+                <p class="text-[11px] text-zinc-500">Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire trên thiết bị của bạn.</p>
+                <button onclick="openGame()" class="w-full bg-[#8b0000] hover:bg-[#a50000] py-3 rounded-2xl text-xs font-bold text-white transition shadow-lg shadow-red-950">MỞ GAME NGAY</button>
             </div>
         </div>
 
-        <!-- TAB 5: CÀI ĐẶT (SETTINGS) -->
+        <!-- TAB 5: SETTINGS -->
         <div id="tab-settings" class="space-y-4 hidden">
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl space-y-2 text-center">
                 <h3 class="text-xs font-bold text-white">BẢNG CÀI ĐẶT CAO CẤP</h3>
@@ -317,7 +306,7 @@
             </div>
         </div>
 
-        <!-- THANH ĐIỀU HƯỚNG DƯỚI (BOTTOM NAVIGATION) -->
+        <!-- THANH ĐIỀU HƯỚNG DƯỚI -->
         <div class="fixed bottom-3 left-4 right-4 max-w-md mx-auto bg-[#100b0e]/95 backdrop-blur-md border border-[#27161b] rounded-3xl flex justify-around py-3 text-[10px] text-zinc-500 z-50 shadow-2xl">
             <button onclick="switchTab('home', this)" class="nav-btn flex flex-col items-center text-[#ff4d6d] transition">
                 <span class="text-base mb-0.5">🏠</span>
