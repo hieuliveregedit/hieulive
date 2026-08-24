@@ -191,14 +191,14 @@
 
         <!-- TAB 3: BOOST (Chọn FF / FF MAX & Tùy chỉnh slider) -->
         <div id="tab-boost" class="space-y-4 hidden">
-            <!-- Nút chọn phiên bản game -->
+            <!-- Nút chọn phiên bản game (ĐÃ THÊM ONCLICK CHO CẢ 2 NÚT) -->
             <div class="grid grid-cols-2 gap-3">
                 <button onclick="selectGame('ff')" id="card-ff" class="bg-[#140e11] border border-[#25171c] p-3.5 rounded-3xl text-center space-y-1 transition">
-                    <div class="w-10 h-10 mx-auto bg-[#1f1317] rounded-2xl flex items-center justify-center text-xs">🎮</div>
+                    <div class="w-10 h-10 mx-auto bg-[#1f1217] rounded-2xl flex items-center justify-center text-xs">🎮</div>
                     <div class="text-xs font-bold text-white">FREE FIRE</div>
                 </button>
                 <button onclick="selectGame('ffmax')" id="card-ffmax" class="bg-[#140e11] border border-[#8b0000] p-3.5 rounded-3xl text-center space-y-1 transition">
-                    <div class="w-10 h-10 mx-auto bg-[#1f1317] rounded-2xl flex items-center justify-center text-xs">🔥</div>
+                    <div class="w-10 h-10 mx-auto bg-[#1f1217] rounded-2xl flex items-center justify-center text-xs">🔥</div>
                     <div class="text-xs font-bold text-white">FREE FIRE MAX</div>
                 </button>
             </div>
@@ -212,25 +212,26 @@
                     <button onclick="applyBoost()" class="bg-[#8b0000] hover:bg-[#a50000] text-white text-[10px] font-bold px-4 py-2 rounded-xl transition">ÁP DỤNG</button>
                 </div>
 
+                <!-- SLIDERS (ĐÃ SỬA GỌI ĐÚNG HÀM VÀ THAM SỐ) -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">01 AIMLOCK</span><span id="s1-val" class="text-[#ff4d6d] font-mono">85%</span></div>
-                    <input type="range" id="slider-s1" min="0" max="100" value="85" oninput="updateBoostVal('slider-s1', 's1-val', 's1', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s1" min="0" max="100" value="85" oninput="updateBoostVal('s1', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">02 STABILITY ASSIST</span><span id="s2-val" class="text-[#ff4d6d] font-mono">90%</span></div>
-                    <input type="range" id="slider-s2" min="0" max="100" value="90" oninput="updateBoostVal('slider-s2', 's2-val', 's2', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s2" min="0" max="100" value="90" oninput="updateBoostVal('s2', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">03 AIM HOLD</span><span id="s3-val" class="text-[#ff4d6d] font-mono">80%</span></div>
-                    <input type="range" id="slider-s3" min="0" max="100" value="80" oninput="updateBoostVal('slider-s3', 's3-val', 's3', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s3" min="0" max="100" value="80" oninput="updateBoostVal('s3', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">04 HEADSHOT FIX</span><span id="s4-val" class="text-[#ff4d6d] font-mono">95%</span></div>
-                    <input type="range" id="slider-s4" min="0" max="100" value="95" oninput="updateBoostVal('slider-s4', 's4-val', 's4', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s4" min="0" max="100" value="95" oninput="updateBoostVal('s4', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">05 BULLET ALIGN</span><span id="s5-val" class="text-[#ff4d6d] font-mono">88%</span></div>
-                    <input type="range" id="slider-s5" min="0" max="100" value="88" oninput="updateBoostVal('slider-s5', 's5-val', 's5', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s5" min="0" max="100" value="88" oninput="updateBoostVal('s5', this.value)" class="w-full custom-range">
                 </div>
 
                 <div class="bg-[#0b080a] border border-[#221318] p-4 rounded-2xl flex items-center justify-between">
@@ -243,12 +244,12 @@
             </div>
         </div>
 
-        <!-- TAB 4: LIVE (Mở Game thông minh theo bản đã chọn) -->
+        <!-- TAB 4: LIVE -->
         <div id="tab-live" class="space-y-4 hidden">
             <div class="bg-[#140e11] border border-[#25171c] p-6 rounded-3xl text-center space-y-4">
                 <div class="w-14 h-14 bg-[#1f1217] border border-[#3b1e26] text-[#ff4d6d] rounded-2xl mx-auto flex items-center justify-center text-xl font-black">🔴</div>
                 <h2 id="open-game-title" class="font-bold text-sm text-white">Khởi chạy Free Fire MAX</h2>
-                <p id="open-game-desc" class="text-[11px] text-zinc-500">Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire MAX trực tiếp trên thiết bị.</p>
+                <p id="open-game-desc" class="text-[11px] text-zinc-500">Hệ thống sẽ kích hoạt giao thức mở ứng dụng trực tiếp trên thiết bị.</p>
                 <button onclick="openGame()" class="w-full bg-[#8b0000] hover:bg-[#a50000] py-3 rounded-2xl text-xs font-bold text-white transition shadow-lg shadow-red-950">MỞ GAME NGAY</button>
             </div>
         </div>
