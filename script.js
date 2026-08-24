@@ -157,21 +157,19 @@ function selectGame(type) {
     document.getElementById('slider-s4').value = cfg.s4;
     document.getElementById('slider-s5').value = cfg.s5;
 
-    document.getElementById('s1-val').innerText = cfg.s1 + '%';
-    document.getElementById('s2-val').innerText = cfg.s2 + '%';
-    document.getElementById('s3-val').innerText = cfg.s3 + '%';
-    document.getElementById('s4-val').innerText = cfg.s4 + '%';
-    document.getElementById('s5-val').innerText = cfg.s5 + '%';
+    document.getElementById('slider-s1-val').innerText = cfg.s1 + '%';
+    document.getElementById('slider-s2-val').innerText = cfg.s2 + '%';
+    document.getElementById('slider-s3-val').innerText = cfg.s3 + '%';
+    document.getElementById('slider-s4-val').innerText = cfg.s4 + '%';
+    document.getElementById('slider-s5-val').innerText = cfg.s5 + '%';
 
     const avg = Math.round((cfg.s1 + cfg.s2 + cfg.s3 + cfg.s4 + cfg.s5) / 5);
     document.getElementById('total-boost-circle').innerText = avg + '%';
 }
 
 function updateBoostVal(sliderId, val) {
-    // Cập nhật giá trị hiển thị bên cạnh thanh trượt tương ứng
     document.getElementById(sliderId + '-val').innerText = val + '%';
 
-    // Lấy giá trị của tất cả 5 thanh trượt tính toán chuẩn xác vòng tròn tổng
     let s1 = parseInt(document.getElementById('slider-s1').value) || 0;
     let s2 = parseInt(document.getElementById('slider-s2').value) || 0;
     let s3 = parseInt(document.getElementById('slider-s3').value) || 0;
@@ -186,18 +184,41 @@ function applyBoost() {
     alert('Đã áp dụng thông số cấu hình AIMLOCK HIEULIVE thành công!');
 }
 
+/* HÀM MỞ GAME TỰ ĐỘNG NHẬN DIỆN CẢ ANDROID LẪN IOS */
 function openGame() {
+    const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
     const pkgFF = "com.dts.freefireth";
     const pkgMax = "com.dts.freefiremax";
     const targetPkg = (selectedGameType === 'ff') ? pkgFF : pkgMax;
-    const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
 
-    // Kích hoạt giao thức mở app trên thiết bị di động
-    window.location.href = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
+    // Kiểm tra nền tảng thiết bị
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
-    setTimeout(() => {
-        alert('Đã gửi lệnh kích hoạt ' + gameName + '! Vui lòng mở game trực tiếp từ màn hình chính nếu thiết bị chặn tự động mở.');
-    }, 400);
+    if (isIOS) {
+        // --- XỬ LÝ RIÊNG CHO iOS (IPHONE / IPAD) ---
+        const scheme = (selectedGameType === 'ff') ? 'freefire://' : 'freefiremax://';
+        
+        // Dùng iframe ẩn để kích hoạt scheme an toàn trên Safari, tuyệt đối không văng lỗi địa chỉ không hợp lệ
+        let iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = scheme;
+        document.body.appendChild(iframe);
+        
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+            alert('Đã gửi lệnh kích hoạt ' + gameName + ' trên iOS! Nếu game chưa lên, hãy mở thủ công từ màn hình chính.');
+        }, 500);
+
+    } else {
+        // --- XỬ LÝ RIÊNG CHO ANDROID ---
+        // Sử dụng Intent chuẩn của Android Chrome để gọi thẳng gói ứng dụng
+        window.location.href = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
+
+        setTimeout(() => {
+            alert('Đã kích hoạt ' + gameName + ' trên Android! Nếu thiết bị chặn tự động, vui lòng mở game từ màn hình.');
+        }, 400);
+    }
 }
 
 function logout() {
