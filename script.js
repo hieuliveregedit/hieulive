@@ -168,10 +168,10 @@ function selectGame(type) {
 }
 
 function updateBoostVal(sliderId, val) {
-    // Cập nhật giá trị số hiển thị ngay cạnh thanh trượt
+    // Cập nhật giá trị hiển thị bên cạnh thanh trượt tương ứng
     document.getElementById(sliderId + '-val').innerText = val + '%';
 
-    // Tự động tính lại trung bình cộng của toàn bộ 5 thanh trượt để cập nhật vào vòng tròn tổng
+    // Lấy giá trị của tất cả 5 thanh trượt tính toán chuẩn xác vòng tròn tổng
     let s1 = parseInt(document.getElementById('slider-s1').value) || 0;
     let s2 = parseInt(document.getElementById('slider-s2').value) || 0;
     let s3 = parseInt(document.getElementById('slider-s3').value) || 0;
@@ -190,24 +190,14 @@ function openGame() {
     const pkgFF = "com.dts.freefireth";
     const pkgMax = "com.dts.freefiremax";
     const targetPkg = (selectedGameType === 'ff') ? pkgFF : pkgMax;
+    const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
 
-    const intentUrl = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
-    
-    try {
-        window.location.href = intentUrl;
-    } catch(e) {}
+    // Kích hoạt giao thức mở app trên thiết bị di động
+    window.location.href = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
 
     setTimeout(() => {
-        const storeUrl = "market://details?id=" + targetPkg;
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = storeUrl;
-        document.body.appendChild(iframe);
-        
-        setTimeout(() => {
-            document.body.removeChild(iframe);
-        }, 1000);
-    }, 500);
+        alert('Đã gửi lệnh kích hoạt ' + gameName + '! Vui lòng mở game trực tiếp từ màn hình chính nếu thiết bị chặn tự động mở.');
+    }, 400);
 }
 
 function logout() {
