@@ -60,7 +60,7 @@ function switchTab(tabName, el) {
     el.classList.add('text-[#ff4d6d]');
 }
 
-// Chuyển đổi qua lại giữa Free Fire và Free Fire MAX
+// Chuyển đổi qua lại giữa Free Fire thường và Free Fire MAX
 function selectGame(type) {
     selectedGameType = type;
     const btnFF = document.getElementById('card-ff');
@@ -89,10 +89,10 @@ function selectGame(type) {
     loadGameConfigToUI();
 }
 
-// Cập nhật giá trị khi kéo slider và tính toán lại vòng tròn
-function updateBoostVal(sliderId, valId, keyName, val) {
-    document.getElementById(valId).innerText = val + "%";
+// Cập nhật giá trị khi kéo slider từ 0 tới 100%
+function updateBoostVal(keyName, val) {
     gameConfigs[selectedGameType][keyName] = parseInt(val);
+    document.getElementById(keyName + '-val').innerText = val + "%";
     calculateTotalBoost();
 }
 
@@ -103,24 +103,14 @@ function calculateTotalBoost() {
     document.getElementById('total-boost-circle').innerText = avg + "%";
 }
 
-// Đưa dữ liệu từ bộ nhớ ra các thanh trượt trên giao diện
+// Đưa dữ liệu từ bộ nhớ ra các thanh trượt theo game đang chọn
 function loadGameConfigToUI() {
     const cfg = gameConfigs[selectedGameType];
     
-    document.getElementById('slider-s1').value = cfg.s1;
-    document.getElementById('s1-val').innerText = cfg.s1 + "%";
-
-    document.getElementById('slider-s2').value = cfg.s2;
-    document.getElementById('s2-val').innerText = cfg.s2 + "%";
-
-    document.getElementById('slider-s3').value = cfg.s3;
-    document.getElementById('s3-val').innerText = cfg.s3 + "%";
-
-    document.getElementById('slider-s4').value = cfg.s4;
-    document.getElementById('s4-val').innerText = cfg.s4 + "%";
-
-    document.getElementById('slider-s5').value = cfg.s5;
-    document.getElementById('s5-val').innerText = cfg.s5 + "%";
+    ['s1', 's2', 's3', 's4', 's5'].forEach(key => {
+        document.getElementById('slider-' + key).value = cfg[key];
+        document.getElementById(key + '-val').innerText = cfg[key] + "%";
+    });
 
     calculateTotalBoost();
 }
