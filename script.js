@@ -168,7 +168,18 @@ function selectGame(type) {
 }
 
 function updateBoostVal(sliderId, val) {
+    // Cập nhật giá trị số hiển thị ngay cạnh thanh trượt
     document.getElementById(sliderId + '-val').innerText = val + '%';
+
+    // Tự động tính lại trung bình cộng của toàn bộ 5 thanh trượt để cập nhật vào vòng tròn tổng
+    let s1 = parseInt(document.getElementById('slider-s1').value) || 0;
+    let s2 = parseInt(document.getElementById('slider-s2').value) || 0;
+    let s3 = parseInt(document.getElementById('slider-s3').value) || 0;
+    let s4 = parseInt(document.getElementById('slider-s4').value) || 0;
+    let s5 = parseInt(document.getElementById('slider-s5').value) || 0;
+
+    let avg = Math.round((s1 + s2 + s3 + s4 + s5) / 5);
+    document.getElementById('total-boost-circle').innerText = avg + '%';
 }
 
 function applyBoost() {
