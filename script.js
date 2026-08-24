@@ -5,7 +5,13 @@ if (!hwid) {
 }
 document.getElementById('device-id').value = hwid;
 
-let selectedGameType = 'ffmax'; // Mặc định là Free Fire MAX
+let selectedGameType = 'ffmax'; // Mặc định ban đầu là Free Fire MAX
+
+// Lưu trữ bộ thông số riêng biệt cho từng phiên bản game
+const gameConfigs = {
+    ff: { s1: 80, s2: 85, s3: 75, s4: 90, s5: 85 },
+    ffmax: { s1: 85, s2: 90, s3: 80, s4: 95, s5: 88 }
+};
 
 function copyDeviceID() {
     navigator.clipboard.writeText(hwid);
@@ -54,7 +60,7 @@ function switchTab(tabName, el) {
     el.classList.add('text-[#ff4d6d]');
 }
 
-// Chức năng chọn giữa Free Fire thường và Free Fire MAX
+// Chuyển đổi qua lại giữa Free Fire và Free Fire MAX
 function selectGame(type) {
     selectedGameType = type;
     const btnFF = document.getElementById('card-ff');
@@ -79,11 +85,44 @@ function selectGame(type) {
         openGameTitle.innerText = "Khởi chạy Free Fire MAX";
         openGameDesc.innerText = "Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire MAX trực tiếp trên thiết bị.";
     }
+
+    loadGameConfigToUI();
 }
 
-function updateBoostVal(id, val) {
-    document.getElementById(id).innerText = val + "%";
-    document.getElementById('total-boost-circle').innerText = val + "%";
+// Cập nhật giá trị khi kéo slider và tính toán lại vòng tròn
+function updateBoostVal(sliderId, valId, keyName, val) {
+    document.getElementById(valId).innerText = val + "%";
+    gameConfigs[selectedGameType][keyName] = parseInt(val);
+    calculateTotalBoost();
+}
+
+// Tính toán trung bình cộng để hiển thị vào vòng tròn tổng kết
+function calculateTotalBoost() {
+    const cfg = gameConfigs[selectedGameType];
+    const avg = Math.round((cfg.s1 + cfg.s2 + cfg.s3 + cfg.s4 + cfg.s5) / 5);
+    document.getElementById('total-boost-circle').innerText = avg + "%";
+}
+
+// Đưa dữ liệu từ bộ nhớ ra các thanh trượt trên giao diện
+function loadGameConfigToUI() {
+    const cfg = gameConfigs[selectedGameType];
+    
+    document.getElementById('slider-s1').value = cfg.s1;
+    document.getElementById('s1-val').innerText = cfg.s1 + "%";
+
+    document.getElementById('slider-s2').value = cfg.s2;
+    document.getElementById('s2-val').innerText = cfg.s2 + "%";
+
+    document.getElementById('slider-s3').value = cfg.s3;
+    document.getElementById('s3-val').innerText = cfg.s3 + "%";
+
+    document.getElementById('slider-s4').value = cfg.s4;
+    document.getElementById('s4-val').innerText = cfg.s4 + "%";
+
+    document.getElementById('slider-s5').value = cfg.s5;
+    document.getElementById('s5-val').innerText = cfg.s5 + "%";
+
+    calculateTotalBoost();
 }
 
 function applyBoost() {
@@ -91,13 +130,11 @@ function applyBoost() {
     alert("Đã áp dụng cấu hình tối ưu thành công cho " + gameName + "!");
 }
 
-// Hàm mở game chuẩn theo phiên bản đã chọn (Hỗ trợ gọi scheme trực tiếp)
+// Hàm mở game chuẩn theo phiên bản đã chọn
 function openGame() {
     if (selectedGameType === 'ff') {
-        // Scheme chuẩn của Free Fire thường
         window.location.href = "com.dts.freefireth://";
     } else {
-        // Scheme chuẩn của Free Fire MAX
         window.location.href = "com.dts.freefiremax://";
     }
     
@@ -112,7 +149,7 @@ function logout() {
     document.getElementById('auth-screen').classList.remove('hidden');
 }
 
-// Cấu hình sự kiện bấm các nút mạng xã hội
+// Sự kiện nút mạng xã hội
 document.getElementById('btn-telegram').addEventListener('click', () => {
     const link = prompt("Nhập link Telegram của bạn:", "https://t.me/");
     if (link) window.open(link, '_blank');
@@ -132,3 +169,6 @@ document.getElementById('btn-tiktok2').addEventListener('click', () => {
     const link = prompt("Nhập link TikTok 2 của bạn:", "https://tiktok.com/");
     if (link) window.open(link, '_blank');
 });
+
+// Chạy load cấu hình mặc định lúc đầu mở app
+loadGameConfigToUI();
