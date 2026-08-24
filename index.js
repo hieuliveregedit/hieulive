@@ -1,9 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const cors = require('cors'); // Thêm thư viện CORS
 
 const token = '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
-
-// Khởi tạo bot với polling nhưng tự động bắt lỗi để không làm sập server
 const bot = new TelegramBot(token, { 
     polling: {
         interval: 2000,
@@ -14,16 +13,12 @@ const bot = new TelegramBot(token, {
 
 const app = express();
 app.use(express.json());
+app.use(cors()); // Cho phép mọi trang web gọi API vào đây mà không bị chặn
 
-// Database lưu Key tạm thời trên RAM
 global.keyDatabase = {};
 
-// Bỏ qua lỗi polling conflict nếu có tiến trình cũ sót lại
-bot.on('polling_error', (error) => {
-    // Chỉ log lỗi ngầm, không làm dừng bot
-});
+bot.on('polling_error', (error) => {});
 
-// Lệnh /taokey trên Telegram
 bot.onText(/\/taokey/, (msg) => {
     const chatId = msg.chat.id;
     const newKey = 'HL-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -33,7 +28,6 @@ bot.onText(/\/taokey/, (msg) => {
     bot.sendMessage(chatId, `✅ **Đã tạo Key thành công!**\n\n🔑 Mã Key: \`${newKey}\`\n📌 Giới hạn: 1 Thiết bị duy nhất\n⚡ Trạng thái: Chưa sử dụng`, { parse_mode: 'Markdown' });
 });
 
-// API xác thực Key từ Web gửi sang
 app.post('/api/verify', (req, res) => {
     const { key, hwid } = req.body;
 
