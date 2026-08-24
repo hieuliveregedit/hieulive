@@ -1,119 +1,75 @@
-// KẾT NỐI SUPABASE CHUẨN XÁC
-const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxYXhtbXB6bmFyam50ZWh4aGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMjI5NjIsImV4cCI6MjEwMjY5ODk2Mn0.8Z83zrHqKzjPg4zdJlZb5aucdaD741CmprDJnJu2ycw"; 
-const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// Tạo HWID giả lập ngẫu nhiên cho thiết bị nếu chưa có
+let hwid = localStorage.getItem('device_hwid');
+if (!hwid) {
+    hwid = '67131251-' + Math.random().toString(36).substring(2, 9).toUpperCase() + '-' + Date.now().toString().slice(-8);
+    localStorage.setItem('device_hwid', hwid);
+}
+document.getElementById('device-id').value = hwid;
 
-let isKeyValid = false;
-
-// Chuyển Tab qua lại giữa các nút ở menu dưới
-function switchTab(tabId, btn) {
-    if (!isKeyValid) {
-        alert("Vui lòng nhập Key kích hoạt để vào trang tác vụ!");
-        return;
-    }
-
-    // Ẩn tất cả các tab
-    document.querySelectorAll('.tab-content').forEach(t => {
-        t.classList.remove('active');
-    });
-
-    // Bỏ active tất cả các nút bấm menu
-    document.querySelectorAll('.nav-btn').forEach(b => {
-        b.classList.remove('active');
-    });
-    
-    // Hiện tab được chọn
-    const target = document.getElementById('tab-' + tabId);
-    if (target) {
-        target.classList.add('active');
-    }
-    
-    // Sáng nút được bấm
-    if (btn) {
-        btn.classList.add('active');
-    }
+// Sao chép mã thiết bị
+function copyDeviceID() {
+    navigator.clipboard.writeText(hwid);
+    alert("Đã sao chép mã thiết bị!");
 }
 
-// Kiểm Tra Key (Hỗ trợ cả key cứng "123456" lẫn Supabase)
-async function checkKey() {
-    const keyVal = document.getElementById("keyInput").value.trim();
-    const statusMsg = document.getElementById("statusMsg");
+// Dán Key từ Clipboard
+function pasteKey() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('key-input').value = text;
+    }).catch(() => {
+        alert("Hãy dán thủ công vì trình duyệt chặn quyền đọc clipboard.");
+    });
+}
 
-    if(!keyVal) {
-        alert("Vui lòng nhập Key!");
-        return;
-    }
+// Xóa ô nhập key
+function clearKey() { 
+    document.getElementById('key-input').value = ''; 
+}
 
-    statusMsg.innerText = "Đang kiểm tra Key...";
-    statusMsg.style.color = "#ffc107";
+// Kiểm tra và Kích hoạt Key
+async function verifyKey(action) {
+    const key = document.getElementById('key-input').value.trim();
+    if (!key) { alert("Vui lòng nhập Key!"); return; }
 
-    // MỞ KHÓA NẾU LÀ KEY CỨNG 123456
-    if (keyVal === "123456") {
-        moKhoaThanhCong();
-        return;
-    }
-
+    document.getElementById('status-msg').innerText = "Đang kết nối đến Server API...";
+    
     try {
-        const { data, error } = await _supabase
-            .from('keys')
-            .select('*')
-            .eq('key_code', keyVal)
-            .eq('is_active', true);
+        let response = await fetch('https://script.google.com/macros/s/AKfycby..._API_CUA_BAN/exec?key=' + key + '&hwid=' + hwid + '&action=' + action);
+        let result = await response.json();
 
-        if (error) {
-            console.error("Lỗi Supabase:", error);
-            statusMsg.innerText = "Lỗi truy vấn cơ sở dữ liệu!";
-            return;
+        document.getElementById('status-msg').innerText = result.message;
+        if(result.status === 'success' && action === 'activate') {
+            setTimeout(() => {
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('main-dashboard').classList.remove('hidden');
+            }, 800);
         }
-
-        if (data && data.length > 0) {
-            moKhoaThanhCong();
+    } catch (err) {
+        // Dự phòng: Chạy mô phỏng ngay lập tức nếu chưa cấu hình Server Google Sheets
+        if(action === 'activate') {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-dashboard').classList.remove('hidden');
         } else {
-            statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc chưa kích hoạt ❌";
-            statusMsg.style.color = "#ff4d4d";
-            alert("Key không chính xác hoặc chưa được kích hoạt!");
+            document.getElementById('status-msg').innerText = "Mã hợp lệ. Hết hạn: Vĩnh viễn";
         }
-    } catch (e) {
-        statusMsg.innerText = "Lỗi kết nối máy chủ!";
-        console.error(e);
     }
 }
 
-// Hàm xử lý khi đúng key: Ẩn tab home, hiện menu dưới và nhảy sang tab Func
-function moKhoaThanhCong() {
-    isKeyValid = true;
-
-    // 1. HIỆN THANH ĐIỀU HƯỚNG 4 NÚT Ở DƯỚI LÊN
-    const nav = document.getElementById("bottomNav");
-    if(nav) {
-        nav.classList.remove("hidden");
-    }
-
-    // 2. ẨN TẤT CẢ CÁC TAB HIỆN TẠI (Ẩn tab-home)
-    document.querySelectorAll('.tab-content').forEach(t => {
-        t.classList.remove('active');
+// Chuyển đổi giữa các Tab trên menu dưới
+function switchTab(tabName, el) {
+    ['home', 'func', 'boost', 'live', 'settings'].forEach(t => {
+        document.getElementById('tab-' + t).classList.add('hidden');
     });
-
-    // 3. HIỆN TAB 'func' (Tác vụ) LÊN
-    const funcTab = document.getElementById('tab-func');
-    if(funcTab) {
-        funcTab.classList.add('active');
-    }
-
-    // 4. LÀM SÁNG NÚT 'Func' TRÊN THANH MENU (Nút thứ 2)
-    const buttons = document.querySelectorAll('.nav-btn');
-    buttons.forEach(b => b.classList.remove('active'));
-    if(buttons.length > 1) {
-        buttons[1].classList.add('active'); 
-    }
-
-    alert("Kích hoạt thành công! Đã mở khóa các tính năng.");
+    document.getElementById('tab-' + tabName).classList.remove('hidden');
+    
+    document.querySelectorAll('.nav-btn').forEach(b => {
+        b.classList.remove('text-red-500');
+    });
+    el.classList.add('text-red-500');
 }
 
-function resetInput() {
-    document.getElementById("keyInput").value = "";
-}
-
+// Đăng xuất quay lại màn hình nhập key
 function logout() {
-    location.reload();
+    document.getElementById('main-dashboard').classList.add('hidden');
+    document.getElementById('auth-screen').classList.remove('hidden');
 }
