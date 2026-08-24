@@ -173,4 +173,134 @@
                 </div>
             </div>
 
-            <div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl flex justify-between
+            <div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl flex justify-between<div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-[#191124] border border-[#33204a] flex items-center justify-center text-[#a855f7]">👑</div>
+                    <div>
+                        <h2 class="font-bold text-xs text-white">HEADSHOT FIX</h2>
+                        <p class="text-[11px] text-zinc-500 mt-0.5">Fix lỗi đầu - Hiệu chỉnh sai số điểm ngắm chính xác</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-mono text-zinc-600 bg-[#191124] px-2 py-0.5 rounded-full border border-[#33204a]">07</span>
+                    <input type="checkbox" class="custom-toggle" onchange="playSound()">
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: BOOST -->
+        <div id="tab-boost" class="space-y-4 hidden">
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="playSound(); selectGame('ff')" id="card-ff" class="bg-[#100d14] border border-[#2a1b3d] p-3.5 rounded-3xl text-center space-y-1 transition">
+                    <div class="w-10 h-10 mx-auto bg-[#191124] rounded-2xl flex items-center justify-center text-xs">🎮</div>
+                    <div class="text-xs font-bold text-white">FREE FIRE</div>
+                </button>
+                <button onclick="playSound(); selectGame('ffmax')" id="card-ffmax" class="bg-[#100d14] border border-[#9333ea] p-3.5 rounded-3xl text-center space-y-1 transition">
+                    <div class="w-10 h-10 mx-auto bg-[#191124] rounded-2xl flex items-center justify-center text-xs">🔥</div>
+                    <div class="text-xs font-bold text-white">FREE FIRE MAX</div>
+                </button>
+            </div>
+
+            <div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 id="boost-title" class="font-bold text-xs text-white">FREE FIRE MAX CONFIG</h3>
+                        <p class="text-[10px] text-zinc-500">Tùy chỉnh độ nhạy và thông số chuyên sâu.</p>
+                    </div>
+                    <button onclick="playSound(); applyBoost()" class="bg-[#7e22ce] hover:bg-[#9333ea] text-white text-[10px] font-bold px-4 py-2 rounded-xl transition shadow-md shadow-purple-950">ÁP DỤNG</button>
+                </div>
+
+                <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">01 AIMLOCK</span><span id="s1-val" class="text-[#c084fc] font-mono">85%</span></div>
+                    <input type="range" id="slider-s1" min="0" max="100" value="85" oninput="updateBoostVal('s1', this.value)" class="w-full custom-range">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">02 STABILITY ASSIST</span><span id="s2-val" class="text-[#c084fc] font-mono">90%</span></div>
+                    <input type="range" id="slider-s2" min="0" max="100" value="90" oninput="updateBoostVal('s2', this.value)" class="w-full custom-range">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">03 AIM HOLD</span><span id="s3-val" class="text-[#c084fc] font-mono">80%</span></div>
+                    <input type="range" id="slider-s3" min="0" max="100" value="80" oninput="updateBoostVal('s3', this.value)" class="w-full custom-range">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">04 HEADSHOT FIX</span><span id="s4-val" class="text-[#c084fc] font-mono">95%</span></div>
+                    <input type="range" id="slider-s4" min="0" max="100" value="95" oninput="updateBoostVal('s4', this.value)" class="w-full custom-range">
+                </div>
+                <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">05 BULLET ALIGN</span><span id="s5-val" class="text-[#c084fc] font-mono">88%</span></div>
+                    <input type="range" id="slider-s5" min="0" max="100" value="88" oninput="updateBoostVal('s5', this.value)" class="w-full custom-range">
+                </div>
+
+                <div class="bg-[#07050a] border border-[#211630] p-4 rounded-2xl flex items-center justify-between">
+                    <div id="total-boost-circle" class="w-16 h-16 rounded-full border-2 border-[#581c87] bg-[#170a24] flex items-center justify-center font-black text-white text-sm shadow-inner shadow-purple-950">88%</div>
+                    <div class="space-y-1.5 w-3/5 text-[11px]">
+                        <div class="flex justify-between text-zinc-500"><span>Trạng thái</span> <span class="text-[#c084fc] font-bold">Sẵn sàng</span></div>
+                        <div class="flex justify-between text-zinc-500"><span>Bảo mật</span> <span class="text-emerald-500 font-bold">Safe VIP</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: LIVE -->
+        <div id="tab-live" class="space-y-4 hidden">
+            <div class="bg-[#100d14] border border-[#2a1b3d] p-6 rounded-3xl text-center space-y-4">
+                <div class="w-14 h-14 bg-[#191124] border border-[#482873] text-[#c084fc] rounded-2xl mx-auto flex items-center justify-center text-xl font-black shadow-lg shadow-purple-950">🔴</div>
+                <h2 id="open-game-title" class="font-bold text-sm text-white">Khởi chạy Free Fire MAX</h2>
+                <p id="open-game-desc" class="text-[11px] text-zinc-500">AIMLOCK HIEULIVE gọi trực tiếp gói ứng dụng game.</p>
+                <button onclick="playSound(); openGame()" class="w-full bg-[#7e22ce] hover:bg-[#9333ea] py-3 rounded-2xl text-xs font-bold text-white transition shadow-lg shadow-purple-950">MỞ GAME NGAY</button>
+            </div>
+        </div>
+
+        <!-- TAB 5: SETTINGS -->
+        <div id="tab-settings" class="space-y-4 hidden">
+            <div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl space-y-2 text-center">
+                <h3 class="text-xs font-bold text-white">AIMLOCK HIEULIVE SETTINGS</h3>
+                <p class="text-[11px] text-zinc-500">Tùy chọn hệ thống AIMLOCK HL VER2.</p>
+            </div>
+
+            <div class="bg-[#100d14] border border-[#2a1b3d] p-4 rounded-3xl space-y-3">
+                <span class="text-[10px] font-bold text-zinc-500 tracking-wider uppercase">Hệ thống</span>
+                <div class="flex justify-between items-center py-2 border-b border-[#1c1229]">
+                    <div><h4 class="text-xs font-bold text-white">Hiệu ứng âm thanh</h4><p class="text-[10px] text-zinc-500">Phản hồi âm thanh giao diện</p></div>
+                    <input type="checkbox" class="custom-toggle" checked onchange="playSound()">
+                </div>
+                <div class="flex justify-between items-center py-2">
+                    <div><h4 class="text-xs font-bold text-white">AIMLOCK Bảo mật</h4><p class="text-[10px] text-zinc-500">Giữ bảo vệ luôn hoạt động</p></div>
+                    <input type="checkbox" class="custom-toggle" checked onchange="playSound()">
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-1">
+                <button onclick="playSound(); alert('Đã đặt lại cấu hình AIMLOCK HIEULIVE!')" class="w-full bg-[#100d14] border border-[#2a1b3d] hover:border-[#4c2875] text-zinc-300 py-3 rounded-2xl text-xs font-bold transition">ĐẶT LẠI CẤU HÌNH</button>
+                <button onclick="playSound(); logout()" class="w-full bg-[#100d14] border border-[#4a1c2b] text-[#f472b6] hover:bg-[#1f0c16] py-3 rounded-2xl text-xs font-bold transition">ĐĂNG XUẤT</button>
+            </div>
+        </div>
+
+        <!-- THANH ĐIỀU HƯỚNG DƯỚI -->
+        <div class="fixed bottom-3 left-4 right-4 max-w-md mx-auto bg-[#0a070f]/95 backdrop-blur-md border border-[#29183d] rounded-3xl flex justify-around py-3 text-[10px] text-zinc-500 z-50 shadow-2xl">
+            <button onclick="playSound(); switchTab('home', this)" class="nav-btn flex flex-col items-center text-[#c084fc] transition">
+                <span class="text-base mb-0.5">🏠</span>
+                <span>Home</span>
+            </button>
+            <button onclick="playSound(); switchTab('func', this)" class="nav-btn flex flex-col items-center hover:text-zinc-300 transition">
+                <span class="text-base mb-0.5">🎛️</span>
+                <span>Func</span>
+            </button>
+            <button onclick="playSound(); switchTab('boost', this)" class="nav-btn flex flex-col items-center hover:text-zinc-300 transition">
+                <span class="text-base mb-0.5">⚡</span>
+                <span>Boost</span>
+            </button>
+            <button onclick="playSound(); switchTab('live', this)" class="nav-btn flex flex-col items-center hover:text-zinc-300 transition">
+                <span class="text-base mb-0.5">🔴</span>
+                <span>Live</span>
+            </button>
+            <button onclick="playSound(); switchTab('settings', this)" class="nav-btn flex flex-col items-center hover:text-zinc-300 transition">
+                <span class="text-base mb-0.5">⚙️</span>
+                <span>Cài đặt</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
