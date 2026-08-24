@@ -5,13 +5,36 @@ if (!hwid) {
 }
 document.getElementById('device-id').value = hwid;
 
-let selectedGameType = 'ffmax'; // Mặc định ban đầu là Free Fire MAX
+let selectedGameType = 'ffmax'; // Mặc định là Free Fire MAX
 
-// Lưu trữ bộ thông số riêng biệt cho từng phiên bản game
 const gameConfigs = {
     ff: { s1: 80, s2: 85, s3: 75, s4: 90, s5: 85 },
     ffmax: { s1: 85, s2: 90, s3: 80, s4: 95, s5: 88 }
 };
+
+// HÀM TẠO ÂM THANH KHI BẤM PHÍM (WEB AUDIO API KHÔNG CẦN FILE NGOÀI)
+function playSound() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(580, audioCtx.currentTime); // Tần số tạo tiếng click
+        oscillator.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.05);
+        
+        gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.05);
+    } catch (e) {
+        // Bỏ qua nếu trình duyệt chặn tự động phát âm thanh trước tương tác
+    }
+}
 
 function copyDeviceID() {
     navigator.clipboard.writeText(hwid);
@@ -53,14 +76,13 @@ function switchTab(tabName, el) {
     document.getElementById('tab-' + tabName).classList.remove('hidden');
     
     document.querySelectorAll('.nav-btn').forEach(b => {
-        b.classList.remove('text-[#ff4d6d]');
+        b.classList.remove('text-[#c084fc]');
         b.classList.add('text-zinc-500');
     });
     el.classList.remove('text-zinc-500');
-    el.classList.add('text-[#ff4d6d]');
+    el.classList.add('text-[#c084fc]');
 }
 
-// Chuyển đổi qua lại giữa Free Fire thường và Free Fire MAX
 function selectGame(type) {
     selectedGameType = type;
     const btnFF = document.getElementById('card-ff');
@@ -71,39 +93,36 @@ function selectGame(type) {
     const openGameDesc = document.getElementById('open-game-desc');
 
     if(type === 'ff') {
-        btnFF.style.borderColor = '#8b0000';
-        btnFFMax.style.borderColor = '#25171c';
+        btnFF.style.borderColor = '#9333ea';
+        btnFFMax.style.borderColor = '#2a1b3d';
         title.innerText = "FREE FIRE CONFIG";
         currentLabel.innerText = "Free Fire Thường";
         openGameTitle.innerText = "Khởi chạy Free Fire";
-        openGameDesc.innerText = "Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire trực tiếp trên thiết bị.";
+        openGameDesc.innerText = "Hệ thống sẽ gọi trực tiếp gói ứng dụng Free Fire trên thiết bị.";
     } else {
-        btnFFMax.style.borderColor = '#8b0000';
-        btnFF.style.borderColor = '#25171c';
+        btnFFMax.style.borderColor = '#9333ea';
+        btnFF.style.borderColor = '#2a1b3d';
         title.innerText = "FREE FIRE MAX CONFIG";
         currentLabel.innerText = "Free Fire MAX";
         openGameTitle.innerText = "Khởi chạy Free Fire MAX";
-        openGameDesc.innerText = "Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire MAX trực tiếp trên thiết bị.";
+        openGameDesc.innerText = "Hệ thống sẽ gọi trực tiếp gói ứng dụng Free Fire MAX trên thiết bị.";
     }
 
     loadGameConfigToUI();
 }
 
-// Cập nhật giá trị khi kéo slider từ 0 tới 100%
 function updateBoostVal(keyName, val) {
     gameConfigs[selectedGameType][keyName] = parseInt(val);
     document.getElementById(keyName + '-val').innerText = val + "%";
     calculateTotalBoost();
 }
 
-// Tính toán trung bình cộng để hiển thị vào vòng tròn tổng kết
 function calculateTotalBoost() {
     const cfg = gameConfigs[selectedGameType];
     const avg = Math.round((cfg.s1 + cfg.s2 + cfg.s3 + cfg.s4 + cfg.s5) / 5);
     document.getElementById('total-boost-circle').innerText = avg + "%";
 }
 
-// Đưa dữ liệu từ bộ nhớ ra các thanh trượt theo game đang chọn
 function loadGameConfigToUI() {
     const cfg = gameConfigs[selectedGameType];
     
@@ -120,18 +139,19 @@ function applyBoost() {
     alert("Đã áp dụng cấu hình tối ưu thành công cho " + gameName + "!");
 }
 
-// Hàm mở game chuẩn theo phiên bản đã chọn
+// SỬA HÀM MỞ GAME BẰNG INTENT SCHEME ĐỂ HỆ THỐNG DI ĐỘNG NHẬN DIỆN VÀ GỌI ỨNG DỤNG ĐÚNG
 function openGame() {
-    if (selectedGameType === 'ff') {
-        window.location.href = "com.dts.freefireth://";
-    } else {
-        window.location.href = "com.dts.freefiremax://";
-    }
+    const packageName = selectedGameType === 'ff' ? 'com.dts.freefireth' : 'com.dts.freefiremax';
+    const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
+    
+    // Tạo chuẩn intent để mở ứng dụng trên Android/Mobile Web
+    const intentUrl = `intent://#Intent;package=${packageName};end;`;
+    
+    window.location.href = intentUrl;
     
     setTimeout(() => {
-        const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
         alert("Đang khởi chạy " + gameName + "...");
-    }, 300);
+    }, 400);
 }
 
 function logout() {
@@ -139,26 +159,29 @@ function logout() {
     document.getElementById('auth-screen').classList.remove('hidden');
 }
 
-// Sự kiện nút mạng xã hội
+// Mạng xã hội
 document.getElementById('btn-telegram').addEventListener('click', () => {
+    playSound();
     const link = prompt("Nhập link Telegram của bạn:", "https://t.me/");
     if (link) window.open(link, '_blank');
 });
 
 document.getElementById('btn-zalo').addEventListener('click', () => {
+    playSound();
     const link = prompt("Nhập link Zalo của bạn:", "https://zalo.me/");
     if (link) window.open(link, '_blank');
 });
 
 document.getElementById('btn-tiktok1').addEventListener('click', () => {
+    playSound();
     const link = prompt("Nhập link TikTok 1 của bạn:", "https://tiktok.com/");
     if (link) window.open(link, '_blank');
 });
 
 document.getElementById('btn-tiktok2').addEventListener('click', () => {
+    playSound();
     const link = prompt("Nhập link TikTok 2 của bạn:", "https://tiktok.com/");
     if (link) window.open(link, '_blank');
 });
 
-// Chạy load cấu hình mặc định lúc đầu mở app
 loadGameConfigToUI();
