@@ -88,7 +88,7 @@
 
         <!-- TAB 2: FUNC (7 Chức năng VIP) -->
         <div id="tab-func" class="space-y-3 hidden">
-            <div class="text-[10px] font-bold text-zinc-500 px-1 tracking-wider uppercase">System Funciton VIP</div>
+            <div class="text-[10px] font-bold text-zinc-500 px-1 tracking-wider uppercase">System Function VIP</div>
             
             <div class="bg-[#140e11] border border-[#25171c] p-4 rounded-3xl flex justify-between items-center">
                 <div class="flex items-center gap-3">
@@ -150,7 +150,7 @@
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-[#1d1216] border border-[#301c22] flex items-center justify-center text-[#ff4d6d]">⚡</div>
                     <div>
-                        <h2 class="font-bold text-xs text-white">SENSIVIBITY BOOSTER</h2>
+                        <h2 class="font-bold text-xs text-white">SENSITIVITY BOOSTER</h2>
                         <p class="text-[11px] text-zinc-500 mt-0.5">Nhạy - Tăng độ nhạy cảm ứng và phản hồi chạm nhanh hơn</p>
                     </div>
                 </div>
@@ -189,11 +189,11 @@
             </div>
         </div>
 
-        <!-- TAB 3: BOOST (Chọn FF / FF MAX) -->
+        <!-- TAB 3: BOOST (Chọn FF / FF MAX & Tùy chỉnh slider) -->
         <div id="tab-boost" class="space-y-4 hidden">
             <!-- Nút chọn phiên bản game -->
             <div class="grid grid-cols-2 gap-3">
-                <button onclick="selectGame('ff')" id="card-ff" class="bg-[#140e11] border border-[#25171c] p-3.5 rounded-3xl text-center space-y-1 transition active-game-card">
+                <button onclick="selectGame('ff')" id="card-ff" class="bg-[#140e11] border border-[#25171c] p-3.5 rounded-3xl text-center space-y-1 transition">
                     <div class="w-10 h-10 mx-auto bg-[#1f1317] rounded-2xl flex items-center justify-center text-xs">🎮</div>
                     <div class="text-xs font-bold text-white">FREE FIRE</div>
                 </button>
@@ -214,23 +214,23 @@
 
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">01 AIMLOCK</span><span id="s1-val" class="text-[#ff4d6d] font-mono">85%</span></div>
-                    <input type="range" min="0" max="100" value="85" oninput="updateBoostVal('s1-val', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s1" min="0" max="100" value="85" oninput="updateBoostVal('slider-s1', 's1-val', 's1', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">02 STABILITY ASSIST</span><span id="s2-val" class="text-[#ff4d6d] font-mono">90%</span></div>
-                    <input type="range" min="0" max="100" value="90" oninput="updateBoostVal('s2-val', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s2" min="0" max="100" value="90" oninput="updateBoostVal('slider-s2', 's2-val', 's2', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">03 AIM HOLD</span><span id="s3-val" class="text-[#ff4d6d] font-mono">80%</span></div>
-                    <input type="range" min="0" max="100" value="80" oninput="updateBoostVal('s3-val', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s3" min="0" max="100" value="80" oninput="updateBoostVal('slider-s3', 's3-val', 's3', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">04 HEADSHOT FIX</span><span id="s4-val" class="text-[#ff4d6d] font-mono">95%</span></div>
-                    <input type="range" min="0" max="100" value="95" oninput="updateBoostVal('s4-val', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s4" min="0" max="100" value="95" oninput="updateBoostVal('slider-s4', 's4-val', 's4', this.value)" class="w-full custom-range">
                 </div>
                 <div class="space-y-1.5">
                     <div class="flex justify-between text-xs font-semibold"><span class="text-zinc-400">05 BULLET ALIGN</span><span id="s5-val" class="text-[#ff4d6d] font-mono">88%</span></div>
-                    <input type="range" min="0" max="100" value="88" oninput="updateBoostVal('s5-val', this.value)" class="w-full custom-range">
+                    <input type="range" id="slider-s5" min="0" max="100" value="88" oninput="updateBoostVal('slider-s5', 's5-val', 's5', this.value)" class="w-full custom-range">
                 </div>
 
                 <div class="bg-[#0b080a] border border-[#221318] p-4 rounded-2xl flex items-center justify-between">
