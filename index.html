@@ -3,101 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIPLOCK DASHBOARD</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { background-color: #121212; color: #fff; font-family: sans-serif; text-align: center; padding: 20px; }
-        .card { background: #1e1e1e; padding: 20px; border-radius: 12px; max-width: 400px; margin: auto; border: 1px solid #333; }
-        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 6px; border: none; text-align: center; }
-        button { width: 95%; padding: 12px; margin: 5px 0; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; background: #e50914; color: white; }
-        .func-btn { background: #333; cursor: not-allowed; opacity: 0.5; }
-        .active-btn { background: #28a745 !important; cursor: pointer !important; opacity: 1 !important; }
-        .status { margin-top: 10px; font-weight: bold; }
-    </style>
+    <title>ULTRALOCK V4 MOBILE DASHBOARD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Liên kết đến file CSS riêng -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="pb-24 select-none">
 
-<div class="card">
-    <h2>VIPLOCK DASHBOARD</h2>
-    
-    <input type="text" id="keyInput" placeholder="DÁN KEY-XXXX-XXXX-XXXX">
-    <button onclick="checkAndActivateKey()">KÍCH HOẠT (1 THIẾT BỊ)</button>
+    <!-- MÀN HÌNH NHẬP KEY -->
+    <div id="auth-screen" class="p-5 max-w-md mx-auto min-h-screen flex flex-col justify-center">
+        <div class="bg-zinc-900/90 border border-red-900/50 rounded-2xl p-6 custom-glow space-y-5">
+            <div class="text-center">
+                <h1 class="text-lg font-black tracking-wider text-red-500">UCHIHA V4 API SERVER KEY</h1>
+                <p class="text-xs text-zinc-400 mt-1">Nhập key từ hệ thống Telegram Bot</p>
+            </div>
 
-    <p id="statusMsg" class="status" style="color: #ff4d4d;">Trạng thái: Chưa kích hoạt Key</p>
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-zinc-400">MÃ KÍCH HOẠT</label>
+                <input type="text" id="key-input" placeholder="DÁN KEY-XXXX-XXXX-XXXX" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-red-400 font-mono focus:outline-none focus:border-red-600">
+                <div class="flex gap-2">
+                    <button onclick="pasteKey()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 py-2 rounded-lg text-xs font-semibold transition">📋 Dán</button>
+                    <button onclick="clearKey()" class="flex-1 bg-zinc-800 hover:bg-zinc-700 py-2 rounded-lg text-xs font-semibold transition">🗑️ Delete</button>
+                </div>
+            </div>
 
-    <hr style="border-color: #333; margin: 20px 0;">
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-zinc-400">MÃ THIẾT BỊ (HWID)</label>
+                <input type="text" id="device-id" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-xs text-zinc-400 font-mono">
+                <button onclick="copyDeviceID()" class="w-full bg-zinc-800 hover:bg-zinc-700 py-2 rounded-lg text-xs font-semibold transition">📑 Sao chép mã thiết bị</button>
+            </div>
 
-    <h3>CHỨC NĂNG GAME</h3>
-    <button id="btnAim" class="func-btn" onclick="toggleFunc('btnAim', 'Aimlock')">BẬT AIMLOCK (LOCK 99%)</button>
-    <button id="btnHead" class="func-btn" onclick="toggleFunc('btnHead', 'Kéo Tâm Auto')">BẬT KÉO TÂM AUTO</button>
-</div>
+            <div class="space-y-2 pt-2">
+                <button onclick="verifyKey('check')" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-3 rounded-xl text-sm font-bold transition border border-zinc-700">Kiểm tra</button>
+                <button onclick="verifyKey('activate')" class="w-full bg-red-700 hover:bg-red-600 text-white py-3 rounded-xl text-sm font-bold shadow-lg shadow-red-900/50 transition">Kích hoạt (1 thiết bị)</button>
+            </div>
 
-<script>
-    // Điền thông tin Supabase của bạn
-    const SUPABASE_URL = "https://aqaxmmpznarjntehxhaz.supabase.co";
-    const SUPABASE_KEY = "SERVICE_ROLE_HOAC_ANON_KEY_CUA_BAN"; 
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            <div id="status-msg" class="text-xs text-center text-zinc-500 pt-2">Chưa kích hoạt</div>
 
-    let isActivated = false;
+            <div class="flex justify-between items-center text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+                <span id="expiry-text">Trạng thái: Chưa kích hoạt</span>
+                <a href="https://t.me/TEN_BOT_CUA_BAN_BOT" target="_blank" class="text-red-400 hover:underline">Liên hệ mua key</a>
+            </div>
+        </div>
+    </div>
 
-    async function checkAndActivateKey() {
-        const keyVal = document.getElementById("keyInput").value.trim();
-        const statusMsg = document.getElementById("statusMsg");
+    <!-- MÀN HÌNH DASHBOARD CHÍNH -->
+    <div id="main-dashboard" class="hidden">
+        <div class="p-4 bg-zinc-950/80 backdrop-blur border-b border-zinc-800/80 sticky top-0 z-50 flex justify-between items-center">
+            <div>
+                <span class="text-[10px] text-red-500 font-bold tracking-widest block">PREMIUM MOBILE DASHBOARD</span>
+                <h1 class="text-base font-black text-red-600">ULTRALOCK</h1>
+            </div>
+            <div class="flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs font-medium text-zinc-300">Hoạt động</span>
+            </div>
+        </div>
 
-        if (!keyVal) {
-            alert("Vui lòng nhập Key trước!");
-            return;
-        }
+        <!-- TAB 1: HOME -->
+        <div id="tab-home" class="p-4 space-y-4 max-w-md mx-auto">
+            <div class="bg-zinc-900/70 border border-zinc-800 rounded-2xl p-4 flex items-center gap-4">
+                <div class="w-14 h-14 bg-zinc-800 rounded-xl border border-red-600/30 flex items-center justify-center font-bold text-red-500 text-lg">V4</div>
+                <div>
+                    <h2 class="font-bold text-sm">Uchiha Admin</h2>
+                    <p class="text-xs text-zinc-400">Developer / System Admin</p>
+                </div>
+            </div>
+        </div>
 
-        statusMsg.innerText = "Đang kiểm tra Key...";
-        statusMsg.style.color = "#ffc107";
+        <!-- TAB 2: FUNC -->
+        <div id="tab-func" class="p-4 space-y-3 max-w-md mx-auto hidden">
+            <div class="text-xs font-bold text-zinc-500 px-1">SYSTEM FUNCTION VIP</div>
+            <div class="bg-zinc-900/70 border border-zinc-800 p-3.5 rounded-2xl flex justify-between items-center">
+                <div>
+                    <span class="text-[10px] font-mono bg-zinc-800 text-red-400 px-1.5 py-0.5 rounded">01</span>
+                    <h2 class="font-bold text-xs inline ml-2">AIMLOCK</h2>
+                    <p class="text-[11px] text-zinc-400 mt-1">Bấm đầu thông minh - Tự động căn chuẩn mục tiêu</p>
+                </div>
+                <input type="checkbox" checked class="accent-red-600 w-5 h-5">
+            </div>
+        </div>
 
-        try {
-            // Kiểm tra key trong bảng 'keys' trên Supabase
-            const { data, error } = await _supabase
-                .from('keys')
-                .select('*')
-                .eq('key', keyVal)
-                .eq('status', 'active');
+        <!-- TAB 3: BOOST -->
+        <div id="tab-boost" class="p-4 space-y-4 max-w-md mx-auto hidden">
+            <div class="bg-zinc-900/70 border border-zinc-800 p-4 rounded-2xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-zinc-300">FREE FIRE BOOST</span>
+                    <button class="bg-red-600 text-white text-xs px-3 py-1 rounded-lg font-bold">BOOSTER</button>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-semibold mb-1">
+                        <span class="text-zinc-400">Aimlock Power</span>
+                        <span id="val-aim" class="text-red-500 font-mono">62%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="62" oninput="document.getElementById('val-aim').innerText = this.value + '%'" class="w-full accent-red-600 bg-zinc-800 rounded-lg h-2">
+                </div>
+            </div>
+        </div>
 
-            if (data && data.length > 0) {
-                isActivated = true;
-                statusMsg.innerText = "Trạng thái: Đã Kích Hoạt Thành Công! ✅";
-                statusMsg.style.color = "#28a745";
+        <!-- TAB 4: LIVE -->
+        <div id="tab-live" class="p-6 text-center max-w-md mx-auto hidden">
+            <div class="bg-zinc-900/70 border border-zinc-800 rounded-2xl p-6 space-y-4">
+                <div class="text-3xl">🔥</div>
+                <h2 class="font-bold text-sm">Sẵn sàng khởi chạy Garena Free Fire</h2>
+                <button onclick="alert('Đang mở game...')" class="w-full bg-red-600 py-3 rounded-xl text-xs font-bold">MỞ GAME NGAY</button>
+            </div>
+        </div>
 
-                // Mở khóa tất cả nút chức năng
-                document.getElementById("btnAim").classList.add("active-btn");
-                document.getElementById("btnHead").classList.add("active-btn");
-                alert("Kích hoạt thành công! Các tác vụ Aimlock đã được mở khóa.");
-            } else {
-                statusMsg.innerText = "Trạng thái: Key không tồn tại hoặc đã hết hạn ❌";
-                statusMsg.style.color = "#ff4d4d";
-                alert("Key sai hoặc không tồn tại!");
-            }
-        } catch (err) {
-            statusMsg.innerText = "Lỗi kết nối máy chủ!";
-            console.error(err);
-        }
-    }
+        <!-- TAB 5: SETTINGS -->
+        <div id="tab-settings" class="p-4 space-y-3 max-w-md mx-auto hidden">
+            <button onclick="logout()" class="w-full bg-zinc-900 border border-red-900/50 text-red-500 py-3 rounded-xl text-xs font-bold">ĐĂNG XUẤT</button>
+        </div>
 
-    function toggleFunc(btnId, funcName) {
-        if (!isActivated) {
-            alert("Bạn phải nhập Key chuẩn và bấm 'KÍCH HOẠT' thì mới dùng được nút này!");
-            return;
-        }
+        <!-- THANH ĐIỀU HƯỚNG DƯỚI -->
+        <div class="fixed bottom-0 left-0 right-0 bg-zinc-950 border-t border-zinc-800 flex justify-around py-3 text-[10px] text-zinc-400 z-50 max-w-md mx-auto">
+            <button onclick="switchTab('home', this)" class="nav-btn flex flex-col items-center text-red-500"><span>🏠</span>Home</button>
+            <button onclick="switchTab('func', this)" class="nav-btn flex flex-col items-center"><span>⚡</span>Func</button>
+            <button onclick="switchTab('boost', this)" class="nav-btn flex flex-col items-center"><span>🚀</span>Boost</button>
+            <button onclick="switchTab('live', this)" class="nav-btn flex flex-col items-center"><span>🔴</span>Live</button>
+            <button onclick="switchTab('settings', this)" class="nav-btn flex flex-col items-center"><span>⚙️</span>Cài đặt</button>
+        </div>
+    </div>
 
-        const btn = document.getElementById(btnId);
-        if (btn.innerText.includes("BẬT")) {
-            btn.innerText = "TẮT " + funcName.toUpperCase();
-            btn.style.background = "#dc3545";
-            alert("Đã kích hoạt tác vụ: " + funcName);
-        } else {
-            btn.innerText = "BẬT " + funcName.toUpperCase();
-            btn.style.background = "#28a745";
-            alert("Đã tắt tác vụ: " + funcName);
-        }
-    }
-</script>
-
+    <!-- Liên kết đến file JavaScript riêng -->
+    <script src="script.js"></script>
 </body>
 </html>
