@@ -33,7 +33,7 @@ async function verifyKey(action) {
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-dashboard').classList.remove('hidden');
         } else {
-            document.getElementById('status-msg').innerText = "Mã hợp lệ. Hết hạn: 08:00:00 01/01/1970";
+            document.getElementById('status-msg').innerText = "Mã hợp lệ. Hết hạn: Vĩnh viễn (Hieu Live)";
         }
     }, 600);
 }
@@ -56,7 +56,39 @@ function updateBoostVal(id, val) {
     document.getElementById(id).innerText = val + "%";
 }
 
+// Hàm xử lý khi bấm mở game ở tab Live
+function openGame() {
+    // Thử kích hoạt scheme mở Free Fire trực tiếp trên thiết bị di động
+    window.location.href = "freefire://";
+    
+    // Fallback thông báo trực quan nếu chạy trên trình duyệt máy tính hoặc webview chưa cấu hình sẵn scheme
+    setTimeout(() => {
+        alert("Đang khởi chạy Free Fire / Free Fire MAX...");
+    }, 300);
+}
+
 function logout() {
     document.getElementById('main-dashboard').classList.add('hidden');
     document.getElementById('auth-screen').classList.remove('hidden');
 }
+
+// Cấu hình sự kiện bấm các nút mạng xã hội (Sẵn sàng nhận link từ bạn)
+document.getElementById('btn-telegram').addEventListener('click', () => {
+    const link = prompt("Nhập link Telegram của bạn:", "https://t.me/");
+    if (link) window.open(link, '_blank');
+});
+
+document.getElementById('btn-zalo').addEventListener('click', () => {
+    const link = prompt("Nhập link Zalo của bạn:", "https://zalo.me/");
+    if (link) window.open(link, '_blank');
+});
+
+document.getElementById('btn-tiktok1').addEventListener('click', () => {
+    const link = prompt("Nhập link TikTok 1 của bạn:", "https://tiktok.com/");
+    if (link) window.open(link, '_blank');
+});
+
+document.getElementById('btn-tiktok2').addEventListener('click', () => {
+    const link = prompt("Nhập link TikTok 2 của bạn:", "https://tiktok.com/");
+    if (link) window.open(link, '_blank');
+});
