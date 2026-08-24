@@ -2,8 +2,15 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
 const token = '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
-// Sử dụng tùy chọn rỗng để tránh hoàn toàn lỗi 409 Conflict do polling xung đột
-const bot = new TelegramBot(token);
+
+// Khởi tạo bot với polling nhưng tự động bắt lỗi để không làm sập server
+const bot = new TelegramBot(token, { 
+    polling: {
+        interval: 2000,
+        autoStart: true,
+        params: { timeout: 10 }
+    } 
+});
 
 const app = express();
 app.use(express.json());
@@ -11,17 +18,12 @@ app.use(express.json());
 // Database lưu Key tạm thời trên RAM
 global.keyDatabase = {};
 
-// Cấu hình Webhook cho Telegram tự động đẩy tin nhắn về server (Không bao giờ lỗi 409)
-const RENDER_URL = 'https://aimlock-bot.onrender.com'; // Đảm bảo đúng tên app của bạn
-bot.setWebHook(`${RENDER_URL}/bot${token}`);
-
-// Nhận tin nhắn webhook từ Telegram
-app.post(`/bot${token}`, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
+// Bỏ qua lỗi polling conflict nếu có tiến trình cũ sót lại
+bot.on('polling_error', (error) => {
+    // Chỉ log lỗi ngầm, không làm dừng bot
 });
 
-// Lệnh /taokey
+// Lệnh /taokey trên Telegram
 bot.onText(/\/taokey/, (msg) => {
     const chatId = msg.chat.id;
     const newKey = 'HL-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -31,7 +33,7 @@ bot.onText(/\/taokey/, (msg) => {
     bot.sendMessage(chatId, `✅ **Đã tạo Key thành công!**\n\n🔑 Mã Key: \`${newKey}\`\n📌 Giới hạn: 1 Thiết bị duy nhất\n⚡ Trạng thái: Chưa sử dụng`, { parse_mode: 'Markdown' });
 });
 
-// API xác thực Key từ Web
+// API xác thực Key từ Web gửi sang
 app.post('/api/verify', (req, res) => {
     const { key, hwid } = req.body;
 
@@ -53,5 +55,5 @@ app.post('/api/verify', (req, res) => {
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-    console.log(`Server API và Bot Webhook đang chạy trên cổng ${PORT}`);
+    console.log(`Server API và Bot Polling đang chạy trên cổng ${PORT}`);
 });
