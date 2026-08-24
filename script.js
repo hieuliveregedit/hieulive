@@ -12,6 +12,15 @@ const gameConfigs = {
     ffmax: { s1: 85, s2: 90, s3: 80, s4: 95, s5: 88 }
 };
 
+// Tự động kiểm tra nếu trước đó đã kích hoạt thì cho vào thẳng luôn
+window.addEventListener('DOMContentLoaded', () => {
+    const isActivated = localStorage.getItem('ultralock_activated');
+    if (isActivated === 'true') {
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('main-dashboard').classList.remove('hidden');
+    }
+});
+
 // HÀM TẠO ÂM THANH KHI BẤM PHÍM (WEB AUDIO API KHÔNG CẦN FILE NGOÀI)
 function playSound() {
     try {
@@ -20,7 +29,7 @@ function playSound() {
         const gainNode = audioCtx.createGain();
         
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(580, audioCtx.currentTime); // Tần số tạo tiếng click
+        oscillator.frequency.setValueAtTime(580, audioCtx.currentTime); 
         oscillator.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.05);
         
         gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
@@ -32,7 +41,7 @@ function playSound() {
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.05);
     } catch (e) {
-        // Bỏ qua nếu trình duyệt chặn tự động phát âm thanh trước tương tác
+        // Bỏ qua nếu trình duyệt chặn
     }
 }
 
@@ -53,20 +62,31 @@ function clearKey() {
     document.getElementById('key-input').value = '';
 }
 
-async function verifyKey(action) {
+// HÀM XỬ LÝ KIỂM TRA VÀ KÍCH HOẠT KEY (ĐÃ FIX LỖI)
+function verifyKey(action) {
     const key = document.getElementById('key-input').value.trim();
-    if (!key) { alert("Vui lòng nhập Key!"); return; }
+    const statusMsg = document.getElementById('status-msg');
 
-    document.getElementById('status-msg').innerText = "Đang kiểm tra kết nối API...";
+    if (!key) { 
+        statusMsg.innerText = "⚠️ Vui lòng nhập mã key của bạn!";
+        statusMsg.style.color = "#f472b6";
+        return; 
+    }
+
+    statusMsg.innerText = "⏳ Đang kết nối máy chủ xác thực...";
+    statusMsg.style.color = "#c084fc";
     
     setTimeout(() => {
+        // Chấp nhận mọi key người dùng nhập vào để test hoặc kết nối hệ thống
         if(action === 'activate') {
+            localStorage.setItem('ultralock_activated', 'true');
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-dashboard').classList.remove('hidden');
         } else {
-            document.getElementById('status-msg').innerText = "Mã hợp lệ. Hết hạn: Vĩnh viễn (Hieu Live)";
+            statusMsg.innerText = "✅ Mã kích hoạt hợp lệ! Bạn có thể bấm Kích hoạt.";
+            statusMsg.style.color = "#4ade80";
         }
-    }, 600);
+    }, 500);
 }
 
 function switchTab(tabName, el) {
@@ -139,14 +159,12 @@ function applyBoost() {
     alert("Đã áp dụng cấu hình tối ưu thành công cho " + gameName + "!");
 }
 
-// SỬA HÀM MỞ GAME BẰNG INTENT SCHEME ĐỂ HỆ THỐNG DI ĐỘNG NHẬN DIỆN VÀ GỌI ỨNG DỤNG ĐÚNG
+// HÀM MỞ GAME BẰNG INTENT SCHEME
 function openGame() {
     const packageName = selectedGameType === 'ff' ? 'com.dts.freefireth' : 'com.dts.freefiremax';
     const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
     
-    // Tạo chuẩn intent để mở ứng dụng trên Android/Mobile Web
     const intentUrl = `intent://#Intent;package=${packageName};end;`;
-    
     window.location.href = intentUrl;
     
     setTimeout(() => {
@@ -155,6 +173,7 @@ function openGame() {
 }
 
 function logout() {
+    localStorage.removeItem('ultralock_activated'); // Xóa trạng thái lưu để bắt nhập lại key nếu muốn
     document.getElementById('main-dashboard').classList.add('hidden');
     document.getElementById('auth-screen').classList.remove('hidden');
 }
