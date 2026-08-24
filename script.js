@@ -5,6 +5,8 @@ if (!hwid) {
 }
 document.getElementById('device-id').value = hwid;
 
+let selectedGameType = 'ffmax'; // Mặc định là Free Fire MAX
+
 function copyDeviceID() {
     navigator.clipboard.writeText(hwid);
     alert("Đã sao chép mã thiết bị!");
@@ -52,18 +54,56 @@ function switchTab(tabName, el) {
     el.classList.add('text-[#ff4d6d]');
 }
 
-function updateBoostVal(id, val) {
-    document.getElementById(id).innerText = val + "%";
+// Chức năng chọn giữa Free Fire thường và Free Fire MAX
+function selectGame(type) {
+    selectedGameType = type;
+    const btnFF = document.getElementById('card-ff');
+    const btnFFMax = document.getElementById('card-ffmax');
+    const title = document.getElementById('boost-title');
+    const currentLabel = document.getElementById('current-game-label');
+    const openGameTitle = document.getElementById('open-game-title');
+    const openGameDesc = document.getElementById('open-game-desc');
+
+    if(type === 'ff') {
+        btnFF.style.borderColor = '#8b0000';
+        btnFFMax.style.borderColor = '#25171c';
+        title.innerText = "FREE FIRE CONFIG";
+        currentLabel.innerText = "Free Fire Thường";
+        openGameTitle.innerText = "Khởi chạy Free Fire";
+        openGameDesc.innerText = "Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire trực tiếp trên thiết bị.";
+    } else {
+        btnFFMax.style.borderColor = '#8b0000';
+        btnFF.style.borderColor = '#25171c';
+        title.innerText = "FREE FIRE MAX CONFIG";
+        currentLabel.innerText = "Free Fire MAX";
+        openGameTitle.innerText = "Khởi chạy Free Fire MAX";
+        openGameDesc.innerText = "Hệ thống sẽ kích hoạt giao thức mở ứng dụng Free Fire MAX trực tiếp trên thiết bị.";
+    }
 }
 
-// Hàm xử lý khi bấm mở game ở tab Live
+function updateBoostVal(id, val) {
+    document.getElementById(id).innerText = val + "%";
+    document.getElementById('total-boost-circle').innerText = val + "%";
+}
+
+function applyBoost() {
+    const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
+    alert("Đã áp dụng cấu hình tối ưu thành công cho " + gameName + "!");
+}
+
+// Hàm mở game chuẩn theo phiên bản đã chọn (Hỗ trợ gọi scheme trực tiếp)
 function openGame() {
-    // Thử kích hoạt scheme mở Free Fire trực tiếp trên thiết bị di động
-    window.location.href = "freefire://";
+    if (selectedGameType === 'ff') {
+        // Scheme chuẩn của Free Fire thường
+        window.location.href = "com.dts.freefireth://";
+    } else {
+        // Scheme chuẩn của Free Fire MAX
+        window.location.href = "com.dts.freefiremax://";
+    }
     
-    // Fallback thông báo trực quan nếu chạy trên trình duyệt máy tính hoặc webview chưa cấu hình sẵn scheme
     setTimeout(() => {
-        alert("Đang khởi chạy Free Fire / Free Fire MAX...");
+        const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
+        alert("Đang khởi chạy " + gameName + "...");
     }, 300);
 }
 
@@ -72,7 +112,7 @@ function logout() {
     document.getElementById('auth-screen').classList.remove('hidden');
 }
 
-// Cấu hình sự kiện bấm các nút mạng xã hội (Sẵn sàng nhận link từ bạn)
+// Cấu hình sự kiện bấm các nút mạng xã hội
 document.getElementById('btn-telegram').addEventListener('click', () => {
     const link = prompt("Nhập link Telegram của bạn:", "https://t.me/");
     if (link) window.open(link, '_blank');
