@@ -24,9 +24,9 @@
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>URL</key>
-			<string>https://github.io</string>
+			<string>https://hieuliveregedit.github.io/hieulive/</string>
 			<key>IconURL</key>
-			<string>https://github.ioicon.jpg</string>
+			<string>https://github.io</string>
 		</dict>
 	</array>
 	<key>PayloadDisplayName</key>
