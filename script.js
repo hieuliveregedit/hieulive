@@ -65,8 +65,10 @@ function copyDeviceID() {
     alert('Đã sao chép mã thiết bị vào bộ nhớ tạm!');
 }
 
-function verifyKey(action) {
+/* HÀM XÁC THỰC KEY THẬT QUA TELEGRAM BOT API TRÊN RENDER */
+async function verifyKey(action) {
     const key = document.getElementById('key-input').value.trim();
+    const currentHWID = document.getElementById('device-id').value;
     const statusMsg = document.getElementById('status-msg');
 
     if (!key) {
@@ -75,18 +77,37 @@ function verifyKey(action) {
         return;
     }
 
-    if (action === 'check') {
-        statusMsg.innerText = 'Key hợp lệ (Chưa kích hoạt thiết bị này)';
-        statusMsg.className = 'text-[11px] text-center text-[#c084fc] pt-1';
-    } else {
-        localStorage.setItem('aimlock_hieulive_activated', 'true');
-        statusMsg.innerText = 'Kích hoạt thành công!';
-        statusMsg.className = 'text-[11px] text-center text-emerald-500 pt-1';
+    statusMsg.innerText = 'Đang kết nối hệ thống Bot Telegram...';
+    statusMsg.className = 'text-[11px] text-center text-zinc-400 pt-1';
+
+    const API_URL = 'https://aimlock-bot.onrender.com/api/verify';
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ key: key, hwid: currentHWID })
+        });
         
-        setTimeout(() => {
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('main-dashboard').classList.remove('hidden');
-        }, 600);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            localStorage.setItem('aimlock_hieulive_activated', 'true');
+            localStorage.setItem('user_key', key);
+            statusMsg.innerText = data.message;
+            statusMsg.className = 'text-[11px] text-center text-emerald-500 pt-1';
+            
+            setTimeout(() => {
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('main-dashboard').classList.remove('hidden');
+            }, 800);
+        } else {
+            statusMsg.innerText = data.message;
+            statusMsg.className = 'text-[11px] text-center text-rose-500 pt-1';
+        }
+    } catch (error) {
+        statusMsg.innerText = 'Không kết nối được tới máy chủ Bot!';
+        statusMsg.className = 'text-[11px] text-center text-rose-500 pt-1';
     }
 }
 
@@ -154,12 +175,10 @@ function applyBoost() {
     alert('Đã áp dụng thông số cấu hình AIMLOCK HIEULIVE thành công!');
 }
 
-/* BẢN SỬA LỖI MỞ GAME 3 LỚP AN TOÀN */
 function openGame() {
     const pkgFF = "com.dts.freefireth";
     const pkgMax = "com.dts.freefiremax";
     const targetPkg = (selectedGameType === 'ff') ? pkgFF : pkgMax;
-    const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
 
     const intentUrl = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
     
