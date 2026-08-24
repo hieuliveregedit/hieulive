@@ -1,43 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
 <plist version="1.0">
 <dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>IsRemovable</key>
-            <true/>
-            <key>Label</key>
-            <string>AIMLOCK HVER2</string>
-            <key>PayloadDescription</key>
-            <string>Lối tắt WebClip AIMLOCK HVER2</string>
-            <key>PayloadDisplayName</key>
-            <string>AIMLOCK HVER2</string>
-            <key>PayloadIdentifier</key>
-            <string>com.aimlock.hver2.webclip</string>
-            <key>PayloadType</key>
-            <string>com.apple.webClip.managed</string>
-            <key>PayloadUUID</key>
-            <string>d3b07384-d113-4f4a-a726-2612a2026101</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>URL</key>
-            <string>https://hieuliveregedit.github.io/hieulive/</string>
-            <key>FullScreen</key>
-            <true/>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key>
-    <string>AIMLOCK HVER2 WebClip</string>
-    <key>PayloadIdentifier</key>
-    <string>com.aimlock.hver2.config</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
-    <key>PayloadType</key>
-    <string>ConfigurationProfile</string>
-    <key>PayloadUUID</key>
-    <string>e4c18495-e224-5e5b-b837-3723b3137202</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FullScreen</key>
+			<true/>
+			<key>IsRemovable</key>
+			<true/>
+			<key>Label</key>
+			<string>AIMLOCK HLVER2</string>
+			<key>PayloadDescription</key>
+			<string>Tạo WebClip Shortcut cho AIMLOCK HLVER2</string>
+			<key>PayloadDisplayName</key>
+			<string>AIMLOCK HLVER2 WebClip</string>
+			<key>PayloadIdentifier</key>
+			<string>com.hieulive.webclip</string>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+			<key>PayloadUUID</key>
+			<string>9B1A2C3D-4E5F-6789-0123-456789ABCDEF</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>URL</key>
+			<string>https://github.io</string>
+			<key>Icon</key>
+			<data>
+			/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYanhsIARAAABtb
+			bnRyUkdCIFhZWiAH4wAMAAEAAAAAAABhY3NwQVBQTAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAQAA9tYAAQAAAADTLWp4bCACufkBQHM6b/D/A/Tw9worAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAtkZXNjAAABCAAAAERjcHJ0AAABTAAAACR3dHB0AAABcAAA
+			ABRjaAFhAAAACxjaWNwAAABsAAAAAxyWFlaAAABvAAAABRnWFlaAAAB0AAAABRiWFlaAA
+			AB5AAAABRyVFJDAAAB+AAAACBnVFJDAAAB+AAAACBiVFJDAAAB+AAAACBtbHVjAAAAAAAA
+			AAEAAAAMZW5VUwAAACYAAAAcAFIARwBCAF8ARAA2ADUAXwBTAFIARwBfAFIAZQBsAF8A
+			VQBSAEcAAG1sdWMAAAAAAAAAAQAAAAxlblVTAAAABgAAABwAQwBDADAAAFhZWiAAAAAA
+			AAD21gABAAAAANMtc2YzMgAAAAAAAQxAAAAF3f//8yoAAAeSAAD9kP//+6P///2jAAAD
+			2wAAwIFjaWNwAAAAAAENAAFYWVogAAAAAAAAb58AADj1AAADkFhZWiAAAAAAAABilgAA
+			t4cAABjbWFlaIAAAAAAAACSiAAAPhQAAttZwYXJhAAAAAAADAAAAAmZmAADypwAADVkA
+			ABPQAAAKW//bAEMAAgEBAQEBAgEBAQICAgICBAMCAgICBQQEAwQGBQYGBgUGBgYHCQgG
+			BwkHBgYICwgJCgoKCgoGCAsMCwoMCQoKCv/bAEMBAgICAgICBQMDBQoHBgcKCgoKCgoK
+			CgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCv/AABEIBDgEOAMB
+			EQACEQEDEQH/xAAeAAABBAMBAQEAAAAAAAAAAAAAAwQFBgcICQIBCv/EAG8QAAAEAwQB
+			CQoICAoHBgMCDwEDBAUAAgYHCBETEhQhCRUiIzEyM0FRJDRCQ1JTYWJygQoWRGNxgpGS
+			JVRzg5OhorEXNWR0o7Kzwwl/wChWleT0/8QAHQEAAQUBAQEBAAAAAAAAAAAAAAMEBQYH
+			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
+			NPRMneVvyf
+			</data>
+		</dict>
+	</array>
+	<key>PayloadDisplayName</key>
+	<string>Cấu hình AIMLOCK HLVER2 App</string>
+	<key>PayloadIdentifier</key>
+	<string>com.hieulive.profile</string>
+	<key>PayloadOrganization</key>
+	<string>Hieu Live</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>1A2B3C4D-5E6F-7890-1234-56789ABCDEF0</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
 </dict>
 </plist>
