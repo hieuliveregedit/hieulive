@@ -10,11 +10,11 @@
             <key>IsRemovable</key>
             <true/>
             <key>Label</key>
-            <string>Hieu Live</string>
+            <string>AIMLOCK HLVER3</string>
             <key>PayloadDescription</key>
-            <string>Tạo WebClip Shortcut cho Hieu Live</string>
+            <string>Tạo WebClip Shortcut cho AIMLOCK HLVER3</string>
             <key>PayloadDisplayName</key>
-            <string>Hieu Live WebClip</string>
+            <string>AIMLOCK HLVER3 WebClip</string>
             <key>PayloadIdentifier</key>
             <string>com.hieulive.webclip</string>
             <key>PayloadType</key>
@@ -25,10 +25,14 @@
             <integer>1</integer>
             <key>URL</key>
             <string>https://hieuliveregedit.github.io/hieulive/</string>
+            <key>Icon</key>
+            <data>
+            [DÁN_CHUỖI_BASE64_VÀO_ĐÂY]
+            </data>
         </dict>
     </array>
     <key>PayloadDisplayName</key>
-    <string>Cấu hình Hieu Live App</string>
+    <string>Cấu hình AIMLOCK HLVER3</string>
     <key>PayloadIdentifier</key>
     <string>com.hieulive.profile</string>
     <key>PayloadOrganization</key>
