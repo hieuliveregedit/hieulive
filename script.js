@@ -1,27 +1,25 @@
 let hwid = localStorage.getItem('device_hwid');
 if (!hwid) {
-    hwid = '67131251-' + Math.random().toString(36).substring(2, 9).toUpperCase() + '-' + Date.now().toString().slice(-8);
+    hwid = 'AIMLOCK-HL-' + Math.random().toString(36).substring(2, 9).toUpperCase() + '-' + Date.now().toString().slice(-8);
     localStorage.setItem('device_hwid', hwid);
 }
 document.getElementById('device-id').value = hwid;
 
-let selectedGameType = 'ffmax'; // Mặc định là Free Fire MAX
+let selectedGameType = 'ffmax';
 
 const gameConfigs = {
     ff: { s1: 80, s2: 85, s3: 75, s4: 90, s5: 85 },
     ffmax: { s1: 85, s2: 90, s3: 80, s4: 95, s5: 88 }
 };
 
-// Tự động kiểm tra nếu trước đó đã kích hoạt thì cho vào thẳng luôn
 window.addEventListener('DOMContentLoaded', () => {
-    const isActivated = localStorage.getItem('ultralock_activated');
+    const isActivated = localStorage.getItem('aimlock_hieulive_activated');
     if (isActivated === 'true') {
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-dashboard').classList.remove('hidden');
     }
 });
 
-// HÀM TẠO ÂM THANH KHI BẤM PHÍM (WEB AUDIO API KHÔNG CẦN FILE NGOÀI)
 function playSound() {
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -41,20 +39,15 @@ function playSound() {
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.05);
     } catch (e) {
-        // Bỏ qua nếu trình duyệt chặn
+        // Bỏ qua lỗi âm thanh nếu trình duyệt chặn
     }
-}
-
-function copyDeviceID() {
-    navigator.clipboard.writeText(hwid);
-    alert("Đã sao chép mã thiết bị!");
 }
 
 function pasteKey() {
     navigator.clipboard.readText().then(text => {
-        document.getElementById('key-input').value = text;
-    }).catch(() => {
-        alert("Vui lòng dán thủ công.");
+        document.getElementById('key-input').value = text.trim();
+    }).catch(err => {
+        alert('Vui lòng cấp quyền dán hoặc dán thủ công!');
     });
 }
 
@@ -62,145 +55,138 @@ function clearKey() {
     document.getElementById('key-input').value = '';
 }
 
-// HÀM XỬ LÝ KIỂM TRA VÀ KÍCH HOẠT KEY (ĐÃ FIX LỖI)
+function copyDeviceID() {
+    const deviceInput = document.getElementById('device-id');
+    deviceInput.select();
+    deviceInput.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(deviceInput.value);
+    alert('Đã sao chép mã thiết bị vào bộ nhớ tạm!');
+}
+
 function verifyKey(action) {
     const key = document.getElementById('key-input').value.trim();
     const statusMsg = document.getElementById('status-msg');
 
-    if (!key) { 
-        statusMsg.innerText = "⚠️ Vui lòng nhập mã key của bạn!";
-        statusMsg.style.color = "#f472b6";
-        return; 
+    if (!key) {
+        statusMsg.innerText = 'Vui lòng nhập mã kích hoạt!';
+        statusMsg.className = 'text-[11px] text-center text-rose-500 pt-1';
+        return;
     }
 
-    statusMsg.innerText = "⏳ Đang kết nối máy chủ xác thực...";
-    statusMsg.style.color = "#c084fc";
-    
-    setTimeout(() => {
-        // Chấp nhận mọi key người dùng nhập vào để test hoặc kết nối hệ thống
-        if(action === 'activate') {
-            localStorage.setItem('ultralock_activated', 'true');
+    if (action === 'check') {
+        statusMsg.innerText = 'Key hợp lệ (Chưa kích hoạt thiết bị này)';
+        statusMsg.className = 'text-[11px] text-center text-[#c084fc] pt-1';
+    } else {
+        localStorage.setItem('aimlock_hieulive_activated', 'true');
+        statusMsg.innerText = 'Kích hoạt thành công!';
+        statusMsg.className = 'text-[11px] text-center text-emerald-500 pt-1';
+        
+        setTimeout(() => {
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-dashboard').classList.remove('hidden');
-        } else {
-            statusMsg.innerText = "✅ Mã kích hoạt hợp lệ! Bạn có thể bấm Kích hoạt.";
-            statusMsg.style.color = "#4ade80";
-        }
-    }, 500);
+        }, 600);
+    }
 }
 
-function switchTab(tabName, el) {
+function switchTab(tabName, btnElement) {
     ['home', 'func', 'boost', 'live', 'settings'].forEach(t => {
         document.getElementById('tab-' + t).classList.add('hidden');
     });
     document.getElementById('tab-' + tabName).classList.remove('hidden');
-    
-    document.querySelectorAll('.nav-btn').forEach(b => {
-        b.classList.remove('text-[#c084fc]');
-        b.classList.add('text-zinc-500');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-[#c084fc]');
+        btn.classList.add('text-zinc-500');
     });
-    el.classList.remove('text-zinc-500');
-    el.classList.add('text-[#c084fc]');
+    btnElement.classList.remove('text-zinc-500');
+    btnElement.classList.add('text-[#c084fc]');
 }
 
 function selectGame(type) {
     selectedGameType = type;
-    const btnFF = document.getElementById('card-ff');
-    const btnFFMax = document.getElementById('card-ffmax');
-    const title = document.getElementById('boost-title');
-    const currentLabel = document.getElementById('current-game-label');
+    const ffCard = document.getElementById('card-ff');
+    const ffMaxCard = document.getElementById('card-ffmax');
+    const boostTitle = document.getElementById('boost-title');
+    const currentGameLabel = document.getElementById('current-game-label');
     const openGameTitle = document.getElementById('open-game-title');
     const openGameDesc = document.getElementById('open-game-desc');
 
-    if(type === 'ff') {
-        btnFF.style.borderColor = '#9333ea';
-        btnFFMax.style.borderColor = '#2a1b3d';
-        title.innerText = "FREE FIRE CONFIG";
-        currentLabel.innerText = "Free Fire Thường";
-        openGameTitle.innerText = "Khởi chạy Free Fire";
-        openGameDesc.innerText = "Hệ thống sẽ gọi trực tiếp gói ứng dụng Free Fire trên thiết bị.";
+    if (type === 'ff') {
+        ffCard.classList.add('border-[#9333ea]');
+        ffMaxCard.classList.remove('border-[#9333ea]');
+        boostTitle.innerText = 'FREE FIRE CONFIG';
+        currentGameLabel.innerText = 'Free Fire';
+        openGameTitle.innerText = 'Khởi chạy Free Fire';
+        openGameDesc.innerText = 'AIMLOCK HIEULIVE gọi gói Free Fire chuẩn.';
     } else {
-        btnFFMax.style.borderColor = '#9333ea';
-        btnFF.style.borderColor = '#2a1b3d';
-        title.innerText = "FREE FIRE MAX CONFIG";
-        currentLabel.innerText = "Free Fire MAX";
-        openGameTitle.innerText = "Khởi chạy Free Fire MAX";
-        openGameDesc.innerText = "Hệ thống sẽ gọi trực tiếp gói ứng dụng Free Fire MAX trên thiết bị.";
+        ffMaxCard.classList.add('border-[#9333ea]');
+        ffCard.classList.remove('border-[#9333ea]');
+        boostTitle.innerText = 'FREE FIRE MAX CONFIG';
+        currentGameLabel.innerText = 'Free Fire MAX';
+        openGameTitle.innerText = 'Khởi chạy Free Fire MAX';
+        openGameDesc.innerText = 'AIMLOCK HIEULIVE gọi trực tiếp gói ứng dụng game.';
     }
 
-    loadGameConfigToUI();
-}
+    const cfg = gameConfigs[type];
+    document.getElementById('slider-s1').value = cfg.s1;
+    document.getElementById('slider-s2').value = cfg.s2;
+    document.getElementById('slider-s3').value = cfg.s3;
+    document.getElementById('slider-s4').value = cfg.s4;
+    document.getElementById('slider-s5').value = cfg.s5;
 
-function updateBoostVal(keyName, val) {
-    gameConfigs[selectedGameType][keyName] = parseInt(val);
-    document.getElementById(keyName + '-val').innerText = val + "%";
-    calculateTotalBoost();
-}
+    document.getElementById('s1-val').innerText = cfg.s1 + '%';
+    document.getElementById('s2-val').innerText = cfg.s2 + '%';
+    document.getElementById('s3-val').innerText = cfg.s3 + '%';
+    document.getElementById('s4-val').innerText = cfg.s4 + '%';
+    document.getElementById('s5-val').innerText = cfg.s5 + '%';
 
-function calculateTotalBoost() {
-    const cfg = gameConfigs[selectedGameType];
     const avg = Math.round((cfg.s1 + cfg.s2 + cfg.s3 + cfg.s4 + cfg.s5) / 5);
-    document.getElementById('total-boost-circle').innerText = avg + "%";
+    document.getElementById('total-boost-circle').innerText = avg + '%';
 }
 
-function loadGameConfigToUI() {
-    const cfg = gameConfigs[selectedGameType];
-    
-    ['s1', 's2', 's3', 's4', 's5'].forEach(key => {
-        document.getElementById('slider-' + key).value = cfg[key];
-        document.getElementById(key + '-val').innerText = cfg[key] + "%";
-    });
-
-    calculateTotalBoost();
+function updateBoostVal(sliderId, val) {
+    document.getElementById(sliderId + '-val').innerText = val + '%';
 }
 
 function applyBoost() {
-    const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
-    alert("Đã áp dụng cấu hình tối ưu thành công cho " + gameName + "!");
+    alert('Đã áp dụng thông số cấu hình AIMLOCK HIEULIVE thành công!');
 }
 
-// HÀM MỞ GAME BẰNG INTENT SCHEME
+/* BẢN SỬA LỖI MỞ GAME 3 LỚP AN TOÀN */
 function openGame() {
-    const packageName = selectedGameType === 'ff' ? 'com.dts.freefireth' : 'com.dts.freefiremax';
-    const gameName = selectedGameType === 'ff' ? 'Free Fire' : 'Free Fire MAX';
+    const pkgFF = "com.dts.freefireth";
+    const pkgMax = "com.dts.freefiremax";
+    const targetPkg = (selectedGameType === 'ff') ? pkgFF : pkgMax;
+    const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
+
+    // Lớp 1: Gọi Deep Link Intent cho Android / Trình duyệt di động
+    const intentUrl = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
     
-    const intentUrl = `intent://#Intent;package=${packageName};end;`;
-    window.location.href = intentUrl;
-    
+    // Lớp 2: Thử mở trực tiếp qua window.location
+    try {
+        window.location.href = intentUrl;
+    } catch(e) {}
+
+    // Lớp 3: Dự phòng mở App Store / CH Play nếu game chưa cài đặt hoặc không tự mở được
     setTimeout(() => {
-        alert("Đang khởi chạy " + gameName + "...");
-    }, 400);
+        const storeUrl = "market://details?id=" + targetPkg;
+        const webStoreUrl = "https://play.google.com/store/apps/details?id=" + targetPkg;
+        
+        // Tạo liên kết ẩn để kích hoạt điều hướng an toàn
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = storeUrl;
+        document.body.appendChild(iframe);
+        
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+        }, 1000);
+
+        console.log("AIMLOCK HIEULIVE: Đã kích hoạt lệnh gọi game " + gameName);
+    }, 500);
 }
 
 function logout() {
-    localStorage.removeItem('ultralock_activated'); // Xóa trạng thái lưu để bắt nhập lại key nếu muốn
-    document.getElementById('main-dashboard').classList.add('hidden');
-    document.getElementById('auth-screen').classList.remove('hidden');
+    localStorage.removeItem('aimlock_hieulive_activated');
+    location.reload();
 }
-
-// Mạng xã hội
-document.getElementById('btn-telegram').addEventListener('click', () => {
-    playSound();
-    const link = prompt("Nhập link Telegram của bạn:", "https://t.me/");
-    if (link) window.open(link, '_blank');
-});
-
-document.getElementById('btn-zalo').addEventListener('click', () => {
-    playSound();
-    const link = prompt("Nhập link Zalo của bạn:", "https://zalo.me/");
-    if (link) window.open(link, '_blank');
-});
-
-document.getElementById('btn-tiktok1').addEventListener('click', () => {
-    playSound();
-    const link = prompt("Nhập link TikTok 1 của bạn:", "https://tiktok.com/");
-    if (link) window.open(link, '_blank');
-});
-
-document.getElementById('btn-tiktok2').addEventListener('click', () => {
-    playSound();
-    const link = prompt("Nhập link TikTok 2 của bạn:", "https://tiktok.com/");
-    if (link) window.open(link, '_blank');
-});
-
-loadGameConfigToUI();
