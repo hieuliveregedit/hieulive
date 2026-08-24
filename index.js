@@ -1,6 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const cors = require('cors'); // Thêm thư viện CORS
 
 const token = '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
 const bot = new TelegramBot(token, { 
@@ -13,7 +12,14 @@ const bot = new TelegramBot(token, {
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Cho phép mọi trang web gọi API vào đây mà không bị chặn
+
+// Tự tạo middleware cấp phép CORS thủ công (Không cần cài thư viện ngoài)
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 global.keyDatabase = {};
 
