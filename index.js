@@ -1,8 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
-// Thay token thật của bạn vào trong cặp ngoặc đơn dưới đây lấy từ BotFather
-const token = 'YOUR_TELEGRAM_BOT_TOKEN_HERE';
+// Đã điền sẵn Token của bạn
+const token = '8849614440:AAEhTf2xy89_ajYvk32tOeLdJNQcOq8yLkY';
 const bot = new TelegramBot(token, { polling: true });
 
 const app = express();
