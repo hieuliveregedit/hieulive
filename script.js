@@ -12,11 +12,15 @@ const gameConfigs = {
     ffmax: { s1: 85, s2: 90, s3: 80, s4: 95, s5: 88 }
 };
 
+// Kiểm tra trạng thái đăng nhập khi vừa tải trang
 window.addEventListener('DOMContentLoaded', () => {
     const isActivated = localStorage.getItem('aimlock_hieulive_activated');
     if (isActivated === 'true') {
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-dashboard').classList.remove('hidden');
+    } else {
+        document.getElementById('auth-screen').classList.remove('hidden');
+        document.getElementById('main-dashboard').classList.add('hidden');
     }
 });
 
@@ -38,9 +42,7 @@ function playSound() {
         
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.05);
-    } catch (e) {
-        // Bỏ qua lỗi âm thanh nếu trình duyệt chặn
-    }
+    } catch (e) {}
 }
 
 function pasteKey() {
@@ -159,20 +161,14 @@ function openGame() {
     const targetPkg = (selectedGameType === 'ff') ? pkgFF : pkgMax;
     const gameName = (selectedGameType === 'ff') ? "Free Fire" : "Free Fire MAX";
 
-    // Lớp 1: Gọi Deep Link Intent cho Android / Trình duyệt di động
     const intentUrl = "intent://#Intent;package=" + targetPkg + ";scheme=freefire;end;";
     
-    // Lớp 2: Thử mở trực tiếp qua window.location
     try {
         window.location.href = intentUrl;
     } catch(e) {}
 
-    // Lớp 3: Dự phòng mở App Store / CH Play nếu game chưa cài đặt hoặc không tự mở được
     setTimeout(() => {
         const storeUrl = "market://details?id=" + targetPkg;
-        const webStoreUrl = "https://play.google.com/store/apps/details?id=" + targetPkg;
-        
-        // Tạo liên kết ẩn để kích hoạt điều hướng an toàn
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
         iframe.src = storeUrl;
@@ -181,8 +177,6 @@ function openGame() {
         setTimeout(() => {
             document.body.removeChild(iframe);
         }, 1000);
-
-        console.log("AIMLOCK HIEULIVE: Đã kích hoạt lệnh gọi game " + gameName);
     }, 500);
 }
 
