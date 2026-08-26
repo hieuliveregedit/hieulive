@@ -1,8 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
-// Khuyến khích đưa token vào Environment Variables (process.env.BOT_TOKEN)
-const token = process.env.BOT_TOKEN || '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
+// Token bot Telegram của bạn
+const token = '8849614440:AAGkn9fsy0fcZcrP1-nEfXh4sjAL3e__drg';
 
 const bot = new TelegramBot(token, { 
     polling: {
@@ -38,7 +38,6 @@ bot.onText(/\/taokey/, (msg) => {
     // Đánh dấu key mới tạo
     global.keyDatabase[newKey] = true;
 
-    // Đã sửa lại định dạng Markdown chuẩn của Telegram (* text * thay vì ** text **)
     const message = `✅ *Đã tạo Key thành công!*\n\n🔑 Mã Key: \`${newKey}\`\n📌 Loại: Key dùng 1 lần (Tự xóa sau khi kích hoạt)\n⚡ Trạng thái: Sẵn sàng sử dụng`;
 
     bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
